@@ -1,0 +1,104 @@
+{
+ "purpose": "Per-gene cis-regulatory element counts for every gene model in both haplotypes of Populus tremula x P. alba 717, for the atlas gene page. Motif COUNTS only: no enrichment statistics and no LSG-vs-control comparison, which are population-level claims belonging to the dissertation chapter, not to a per-gene fact sheet.",
+ "tier": "public",
+ "generated_by": "ms2-lsg pipeline/s08d_promoter_cre_genomewide.py",
+ "derived_at": "2026-09-06T08:50:06",
+ "rows_written": 63960,
+ "genes_hap1": 32137,
+ "genes_hap2": 31823,
+ "join_key": "gene_id, bare locus (no .1 / .p suffix), matches the atlas gene index",
+ "promoter_source": {
+  "<home>/dev/cre_embedding/data/00_sequences/promoter_3kb_hap1.fa": {
+   "sha256": "86b301d1be39305eb9ad92441d788cef0c4646ce587cf147b076d759f1be4b41",
+   "records": 32137
+  },
+  "<home>/dev/cre_embedding/data/00_sequences/promoter_3kb_hap2.fa": {
+   "sha256": "ecf01b839a9fad8358a7661015905bb0dd4226813f8a20750102bade370ba490",
+   "records": 31823
+  }
+ },
+ "promoter_window": {
+  "scanned_bp": 3000,
+  "shipped_in_this_file_bp": 1000,
+  "sweep_available_bp": [
+   500,
+   1000,
+   2000,
+   3000
+  ],
+  "sweep_file": "cre_promoter_hits_sweep.tsv.gz",
+  "orientation": "record runs 5'->3' with the TSS at the END of the sequence",
+  "nesting_verified": "all 63960 3 kb records end with the corresponding 1 kb record from promoter_1kb_hap{1,2}.fa, checked in this run's preflight, so the 1 kb column is comparable to s08's",
+  "short_records": "10 HAP1 records are shorter than 3 kb (clamped at a contig edge); promoter_len is the actual length used per gene",
+  "rationale": "3 kb is where the median LSG-pool promoter stops being fully intergenic, per PLAN_promoter_length_3kb.md. Reported as a nested sweep rather than a single cutoff so any length-dependent claim is a gradient."
+ },
+ "motifs": {
+  "database": "JASPAR 2024 CORE plants, non-redundant",
+  "file": "pipeline/resources/JASPAR2024_CORE_plants_nr.jaspar",
+  "sha256": "e25dc968b721cf73ebab4d46bc5432ad80304da7797321bc7637cd319ada0405",
+  "n_matrices": 805
+ },
+ "hit_definition": {
+  "HIT_FRAC": 0.85,
+  "rule": "log-odds PSSM (pseudocount 0.5, log2 vs a uniform 0.25 background), scanned on both strands; a position is a hit when its score is at least HIT_FRAC of that motif's own maximum attainable score",
+  "why_this_value": "unchanged from s08_promoter_cre.py, which is what the dissertation chapter's fig15/fig16 use, so an atlas count and a chapter count mean the same thing. It is a declared sensitivity parameter, not an optimised one, and it is permissive: the median 3 kb promoter carries ~1400 hits across all 805 matrices.",
+  "non_maximum_suppression": "hits of one matrix within its own motif length are collapsed to the single best-scoring position, pooled across strands, so one site counts once"
+ },
+ "family_mapping": {
+  "display_label": "Render these as \"<FAMILY>-family TF motifs\", e.g. \"MYB-family TF motifs\". Approved by Chen 2026-09-06. Do NOT label them as cis-elements (\"MYB box\", \"ABRE\", \"DRE/CRT\"): the grouping is on the JASPAR TF NAME, so a column means \"matrices for transcription factors of this family\", not \"occurrences of a named DNA element\". ABRE and DRE/CRT are cis-elements bound by particular bZIP and ERF family members, which is a different kind of category and would be a wrong caption here.",
+  "source": "STRESS imported from s08_promoter_cre.py and DEV from case_studies/piggyback_locus_cre_marks.py, verbatim, so the atlas cannot drift from the chapter or the locus figure on what counts as a stress or developmental motif",
+  "patterns": {
+   "ABRE_bZIP": "^(ABF|AREB|ABI5|GBF|bZIP|TGA)",
+   "DREB_ERF": "^(DREB|CBF|ERF|RAP2)",
+   "WRKY": "^WRKY",
+   "MYB": "^MYB",
+   "NAC": "^(NAC|ANAC|ATAF|CUC)",
+   "MADS_box": "^(AGL|SEP|PI|FUL|SVP|STK)",
+   "SPL": "^SPL",
+   "TCP": "^TCP",
+   "ARF": "^ARF",
+   "LFY": "^LFY"
+  },
+  "matrices_per_family": {
+   "ABRE_bZIP": 20,
+   "DREB_ERF": 73,
+   "WRKY": 46,
+   "MYB": 62,
+   "NAC": 47,
+   "MADS_box": 17,
+   "SPL": 44,
+   "TCP": 19,
+   "ARF": 19,
+   "LFY": 1,
+   "other": 457
+  },
+  "CAUTION": "family sizes are very uneven (LFY has 1 matrix, DREB_ERF has 73), so raw counts are NOT comparable between families. Normalise by matrices_per_family, or show the matrix count alongside, before rendering a family strip.",
+  "no_multi_family_matrices": "asserted in this run: no matrix matches two patterns"
+ },
+ "columns": {
+  "window_bp": "SWEEP FILE ONLY, absent from the contract file: which upstream window the row is for. The contract file is the window_bp == 1000 slice of the sweep with this column dropped, and the two are byte-equal on every shared column, so the two files can never disagree.",
+  "promoter_len": "bp actually used, = min(window, record length)",
+  "n_upstream_overlap": "bp of the window covered by another gene body, = promoter_len - intergenic_bp from out/promoter_mask_3kb.tsv (extract_promoter_3kb.py). The clean portion is TSS-proximal by construction, so the overlap is the far end of the window.",
+  "gc": "G+C fraction over ACGT only, Ns excluded from the denominator",
+  "n_frac": "fraction of the window that is N (unassembled)",
+  "tata_pos": "bp upstream of the TSS to the far (5') edge of the TATA match (TATA[AT]A[AT][AG]) nearest the TSS; empty when there is none. Same distance convention as the motif hits.",
+  "tata_core": "TATA match in the -45..-20 window, reproducing s08_promoter_cre.py's own boolean so the chapter's TATA rate can be recomputed from here",
+  "cre_<family>": "hit count in the window for matrices of that TF family",
+  "cre_other": "hit count for matrices in none of the named families",
+  "cre_total": "hit count across all 805 matrices"
+ },
+ "known_limitations": {
+  "threshold_is_length_biased": "HIT_FRAC is a fraction of a matrix's TOTAL attainable score, which is a sum over its positions, so a longer matrix has to match well over more positions to clear the same fraction. Effective stringency therefore rises with matrix length and the family counts partly measure matrix length rather than biology. Concretely, across all 63,960 promoters: the median matrix is 8 bp; WRKY (median 9 bp) scores in 84.1% of promoters, TCP (median 11 bp) in 9.5%, and LFY (a single 19 bp matrix) in none. Do not read a low family count as evidence that a family's sites are absent.",
+  "empty_columns": {
+   "families": [
+    "LFY"
+   ],
+   "note": "zero for every gene in this run, and therefore REMOVED from this file rather than shipped as an empty lane (Chen, 2026-09-06). They remain in the sweep file as the full record. LFY is the expected case: one 19 bp matrix against a median of 8, never clearing the threshold anywhere in the genome, for the length reason above."
+  },
+  "jaspar_redundancy": "counts are summed over matrices, so one genomic site bound by a family with several similar matrices contributes more than one hit. JASPAR CORE plants nr reduces this but does not remove it: ABF1/ABF2/ABF3/AREB-type matrices are separate nr entries that recognise overlapping sites. Non-maximum suppression is applied WITHIN a matrix, not across matrices of a family.",
+  "counts_are_not_comparable_to_s08_motif_density": "s08_promoter_cre.py's promoter_ness.tsv motif_density_mean counts MATRICES with at least one hit (max ~805). cre_total here counts SITES after non-maximum suppression, so it is a larger number measuring a different thing. The two files agree exactly where they measure the same thing: this run's tata_core rate over the LSG pool reproduces s08's tata_rate to six decimals on both haplotypes (HAP1 0.051069, n=842; HAP2 0.052095, n=883).",
+  "no_non_genic_background": "s08 estimates a non-genic background for its population comparison. That is an inferential control and has no per-gene meaning, so it is not in this file. The genome-wide distribution of these 63,960 rows is itself the background any per-gene value should be read against."
+ },
+ "not_included_on_purpose": "per-matrix enrichment p-values and LSG-vs-control contrasts. See out/cre_enrichment.tsv in the ms2-lsg pipeline for those; they are tied to the LSG framing and are unpublished chapter results.",
+ "regenerate": "run pipeline/s08d_promoter_cre_genomewide.py from the OneDrive run mirror; needs extract_promoter_3kb.py to have produced the 3 kb FASTAs and out/promoter_mask_3kb.tsv first"
+}

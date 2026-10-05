@@ -1,0 +1,39 @@
+{
+ "purpose": "Pins the ms2-lsg tables the atlas's lineage-specific-gene layers are built from, by commit AND by each table's git blob ID, WITHOUT carrying a single value. scripts/check_ms2_canon.py reads the exact bytes through git at this commit, refuses if a blob ID differs, and then compares every gene in the committed shards against them.",
+ "why_pinned_not_vendored": "This repo's root was published by GitHub Pages until 2026-09-21. Pinning keeps the values out of the repo, and reading through git means a stale or feature-branch checkout cannot feed the check the wrong file: the ms2-lsg clone on this machine is routinely checked out on another session's branch.",
+ "why_blob_ids": "A commit pin alone churns on every unrelated commit to ms2-lsg main. A blob ID changes only when that table's bytes change, so a moved table fails loudly by name and nothing else does.",
+ "why_the_corrections_log": "Pinning tables was not enough. From 2026-09-21 to 09-26 every pinned table was byte-identical upstream while the RULING on them changed (C4 -> C5), so the check passed against a pool the owner had reversed. check_ms2_canon.py therefore also compares this blob and every table's blob with the clone's origin/main, and fails when the corrections log has moved: read the new entry, then refresh.",
+ "source_repo": "ChenHsieh/ms2-lsg",
+ "ms2_lsg_commit": "e05215e570c7905a2eb80abf476099cdd55b6094",
+ "ruling": "C5 in docs/CORRECTIONS.md (8eb65b0): the pool is the rerun that added Idesia, 776/835; only abSENSE and the synteny check are QC steps",
+ "corrections_log": {
+  "docs/CORRECTIONS.md": "52bb6956ed9a693f13275427d518a715c47f7424"
+ },
+ "ruling_section": {
+  "heading_prefix": "## 2026-09-21 evening: C5",
+  "sha256": "c51bd7eb6b42fae97eeedcd441aae24a5abafaf6fd87213b3a02bf6acfc051ea",
+  "why": "Separates 'the rule that governs the atlas changed' from 'the log grew' (main ms2's suggestion, 2026-09-26). sha256 of the entry from its heading to the next --- rule or ## heading, computed by check_ms2_canon.ruling_section. Both failures stay failures."
+ },
+ "tables": {
+  "pipeline/out/lsg_pool_idesia.tsv.gz": "7dccc0e7caa3cb67466388ad147a3e0a4f5153bf",
+  "pipeline/out/lsg_pool_flags_newpool.tsv": "175f95da0e2f5723de6d1db701f3ecf2f1fa5f78",
+  "pipeline/out/lsg_pool.tsv": "4f8b7cac3007220158d52c1057249bc901705e31",
+  "pipeline/out/lsg_pool_synteny.tsv": "c2ba7b01725674e254f1ab504f1c663b4db0b890",
+  "analyses/proteomics_translation_evidence/results/aspen_detection_by_class.tsv": "e27e4591a9cb19eda35f357b6c527afac4540173",
+  "data/founder_families_rerun_20260926/founder_family_per_gene.tsv.gz": "2057013dc38346dcbcd982ef209fe290b4c839af"
+ },
+ "what_each_table_is": {
+  "pipeline/out/lsg_pool_idesia.tsv.gz": "the pool: is_lsg, rank, phylostratum, tax_rep per gene (the rerun), plus the frozen call's rank",
+  "pipeline/out/lsg_pool_flags_newpool.tsv": "the two C5 QC flags per pool gene (hdf_reject, tblastn_retract, unflagged)",
+  "pipeline/out/lsg_pool.tsv": "the frozen 2026-04 call, superseded; provenance only (ps.frz)",
+  "pipeline/out/lsg_pool_synteny.tsv": "the synteny-contest routes and DIAMOND-sensitivity stability, shown as other evidence",
+  "analyses/proteomics_translation_evidence/results/aspen_detection_by_class.tsv": "peptide detection per dataset x haplotype x age class",
+  "data/founder_families_rerun_20260926/founder_family_per_gene.tsv.gz": "each gene's founder family (origin stratum, size) from the same genEra run as the pool; ps.fnd"
+ },
+ "not_pinned_on_purpose": "pipeline/out/lsg_pool_qc.tsv: the legacy four-flag table of the 842/883 pool; its wgd_flagged column is the flag C5 removed (main ms2, 2026-09-26).",
+ "refresh": "git -C <ms2-lsg> fetch origin main; read every new entry in docs/CORRECTIONS.md; move ms2_lsg_commit to the new main, replace each blob ID with `git rev-parse <commit>:<path>`, rerun the check, and read every FAIL before accepting the move",
+ "sha256": {
+  "data/founder_families_rerun_20260926/founder_family_per_gene.tsv.gz": "887553b489b8a9b57facb65d583b0cf9150b66d0a313123b2375262745638f76"
+ },
+ "why_sha256_too": "The founder table's first commit (7077b38) shipped only its README and script: ms2-lsg's .gitignore dropped the .gz silently. Its owner read the blob and sha256 back from origin/main (e05215e); make_founder_source.py checks both."
+}

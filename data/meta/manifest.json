@@ -1,0 +1,1540 @@
+{
+ "annotation": {
+  "go_terms": 4862,
+  "n_allele": 56386,
+  "n_annotated": 60746,
+  "n_presence": 62385,
+  "search_tokens": 35377,
+  "sources": {
+   "best_arabidopsis": "annotation_info.txt (both haplotypes)",
+   "go": "GO/h{1,2}.custom.GO (lab-built, both haplotypes, with term names)",
+   "kaks": "synt_ks/syntelog_ks.csv, Yang-Nielsen (yn_*), 25,931 syntelog pairs",
+   "pfam_panther": "annotation_info.txt for HAP1; parsed from defline.txt for HAP2 because HAP2's annotation_info domain columns are empty in the release"
+  }
+ },
+ "built": "2026-09-05T11:22:45-0400",
+ "chromatin": {
+  "accessible_region_definition": "genic or within 2 kb of the start, replicates merged -- the source paper's own classification. A 500 bp window fails, because 55% of conserved gene starts have their nearest accessible region more than 2 kb away, which is that paper's headline finding about distal elements in plants.",
+  "genes_whose_ortholog_is_ambiguous": 6329,
+  "genes_without_a_1to1_ortholog": 11762,
+  "leaf_expressed": 42012,
+  "n_genes": 45869,
+  "n_loci": 23466,
+  "profiles": {
+   "bin_bp": 100,
+   "bins": 40,
+   "flank_bp": 2000,
+   "genes": 45867,
+   "loci": 23465,
+   "marks": [
+    "atac",
+    "k4",
+    "k36",
+    "k27"
+   ],
+   "orientation": "strand-oriented at extraction -- bin 0 is the upstream end for every gene, plus or minus strand.",
+   "sanity": {
+    "h3k4me3_2kb_upstream": -0.12,
+    "h3k4me3_at_tss": 0.35,
+    "note": "an active-promoter peak in the right place, which is the evidence that extraction and strand orientation are correct"
+   },
+   "units": "log ratio, stored as hundredths (value x 100). NOT coverage and NOT read counts: values are negative as often as positive and each mark has its own range, so it is drawn diverging about zero and scaled per mark.",
+   "whose_chromatin": "the P. trichocarpa ORTHOLOG's, not this gene's. Nothing was measured on 717 or either parent."
+  },
+  "scope": "A property OF THE P. TRICHOCARPA ORTHOLOG, not of the 717 gene. No chromatin data exists for 717 or for either parent species. Attached only where the ortholog call is reciprocal 1:1.",
+  "silent_in_leaf": 3857,
+  "source": "GEO GSE128434 (Lu, Marand, Schmitz et al., Nature Plants 2019), P. trichocarpa leaf: ATAC-seq, H3K4me3, H3K36me3, and matched RNA-seq",
+  "the_standing_limit": "ATAC and H3K4me3 establish THAT a locus has a promoter, never WHERE transcription starts. Only a 5'-end method does that, and none exists for any Populus.",
+  "why_expression_gates_it": "The chromatin is leaf only. A gene silent in leaf correctly carries no promoter mark there, so an absent mark says nothing about the gene unless you know it was expressed. The source analysis's first run failed its own gate for exactly this reason."
+ },
+ "copies": {
+  "genes": {
+   "PtXaAlbH.10G043900": "nrx1",
+   "PtXaTreH.10G046700": "nrx1",
+   "PtXaTreH.10G046800": "nrx1",
+   "PtXaTreH.10G046900": "nrx1",
+   "PtXaTreH.10G047000": "nrx1",
+   "PtXaTreH.10G047100": "nrx1",
+   "PtXaTreH.10G047200": "nrx1",
+   "PtXaTreH.10G047600": "nrx1"
+  },
+  "loci": {
+   "nrx1": {
+    "desc": "nucleoredoxin",
+    "hap": "hap1",
+    "name": "NRX1",
+    "reference": "PtXaTreH.10G047000",
+    "summary": {
+     "hap1": {
+      "annotated": 7,
+      "max_cov_pct": 95.0,
+      "pieces": 8,
+      "unannotated": 1
+     },
+     "hap2": {
+      "annotated": 1,
+      "max_cov_pct": 47.5,
+      "pieces": 3,
+      "unannotated": 1
+     }
+    }
+   }
+  },
+  "method": "tblastn (BLAST+ 2.14.1) of every array protein against each whole haplotype genome; see scripts/make_copy_search_source.py",
+  "note": "Copies found in the genome SEQUENCE, so a panel can show pieces the annotation does not call. Only the loci listed here have been searched; a gene without a panel has not been searched, which is not the same as having no copies.",
+  "source": "sources/copy_search.json",
+  "source_sha256": "a585338949104a65b97c8e7c50fdbc7067f57a71999a4881f71ab112a9c06523"
+ },
+ "corrections": [
+  {
+   "after_tissue_wt_control_n": {
+    "bark": 38,
+    "bud": 5,
+    "callus": 1,
+    "catkin": 4,
+    "leaf": 55,
+    "leaf_old": 11,
+    "leaf_young": 11,
+    "root": 27,
+    "stem": 2,
+    "xylem": 59
+   },
+   "before_tissue_wt_control_n": {
+    "bark": 38,
+    "bud": 5,
+    "callus": 1,
+    "catkin": 4,
+    "leaf": 77,
+    "root": 27,
+    "stem": 2,
+    "xylem": 59
+   },
+   "date": "2026-09-05",
+   "detail": "docs/DATA_AUDIT.md, CHANGELOG.md",
+   "what": "expression tissue baseline + tau regrouped by tissue_analysis, not tissue",
+   "why": "tissue pooled leaf_young + leaf_old (46 samples, all study 1) into one 'leaf' bucket; the WT-control subset of that pool was 11 + 11 of 77"
+  },
+  {
+   "before": {
+    "age_gradient_pct": {
+     "LSG_pool": 0.12,
+     "PS13_15_rosids": 6.14,
+     "PS16_17_salicaceae": 2.93,
+     "PS1_2_ancient": 42.28,
+     "PS3_12_conserved": 12.78
+    },
+    "method": "raw-spectra re-search against a database CONTAINING the 717 proteins (98,659 targets), Sage 0.14.7, 1% peptide AND spectrum FDR"
+   },
+   "date": "2026-09-21",
+   "detail": "CHANGELOG.md 0.13.2, sources/proteomics_ms_v2.provenance.json corrections_2026_09_21",
+   "what": "proteomics.method and proteomics.age_gradient_pct corrected; no gene record changed",
+   "why": "method named the original Tier 2 database (98,659 targets) but every shipped search used the expanded 135,843-target database; age_gradient_pct was a hand-typed, haplotype-pooled copy of the published Tier 2 figures (LSG pool 0.12%, i.e. 2 of 1,611) that still counted PtXaTreH.14G041300, withdrawn upstream on 2026-09-09. Now computed from the shards per haplotype by patch_proteomics_v2.py:age_gradient() and gated against the owner's union counts."
+  }
+ ],
+ "cre": {
+  "caveat_family_size_uneven": true,
+  "dropped_family_lfy": "identically zero genome-wide (n_matrices=1, length-biased threshold), see build_cre.py docstring",
+  "family_labels": {
+   "AP2_ERF": "AP2/ERF",
+   "ARF": "ARF",
+   "MADS": "MADS-box",
+   "MYB": "MYB",
+   "NAC": "NAC",
+   "SPL": "SPL",
+   "TCP": "TCP",
+   "WRKY": "WRKY",
+   "bZIP": "bZIP",
+   "other": "other"
+  },
+  "hit_definition": "log-odds PSSM (pseudocount 0.5, log2 vs a uniform 0.25 background), scanned on both strands; a position is a hit when its score is at least HIT_FRAC of that motif's own maximum attainable score",
+  "hit_threshold_frac": 0.85,
+  "jaspar": {
+   "database": "JASPAR 2024 CORE plants, non-redundant",
+   "n_matrices": 805,
+   "sha256_16": "e25dc968b721cf73"
+  },
+  "matrices_per_family": {
+   "AP2_ERF": 73,
+   "ARF": 19,
+   "MADS": 17,
+   "MYB": 62,
+   "NAC": 47,
+   "SPL": 44,
+   "TCP": 19,
+   "WRKY": 46,
+   "bZIP": 20,
+   "other": 457
+  },
+  "n_genes": 63960,
+  "not_included": "per-matrix enrichment statistics and LSG-vs-control comparisons; those are population-level chapter results, not per-gene facts",
+  "positions": {
+   "families": "the nine named TF families only; `other` (457 matrices) is excluded as not meaningful to draw per-motif",
+   "gate": "every shipped gene's positions aggregate exactly to its cre.fam counts, asserted on every build",
+   "genes_with_positions": 63907,
+   "genes_withheld": 44,
+   "measure": "bp from the transcription start to the motif's 5' (far) edge, within the 1 kb promoter window",
+   "positions_by_family": {
+    "AP2_ERF": 224867,
+    "ARF": 56187,
+    "MADS": 67012,
+    "MYB": 358731,
+    "NAC": 386044,
+    "SPL": 84850,
+    "TCP": 16345,
+    "WRKY": 676141,
+    "bZIP": 63662
+   },
+   "why_some_are_withheld": "Upstream scanned a 3 kb window and took the 1 kb slice, with a greedy non-overlapping pass global over 3 kb. Only the 1 kb FASTA is on this cluster, so a motif near the boundary can be resolved differently: 45 of 63,960 genes disagree on a named family, all in the direction of this scan finding MORE hits. Those genes are withheld rather than shown with positions that contradict published counts."
+  },
+  "promoter_scanned_bp": 3000,
+  "promoter_window_bp": 1000,
+  "source": "ms2-lsg pipeline/s08d_promoter_cre_genomewide.py, reviewed 2026-09-06",
+  "tier": "public"
+ },
+ "crossspecies": {
+  "n_ambiguous": 6329,
+  "n_hit": 52470,
+  "n_one2one": 46141,
+  "note": "Only reciprocal 1:1 pairs are presented as orthologs. Ambiguous ones keep their multiplicity rather than being resolved by taking a top hit.",
+  "source": "this atlas's own GENESPACE run 47798208, syntenicHits",
+  "target": "Populus trichocarpa (Potri, v4.1 ids)"
+ },
+ "data_version": "0.17.1",
+ "duplicate_coexpr": {
+  "basis": "Pearson r on log2(ComBat-corrected TPM + 1) over 652 samples -- the same matrix the neighbour co-expression (nb) uses, because a 652-sample correlation spans 28 studies and is therefore a cross-study comparison.",
+  "coverage": "A pair needs BOTH partners in the ComBat matrix (59,599 of 63,960 genes), so 7,707 of 32,333 duplicate pairs have no value. Absence means 'not comparable', not 'uncorrelated'.",
+  "distribution": {
+   "median": 0.31,
+   "p10": -0.101,
+   "p90": 0.803
+  },
+  "max_members_listed": 24,
+  "not_a_divergence_measure": "A descriptive correlation only. No model, no threshold, and no claim about duplicate fate. Nothing upstream computes duplicate-pair expression divergence.",
+  "pairs_with_a_correlation": 24626,
+  "per_member_ks_deliberately_absent": "td.ks is the ARRAY MEDIAN, not a pair value, so it is never rendered beside an individual member."
+ },
+ "duplication": {
+  "ks_by_rank": {
+   "12": {
+    "max": 2.4277,
+    "med": 0.3121,
+    "min": 0.0093,
+    "n": 581,
+    "q1": 0.1051,
+    "q3": 0.6627
+   },
+   "16": {
+    "max": 1.4941,
+    "med": 0.3643,
+    "min": 0.0138,
+    "n": 92,
+    "q1": 0.2369,
+    "q3": 0.6742
+   },
+   "17": {
+    "max": 2.4502,
+    "med": 0.1159,
+    "min": 0.0031,
+    "n": 351,
+    "q1": 0.0516,
+    "q3": 0.1764
+   },
+   "18": {
+    "max": 1.5018,
+    "med": 0.0621,
+    "min": 0.0031,
+    "n": 244,
+    "q1": 0.0154,
+    "q3": 0.2335
+   }
+  },
+  "n_genes": 643,
+  "n_ks_undefined": 78,
+  "n_pairs": 1346,
+  "n_saturated": 11,
+  "scope": "Chapter tier-2 selection, NOT genome-wide: pairs are concentrated at phylostrata 16-18 with a rank-12 Pentapetalae comparator set. Any Ks distribution here describes that selection, not the genome.",
+  "source": "ms1-dup 3a7a3cf data/131_master_v12_20261002/tables/master_per_gene_v12.csv (dup_type_v10 and anchors)",
+  "sources": {
+   "founder": 861,
+   "synteny": 485
+  }
+ },
+ "expr_ranges": {
+  "combat_bytes": {
+   "hap1": 35958356,
+   "hap2": 35550520
+  },
+  "encoding": "one gzip member per gene, concatenated; the member inflates to the same JSON array the bucket held, byte for byte. Values are UNCHANGED - this is a container change, not a quantisation.",
+  "genes_combat": 59599,
+  "genes_raw": 63960,
+  "raw_bytes": {
+   "hap1": 36508536,
+   "hap2": 36123717
+  },
+  "rejected": "Storing ComBat as a per-study offset table: measured NOT additive in log space (within-study spread of the log2 delta, median 0.43, p90 1.15), so both matrices are kept.",
+  "why": "A gene page fetched 786 KB of its 250 neighbours' expression to draw one card. A range request fetches ~1.1 KB."
+ },
+ "expression": {
+  "bucket_size": 250,
+  "combat_eligible_genes": 59599,
+  "n_bioprojects": 38,
+  "n_buckets": 257,
+  "n_contrasts": 191,
+  "n_contrasts_recommended": 117,
+  "n_samples": 652,
+  "n_studies": 28,
+  "tau_excludes": [
+   "callus"
+  ],
+  "tissue_wt_control_n": {
+   "bark": 38,
+   "bud": 5,
+   "callus": 1,
+   "catkin": 4,
+   "leaf": 55,
+   "leaf_old": 11,
+   "leaf_young": 11,
+   "root": 27,
+   "stem": 2,
+   "xylem": 59
+  }
+ },
+ "facets": {
+  "bytes": 3060997,
+  "cols": [
+   "hap",
+   "chr",
+   "cls",
+   "ps",
+   "tau",
+   "top",
+   "allele",
+   "at",
+   "wgd",
+   "wgd9",
+   "ccd",
+   "tandem",
+   "npres",
+   "amb",
+   "xin",
+   "w",
+   "ms",
+   "aek",
+   "rel"
+  ],
+  "n_rows": 63960
+ },
+ "families": {
+  "definition": "connected components over tandem membership, WGD anchor pairs, HAP1/HAP2 alleles and paralog pairs. A singleton is NOT a family and carries no id -- a gene with no homology edge is not in one.",
+  "edges": {
+   "allele": 56386,
+   "para": 2692,
+   "tandem": 60036,
+   "wgd": 46308
+  },
+  "genes_in_a_family": 61060,
+  "largest": 85,
+  "n_families": 16062,
+  "singletons": 2900,
+  "why_drawable": "measured before building the view: the largest component is 85 genes, so no family is too large to render."
+ },
+ "gene_model": {
+  "intron_support": {
+   "confound": "Detection tracks DEPTH. Under 20 reads the per-intron detection rate is below 27%; over 5,000 reads it is 98.8%. LSG genes are shallow, so a low figure for an LSG is largely about its expression. Never show it without the gene's read count.",
+   "genes": 50631,
+   "lsg_all_introns_seen_pct": 52.6,
+   "lsg_no_intron_seen_pct": 37.2,
+   "multi_exon_all_introns_seen_pct": 89.6,
+   "note": "13,329 atlas genes are single-exon and have no intron to detect.",
+   "power_curve": [
+    {
+     "all_seen": 0.013,
+     "detect": 0.0242,
+     "hap": "HAP1",
+     "n_genes": 154,
+     "reads": "[0.0, 5.0)"
+    },
+    {
+     "all_seen": 0.0729,
+     "detect": 0.0877,
+     "hap": "HAP1",
+     "n_genes": 96,
+     "reads": "[5.0, 10.0)"
+    },
+    {
+     "all_seen": 0.1261,
+     "detect": 0.2684,
+     "hap": "HAP1",
+     "n_genes": 119,
+     "reads": "[10.0, 20.0)"
+    },
+    {
+     "all_seen": 0.3131,
+     "detect": 0.4605,
+     "hap": "HAP1",
+     "n_genes": 297,
+     "reads": "[20.0, 50.0)"
+    },
+    {
+     "all_seen": 0.4301,
+     "detect": 0.6372,
+     "hap": "HAP1",
+     "n_genes": 279,
+     "reads": "[50.0, 100.0)"
+    },
+    {
+     "all_seen": 0.5804,
+     "detect": 0.7325,
+     "hap": "HAP1",
+     "n_genes": 336,
+     "reads": "[100.0, 200.0)"
+    },
+    {
+     "all_seen": 0.6729,
+     "detect": 0.7948,
+     "hap": "HAP1",
+     "n_genes": 642,
+     "reads": "[200.0, 500.0)"
+    },
+    {
+     "all_seen": 0.7481,
+     "detect": 0.8514,
+     "hap": "HAP1",
+     "n_genes": 671,
+     "reads": "[500.0, 1000.0)"
+    },
+    {
+     "all_seen": 0.83,
+     "detect": 0.9166,
+     "hap": "HAP1",
+     "n_genes": 2518,
+     "reads": "[1000.0, 5000.0)"
+    },
+    {
+     "all_seen": 0.9444,
+     "detect": 0.9873,
+     "hap": "HAP1",
+     "n_genes": 20306,
+     "reads": "[5000.0, inf)"
+    },
+    {
+     "all_seen": 0.0122,
+     "detect": 0.0244,
+     "hap": "HAP2",
+     "n_genes": 164,
+     "reads": "[0.0, 5.0)"
+    },
+    {
+     "all_seen": 0.0843,
+     "detect": 0.1159,
+     "hap": "HAP2",
+     "n_genes": 83,
+     "reads": "[5.0, 10.0)"
+    },
+    {
+     "all_seen": 0.1318,
+     "detect": 0.2734,
+     "hap": "HAP2",
+     "n_genes": 129,
+     "reads": "[10.0, 20.0)"
+    },
+    {
+     "all_seen": 0.336,
+     "detect": 0.509,
+     "hap": "HAP2",
+     "n_genes": 250,
+     "reads": "[20.0, 50.0)"
+    },
+    {
+     "all_seen": 0.494,
+     "detect": 0.6917,
+     "hap": "HAP2",
+     "n_genes": 251,
+     "reads": "[50.0, 100.0)"
+    },
+    {
+     "all_seen": 0.5553,
+     "detect": 0.7336,
+     "hap": "HAP2",
+     "n_genes": 371,
+     "reads": "[100.0, 200.0)"
+    },
+    {
+     "all_seen": 0.693,
+     "detect": 0.802,
+     "hap": "HAP2",
+     "n_genes": 645,
+     "reads": "[200.0, 500.0)"
+    },
+    {
+     "all_seen": 0.7663,
+     "detect": 0.8706,
+     "hap": "HAP2",
+     "n_genes": 646,
+     "reads": "[500.0, 1000.0)"
+    },
+    {
+     "all_seen": 0.8337,
+     "detect": 0.9183,
+     "hap": "HAP2",
+     "n_genes": 2472,
+     "reads": "[1000.0, 5000.0)"
+    },
+    {
+     "all_seen": 0.9448,
+     "detect": 0.988,
+     "hap": "HAP2",
+     "n_genes": 20202,
+     "reads": "[5000.0, inf)"
+    }
+   ]
+  },
+  "panel": "94 public RNA-seq libraries, frozen; an 827-library expansion is in progress and will supersede this. The expansion's own panel94 equivalence gate passes.",
+  "split_model": {
+   "discriminator": "An intron is spliced out, so a genuine split shows a junction with LOW gap coverage. High gap coverage is readthrough with a defensible annotation. gap_reads ships for this reason.",
+   "flag_not_filter": "9079 genes had no adjacent pair deep enough to test. Absence of a flag must never read as 'confirmed separate'.",
+   "flagged_genes": 2629,
+   "flagged_pairs": 1435,
+   "not_an_lsg_problem": "1,422 of the 1,435 flagged pairs are conserved-with-conserved; only 13 are LSG-with-conserved. At matched gap and depth LSG pairs are fused LESS often (0.96% vs 3.61%).",
+   "specificity": "0 of 27,276 opposite-strand pairs clear the tier, where fusion is impossible. That zero floor is what makes a positive a measurement.",
+   "tier": "3+ spliced reads with both ends on annotated exon boundaries"
+  }
+ },
+ "kaks": {
+  "estimator": "NG86 (Nei-Gojobori 1986) for the per-gene value",
+  "median_omega_by_class": {
+   "LSG_PS18_populus": 0.7204,
+   "PS13_15": 0.4748,
+   "PS16_17": 0.5662,
+   "PS1_2": 0.2351,
+   "PS3_12": 0.3272
+  },
+  "n_genes": 52232,
+  "n_without_an_ortholog": 11728,
+  "ortholog_agreement_with_syntenic_call": {
+   "different": 583,
+   "same": 42858
+  },
+  "ps19": "1 of 681 PS19 genes has any trichocarpa pair. A structural absence, not missing data -- a hybrid-only gene has no ortholog to measure against.",
+  "reading": "Monotone with youth and well below the neutral 1. Young genes are constrained, just less constrained -- not neutrally evolving, which is what a spurious open reading frame would look like.",
+  "selection_bias": "Pairing rate falls with youth (87.6% ancient, 39.1% PS18, ~0% PS19), so the young-gene omega is measured on the conserved end of its stratum and if anything understates the relaxation.",
+  "target": "Populus trichocarpa, reciprocal-best-hit ortholog",
+  "why_not_yn00": "NG86 and YN00 omega correlate at r = 0.07 to 0.36 PER GENE on these alignments while their class medians agree to within 0.06 -- median dS is about 0.04, too close for YN00 to be stable gene by gene. NG86 is the one with external support: r = 0.937 against the atlas's independently derived allele omega, against YN00's 0.083. yn00_omega ships only to show the spread, never as a per-gene answer."
+ },
+ "karyotype": {
+  "copy_numbers": "gamma copy 1-3 and salicoid copy 1-2 are completeness ranks within one ancestral chromosome from Wang et al.'s karyotype projection, not subgenomes",
+  "hap1": {
+   "ancestral_genes_with_an_anchor": 8199,
+   "assessed": 32006,
+   "conflict_no_copy": 410,
+   "copy_assigned": 31496,
+   "direct_anchors": 14727,
+   "inherited_from_neighbouring_anchors": 5330,
+   "inside_aek_block": 26582,
+   "not_placed": 94,
+   "placed": 31912
+  },
+  "hap2": {
+   "ancestral_genes_with_an_anchor": 8206,
+   "assessed": 31823,
+   "conflict_no_copy": 479,
+   "copy_assigned": 31217,
+   "direct_anchors": 14747,
+   "inherited_from_neighbouring_anchors": 4965,
+   "inside_aek_block": 26731,
+   "not_placed": 127,
+   "placed": 31696
+  },
+  "reference": "Wang et al. 2022, BMC Biology 20:216, doi:10.1186/s12915-022-01420-1",
+  "source": "sources/karyotype_route_c.tsv.gz and sources/karyotype_route_c_anchors.tsv.gz (route C)",
+  "status": "exploratory; the gene-level WGD events remain the duplication call"
+ },
+ "layers": {
+  "applied": {
+   "dup": 63960,
+   "gs": 63960,
+   "nb": 59486,
+   "ord": 63960,
+   "org": 362,
+   "prot": 63945,
+   "resp": 49289,
+   "td": 13663,
+   "te": 63923
+  },
+  "coverage": {
+   "ESMFold 3D model (C-alpha trace)": 40685,
+   "ESMFold structure": 40685,
+   "TE distance (re-derived from v5.1 repeatmask GFF3)": 63923,
+   "duplication class": 63960,
+   "exon/intron (re-derived from v5.1 GFF3, longest isoform)": 63960,
+   "genomic order (computed from atlas coordinates)": 63960,
+   "neighbour co-expression": 63829,
+   "organelle homology": "63960 scanned, 362 with a hit",
+   "perturbation responsiveness": "63960 scanned, 49289 with a value",
+   "predicted disorder": 63910,
+   "proteomics PXD023826": 57845,
+   "proteomics PXD025636": 57845,
+   "proteomics PXD064017": 57845,
+   "tandem arrays (union set)": "13663 genes in 4371 arrays"
+  },
+  "dup_class_dist": {
+   "A": 7,
+   "AD": 2492,
+   "ADS": 6676,
+   "ADST": 385,
+   "ADT": 570,
+   "C": 7392,
+   "D": 13567,
+   "DS": 20778,
+   "DST": 1262,
+   "DT": 10783,
+   "T": 48
+  },
+  "dup_code": {
+   "A": "ancient WGD",
+   "C": "none detected",
+   "D": "dispersed",
+   "S": "salicoid WGD",
+   "T": "tandem"
+  },
+  "esmfold_note": "ESMFold structure covers 40,685 of 63,960 genes (64%). Absence is coverage, not a structural claim.",
+  "proteomics_note": "Three independent PXD datasets, reported separately. Detection rates differ ~4x (3,989 / 18,739 / 21,449 genes), so a gene absent from one is not undetected."
+ },
+ "lsg_pool": {
+  "frozen": {
+   "at_rank_18_or_above": {
+    "hap1": 842,
+    "hap2": 883
+   },
+   "genes_with_a_different_rank": 766,
+   "left_the_pool": {
+    "hap1": 66,
+    "hap2": 48
+   },
+   "note": "Provenance only, never a filter, count or default view. Numbers published against this call are correct statements about it and are not retracted. A rank change is not always due to Idesia: the rerun was also the first to search the comparison panel at all.",
+   "ps18_ps19": {
+    "HAP1_PS18": 392,
+    "HAP1_PS19": 450,
+    "HAP2_PS18": 454,
+    "HAP2_PS19": 429
+   },
+   "what": "the frozen 2026-04 genEra call (an NCBI nr search; its configured comparison panel was never searched), superseded as the pool"
+  },
+  "never": "PS18 and PS19 are never pooled without their split.",
+  "pool": {
+   "call": "the genEra rerun that added Idesia polycarpa and was the first run to search the full comparison panel",
+   "hap1": 776,
+   "hap2": 835,
+   "ps18_ps19": {
+    "HAP1_PS18": 433,
+    "HAP1_PS19": 343,
+    "HAP2_PS18": 497,
+    "HAP2_PS19": 338
+   },
+   "total": 1611
+  },
+  "ruling": "Chen, 2026-09-21 evening, reconfirmed 2026-09-26: the pool is the rerun that added Idesia, 776/835, and only abSENSE and the synteny check are QC steps; a flag never changes the pool. ms2-lsg docs/CORRECTIONS.md C5, commit 8eb65b0."
+ },
+ "lsg_qc": {
+  "absense_calibration": {
+   "at_the_boundary_species": {
+    "coverage_of_nominal_99pct_PI_hap1": 0.61,
+    "coverage_of_nominal_99pct_PI_hap2": 0.594,
+    "direction": "abSENSE OVER-predicts what a Salix homolog would have scored. An expected score that is too high makes an observed absence look more surprising than it is, which under-estimates detection_failure_prob and over-calls surprising_absence.",
+    "median_bias_bitscore_hap1": 18.9,
+    "median_bias_bitscore_hap2": 19.2,
+    "species": "Salix purpurea -- the rank-18 boundary. Every HDF flag on this pool is a prediction at this species."
+   },
+   "for_contrast_in_genus": {
+    "Idesia polycarpa": 0.815,
+    "Populus nigra": 0.952,
+    "Populus trichocarpa": 0.982
+   },
+   "global_fit": {
+    "coverage_of_nominal_99pct_PI_hap1": 0.8806,
+    "coverage_of_nominal_99pct_PI_hap2": 0.8715,
+    "mean_abs_error_bitscore": 44.5,
+    "pearson_r_hap1": 0.9814,
+    "pearson_r_hap2": 0.9827
+   },
+   "headline": "abSENSE flags are worst calibrated at exactly the boundary that defines this pool, and biased in the direction that over-calls a young gene. Quote the flag with this number, never alone.",
+   "measured": "2026-09-09, abSENSE --predall over 868,127 predicted-vs-observed bitscore pairs (ms2-lsg analyses/absense_hdf, jobs 48015768_1/_2)",
+   "not_retracted": "Nothing in the QC layer is withdrawn by this, and the pool does not rest on abSENSE: it comes from genEra ranks. What is qualified is the per-gene abSENSE flag and any statement resting on it.",
+   "this_is_the_optimistic_bound": "It is measured in-sample, and on the wrong genes: a Salix pair only exists for a gene that HAS a Salix homolog, which by definition is not an LSG. For a real PS18 gene the Salix prediction is pure out-of-sample extrapolation. 0.59-0.61 is what the model achieves at that boundary on the easy cases."
+  },
+  "note": "Flags, not filters. Every one of the 1,611 pool genes carries its flags; nothing here removes, renumbers or filters a gene. Two QC checks (Chen, 2026-09-21 evening; ms2-lsg CORRECTIONS C5): abSENSE and the synteny window search. The chapter's post-QC set is the genes with neither flag, used for its group comparisons; on a gene page it is one line under the flags. WGD-era Ks is no longer a QC flag. Counts are pass or flag counts, never a pool.",
+  "per_haplotype": {
+   "absense_reject": {
+    "HAP1": 84,
+    "HAP2": 106
+   },
+   "both_flags": {
+    "HAP1": 6,
+    "HAP2": 10
+   },
+   "in_the_chapter_post_qc_set": {
+    "HAP1": 602,
+    "HAP2": 635
+   },
+   "other_evidence_not_qc_flags": {
+    "diamond_sensitivity_unstable": {
+     "HAP1": 4,
+     "HAP2": 6
+    },
+    "short_orf": {
+     "HAP1": 220,
+     "HAP2": 261
+    },
+    "synteny_contested_any": {
+     "HAP1": 29,
+     "HAP2": 41
+    }
+   },
+   "pool": {
+    "HAP1": 776,
+    "HAP2": 835
+   },
+   "synteny_window_search": {
+    "HAP1": 96,
+    "HAP2": 104
+   }
+  },
+  "pool_genes": 1611
+ },
+ "modules": [
+  "core",
+  "synteny",
+  "phylostrat",
+  "expression",
+  "duplication",
+  "promoter"
+ ],
+ "n_genes": 63960,
+ "pav": {
+  "source": "ms1-dup 3a7a3cf per-gene table, strict protein-level set",
+  "strict_hap1": 528,
+  "strict_hap2": 605
+ },
+ "phylostrat": {
+  "by_rank": {
+   "hap1": {
+    "1": 22770,
+    "10": 763,
+    "11": 862,
+    "12": 273,
+    "13": 126,
+    "14": 31,
+    "15": 71,
+    "16": 216,
+    "17": 92,
+    "18": 433,
+    "19": 343,
+    "2": 2422,
+    "3": 507,
+    "4": 519,
+    "5": 381,
+    "6": 1415,
+    "7": 164,
+    "8": 105,
+    "9": 617,
+    "NA": 27
+   },
+   "hap2": {
+    "1": 22538,
+    "10": 727,
+    "11": 856,
+    "12": 271,
+    "13": 131,
+    "14": 26,
+    "15": 55,
+    "16": 208,
+    "17": 98,
+    "18": 497,
+    "19": 338,
+    "2": 2386,
+    "3": 503,
+    "4": 523,
+    "5": 355,
+    "6": 1395,
+    "7": 164,
+    "8": 103,
+    "9": 631,
+    "NA": 18
+   }
+  },
+  "ladder": {
+   "hap1": [
+    {
+     "n": 22770,
+     "name": "cellular organisms",
+     "rank": 1
+    },
+    {
+     "n": 2422,
+     "name": "Eukaryota",
+     "rank": 2
+    },
+    {
+     "n": 507,
+     "name": "Viridiplantae",
+     "rank": 3
+    },
+    {
+     "n": 519,
+     "name": "Streptophyta",
+     "rank": 4
+    },
+    {
+     "n": 381,
+     "name": "Streptophytina",
+     "rank": 5
+    },
+    {
+     "n": 1415,
+     "name": "Embryophyta",
+     "rank": 6
+    },
+    {
+     "n": 164,
+     "name": "Tracheophyta",
+     "rank": 7
+    },
+    {
+     "n": 105,
+     "name": "Euphyllophyta",
+     "rank": 8
+    },
+    {
+     "n": 617,
+     "name": "Spermatophyta",
+     "rank": 9
+    },
+    {
+     "n": 763,
+     "name": "Magnoliopsida",
+     "rank": 10
+    },
+    {
+     "n": 862,
+     "name": "Mesangiospermae",
+     "rank": 11
+    },
+    {
+     "n": 273,
+     "name": "Pentapetalae",
+     "rank": 12
+    },
+    {
+     "n": 126,
+     "name": "rosids",
+     "rank": 13
+    },
+    {
+     "n": 31,
+     "name": "fabids",
+     "rank": 14
+    },
+    {
+     "n": 71,
+     "name": "Malpighiales",
+     "rank": 15
+    },
+    {
+     "n": 216,
+     "name": "Salicaceae",
+     "rank": 16
+    },
+    {
+     "n": 92,
+     "name": "Saliceae",
+     "rank": 17
+    },
+    {
+     "n": 433,
+     "name": "Populus",
+     "rank": 18
+    },
+    {
+     "n": 343,
+     "name": "Populus tremula x Populus alba",
+     "rank": 19
+    }
+   ],
+   "hap2": [
+    {
+     "n": 22538,
+     "name": "cellular organisms",
+     "rank": 1
+    },
+    {
+     "n": 2386,
+     "name": "Eukaryota",
+     "rank": 2
+    },
+    {
+     "n": 503,
+     "name": "Viridiplantae",
+     "rank": 3
+    },
+    {
+     "n": 523,
+     "name": "Streptophyta",
+     "rank": 4
+    },
+    {
+     "n": 355,
+     "name": "Streptophytina",
+     "rank": 5
+    },
+    {
+     "n": 1395,
+     "name": "Embryophyta",
+     "rank": 6
+    },
+    {
+     "n": 164,
+     "name": "Tracheophyta",
+     "rank": 7
+    },
+    {
+     "n": 103,
+     "name": "Euphyllophyta",
+     "rank": 8
+    },
+    {
+     "n": 631,
+     "name": "Spermatophyta",
+     "rank": 9
+    },
+    {
+     "n": 727,
+     "name": "Magnoliopsida",
+     "rank": 10
+    },
+    {
+     "n": 856,
+     "name": "Mesangiospermae",
+     "rank": 11
+    },
+    {
+     "n": 271,
+     "name": "Pentapetalae",
+     "rank": 12
+    },
+    {
+     "n": 131,
+     "name": "rosids",
+     "rank": 13
+    },
+    {
+     "n": 26,
+     "name": "fabids",
+     "rank": 14
+    },
+    {
+     "n": 55,
+     "name": "Malpighiales",
+     "rank": 15
+    },
+    {
+     "n": 208,
+     "name": "Salicaceae",
+     "rank": 16
+    },
+    {
+     "n": 98,
+     "name": "Saliceae",
+     "rank": 17
+    },
+    {
+     "n": 497,
+     "name": "Populus",
+     "rank": 18
+    },
+    {
+     "n": 338,
+     "name": "Populus tremula x Populus alba",
+     "rank": 19
+    }
+   ]
+  },
+  "lsg_rank_min": 18,
+  "n_ambiguous": 44,
+  "n_founder": 63954,
+  "note": "LSG pool = rank >= 18 in the genEra rerun that added Idesia polycarpa and searched the full comparison panel (PS18 Populus + PS19 hybrid-only): 776 HAP1 + 835 HAP2 (Chen, 2026-09-21 evening; ms2-lsg CORRECTIONS C5). Ranks here are that call. The frozen 2026-04 call is superseded and kept per gene under ps.frz wherever its rank differs, as provenance only."
+ },
+ "proteomics": {
+  "age_gradient_pct": {
+   "dataset": "PXD025636",
+   "hap1": {
+    "LSG_PS18_populus": 0.0,
+    "LSG_PS19_hybrid": 0.292,
+    "PS13_15_rosids": 5.263,
+    "PS16_17_salicaceae": 1.299,
+    "PS1_2_ancient": 41.775,
+    "PS3_12_conserved": 12.736,
+    "unassigned": 7.407
+   },
+   "hap2": {
+    "LSG_PS18_populus": 0.0,
+    "LSG_PS19_hybrid": 0.0,
+    "PS13_15_rosids": 6.604,
+    "PS16_17_salicaceae": 4.575,
+    "PS1_2_ancient": 41.911,
+    "PS3_12_conserved": 12.789,
+    "unassigned": 11.111
+   },
+   "note": "percent of genes with a peptide in this dataset, per haplotype, never pooled; strata are those of the genEra rerun that added Idesia, as the owning analysis reports them",
+   "pool_union_all_datasets": {
+    "hap1": {
+     "PS18": {
+      "detected": 2,
+      "genes": 433
+     },
+     "PS19": {
+      "detected": 1,
+      "genes": 343
+     }
+    },
+    "hap2": {
+     "PS18": {
+      "detected": 5,
+      "genes": 497
+     },
+     "PS19": {
+      "detected": 0,
+      "genes": 338
+     }
+    }
+   }
+  },
+  "cross_species_caveat": "Three of the five datasets are other Populus species, whose samples contain no 717 protein. A hit there says the gene FAMILY is translated somewhere in Populus, not that 717's copy is.",
+  "datasets": {
+   "PXD002544": "Populus x canescens",
+   "PXD020099": "Populus tremula x tremuloides",
+   "PXD025418": "Populus tomentosa, xylem",
+   "PXD025636": "Populus trichocarpa",
+   "PXD058986": "Populus x canescens"
+  },
+  "detectability_note": "`abl` says whether the gene has any fully-tryptic peptide in the searchable window. Read it before reading a zero: a protein with none is invisible however abundant it is, and that is a composition property on which young genes differ.",
+  "engine_caveat": "A Sage 1% FDR is not an MSFragger 1% FDR. Report the engine with the number.",
+  "genes_with_a_hit": {
+   "hap1": 13398,
+   "hap2": 13244
+  },
+  "lsg_pool_genes_with_a_hit": 8,
+  "method": "raw-spectra re-search against a database CONTAINING the 717 proteins (135,843 targets: P. trichocarpa, HAP1, HAP2 and P. tremula Potra02), Sage 0.14.7, 1% peptide AND spectrum FDR",
+  "n_datasets": 5,
+  "peptide_detail": {
+   "gene_dataset_pairs_with_no_717_specific_peptide": 54264,
+   "gene_dataset_pairs_with_no_peptide_unique_to_the_gene": 51585,
+   "genes": 26642,
+   "how_indirect_it_usually_is": {
+    "max_717_genes_per_peptide": 142,
+    "measured_on": "PXD025636, the deepest of the five datasets",
+    "median_717_genes_per_peptide": 2,
+    "peptides_also_in_the_ptrichocarpa_proteome_pct": 94.2,
+    "peptides_mapping_to_exactly_one_717_gene_pct": 11.9,
+    "reading": "For most genes the assignment rests on a peptide that is neither species-specific nor gene-specific. That does not make the protein absent; it makes 'this gene's product was observed' the wrong reading of it. The card now shows which kind of evidence each gene has."
+   },
+   "per_gene_per_dataset": "n peptides, n PSMs, best hyperscore, how many peptides are unique to this gene, how many are absent from the P. trichocarpa proteome, and up to 3 example peptides",
+   "rows": 59698,
+   "why": "'detected in N of 5 datasets' hid the difference between a peptide unique to this gene and absent from every other species, and a peptide shared with P. trichocarpa and with dozens of other 717 genes. Those are different claims."
+  },
+  "supersedes": "Tier-1 string matching against three third-party peptide tables built from another species' database (PXD023826 / PXD025636 / PXD064017). A Tier-1 negative was uninformative by construction. PXD023826 and PXD064017 are not covered by this layer -- the replacement is deeper and interpretable, not a strict superset of datasets.",
+  "undetectable_by_construction": {
+   "hap1": 26,
+   "hap2": 28
+  },
+  "union_fdr_caveat": "1% per dataset ACCUMULATES over five datasets. Read a single-dataset singleton against the pooled false-peptide expectation, not one dataset's.",
+  "version": 2
+ },
+ "relationship": {
+  "array_status": {
+   "HAP1|HAP1_specific_expansion": 285,
+   "HAP1|TD_associated_PAV": 48,
+   "HAP1|diff_copy_number_arrays_both": 557,
+   "HAP1|same_copy_number": 1229,
+   "HAP2|HAP2_specific_expansion": 259,
+   "HAP2|TD_associated_PAV": 47,
+   "HAP2|diff_copy_number_array_on_smaller_side": 1,
+   "HAP2|diff_copy_number_arrays_both": 550,
+   "HAP2|same_copy_number": 1228
+  },
+  "counts": {
+   "HAP1|1:1": 22704,
+   "HAP1|CNV_TD": 3897,
+   "HAP1|CNV_nonTD": 98,
+   "HAP1|N:N_TD": 2999,
+   "HAP1|N:N_nonTD": 68,
+   "HAP1|hemizygous_TD_array": 159,
+   "HAP1|hemizygous_nonPAV": 1366,
+   "HAP1|hemizygous_strict_PAV": 528,
+   "HAP2|1:1": 22704,
+   "HAP2|CNV_TD": 3673,
+   "HAP2|CNV_nonTD": 116,
+   "HAP2|N:N_TD": 2999,
+   "HAP2|N:N_nonTD": 68,
+   "HAP2|hemizygous_TD_array": 141,
+   "HAP2|hemizygous_nonPAV": 1282,
+   "HAP2|hemizygous_strict_PAV": 605
+  },
+  "source": "ms1-dup 3a7a3cf",
+  "unclassified": {
+   "HAP1": 318,
+   "HAP2": 235
+  }
+ },
+ "shards": {
+  "hap1/Chr01/0": 249,
+  "hap1/Chr01/1": 250,
+  "hap1/Chr01/10": 250,
+  "hap1/Chr01/11": 250,
+  "hap1/Chr01/12": 250,
+  "hap1/Chr01/13": 250,
+  "hap1/Chr01/14": 250,
+  "hap1/Chr01/15": 12,
+  "hap1/Chr01/2": 250,
+  "hap1/Chr01/3": 250,
+  "hap1/Chr01/4": 250,
+  "hap1/Chr01/5": 250,
+  "hap1/Chr01/6": 250,
+  "hap1/Chr01/7": 250,
+  "hap1/Chr01/8": 250,
+  "hap1/Chr01/9": 250,
+  "hap1/Chr02/0": 249,
+  "hap1/Chr02/1": 250,
+  "hap1/Chr02/2": 250,
+  "hap1/Chr02/3": 250,
+  "hap1/Chr02/4": 250,
+  "hap1/Chr02/5": 250,
+  "hap1/Chr02/6": 250,
+  "hap1/Chr02/7": 250,
+  "hap1/Chr02/8": 173,
+  "hap1/Chr03/0": 249,
+  "hap1/Chr03/1": 250,
+  "hap1/Chr03/2": 250,
+  "hap1/Chr03/3": 250,
+  "hap1/Chr03/4": 250,
+  "hap1/Chr03/5": 250,
+  "hap1/Chr03/6": 250,
+  "hap1/Chr03/7": 126,
+  "hap1/Chr04/0": 249,
+  "hap1/Chr04/1": 250,
+  "hap1/Chr04/2": 250,
+  "hap1/Chr04/3": 250,
+  "hap1/Chr04/4": 250,
+  "hap1/Chr04/5": 250,
+  "hap1/Chr04/6": 250,
+  "hap1/Chr04/7": 101,
+  "hap1/Chr05/0": 249,
+  "hap1/Chr05/1": 250,
+  "hap1/Chr05/2": 250,
+  "hap1/Chr05/3": 250,
+  "hap1/Chr05/4": 250,
+  "hap1/Chr05/5": 250,
+  "hap1/Chr05/6": 250,
+  "hap1/Chr05/7": 250,
+  "hap1/Chr05/8": 52,
+  "hap1/Chr06/0": 249,
+  "hap1/Chr06/1": 250,
+  "hap1/Chr06/2": 250,
+  "hap1/Chr06/3": 250,
+  "hap1/Chr06/4": 250,
+  "hap1/Chr06/5": 250,
+  "hap1/Chr06/6": 250,
+  "hap1/Chr06/7": 250,
+  "hap1/Chr06/8": 250,
+  "hap1/Chr06/9": 66,
+  "hap1/Chr07/0": 249,
+  "hap1/Chr07/1": 250,
+  "hap1/Chr07/2": 250,
+  "hap1/Chr07/3": 250,
+  "hap1/Chr07/4": 250,
+  "hap1/Chr07/5": 8,
+  "hap1/Chr08/0": 249,
+  "hap1/Chr08/1": 250,
+  "hap1/Chr08/2": 250,
+  "hap1/Chr08/3": 250,
+  "hap1/Chr08/4": 250,
+  "hap1/Chr08/5": 250,
+  "hap1/Chr08/6": 250,
+  "hap1/Chr08/7": 82,
+  "hap1/Chr09/0": 249,
+  "hap1/Chr09/1": 250,
+  "hap1/Chr09/2": 250,
+  "hap1/Chr09/3": 250,
+  "hap1/Chr09/4": 250,
+  "hap1/Chr09/5": 180,
+  "hap1/Chr10/0": 249,
+  "hap1/Chr10/1": 250,
+  "hap1/Chr10/2": 250,
+  "hap1/Chr10/3": 250,
+  "hap1/Chr10/4": 250,
+  "hap1/Chr10/5": 250,
+  "hap1/Chr10/6": 250,
+  "hap1/Chr10/7": 250,
+  "hap1/Chr10/8": 163,
+  "hap1/Chr11/0": 249,
+  "hap1/Chr11/1": 250,
+  "hap1/Chr11/2": 250,
+  "hap1/Chr11/3": 250,
+  "hap1/Chr11/4": 250,
+  "hap1/Chr11/5": 154,
+  "hap1/Chr12/0": 249,
+  "hap1/Chr12/1": 250,
+  "hap1/Chr12/2": 250,
+  "hap1/Chr12/3": 250,
+  "hap1/Chr12/4": 109,
+  "hap1/Chr13/0": 249,
+  "hap1/Chr13/1": 250,
+  "hap1/Chr13/2": 250,
+  "hap1/Chr13/3": 250,
+  "hap1/Chr13/4": 250,
+  "hap1/Chr13/5": 25,
+  "hap1/Chr14/0": 249,
+  "hap1/Chr14/1": 250,
+  "hap1/Chr14/2": 250,
+  "hap1/Chr14/3": 250,
+  "hap1/Chr14/4": 250,
+  "hap1/Chr14/5": 250,
+  "hap1/Chr14/6": 80,
+  "hap1/Chr15/0": 249,
+  "hap1/Chr15/1": 250,
+  "hap1/Chr15/2": 250,
+  "hap1/Chr15/3": 250,
+  "hap1/Chr15/4": 172,
+  "hap1/Chr16/0": 249,
+  "hap1/Chr16/1": 250,
+  "hap1/Chr16/2": 250,
+  "hap1/Chr16/3": 250,
+  "hap1/Chr16/4": 161,
+  "hap1/Chr17/0": 249,
+  "hap1/Chr17/1": 250,
+  "hap1/Chr17/2": 250,
+  "hap1/Chr17/3": 250,
+  "hap1/Chr17/4": 250,
+  "hap1/Chr17/5": 75,
+  "hap1/Chr18/0": 249,
+  "hap1/Chr18/1": 250,
+  "hap1/Chr18/2": 250,
+  "hap1/Chr18/3": 250,
+  "hap1/Chr18/4": 147,
+  "hap1/Chr19/0": 249,
+  "hap1/Chr19/1": 250,
+  "hap1/Chr19/2": 250,
+  "hap1/Chr19/3": 250,
+  "hap1/Chr19/4": 139,
+  "hap1/scaffolds": 131,
+  "hap2/Chr01/0": 249,
+  "hap2/Chr01/1": 250,
+  "hap2/Chr01/10": 250,
+  "hap2/Chr01/11": 250,
+  "hap2/Chr01/12": 250,
+  "hap2/Chr01/13": 250,
+  "hap2/Chr01/14": 250,
+  "hap2/Chr01/15": 37,
+  "hap2/Chr01/2": 250,
+  "hap2/Chr01/3": 250,
+  "hap2/Chr01/4": 250,
+  "hap2/Chr01/5": 250,
+  "hap2/Chr01/6": 250,
+  "hap2/Chr01/7": 250,
+  "hap2/Chr01/8": 250,
+  "hap2/Chr01/9": 250,
+  "hap2/Chr02/0": 249,
+  "hap2/Chr02/1": 250,
+  "hap2/Chr02/2": 250,
+  "hap2/Chr02/3": 250,
+  "hap2/Chr02/4": 250,
+  "hap2/Chr02/5": 250,
+  "hap2/Chr02/6": 250,
+  "hap2/Chr02/7": 250,
+  "hap2/Chr02/8": 170,
+  "hap2/Chr03/0": 249,
+  "hap2/Chr03/1": 250,
+  "hap2/Chr03/2": 250,
+  "hap2/Chr03/3": 250,
+  "hap2/Chr03/4": 250,
+  "hap2/Chr03/5": 250,
+  "hap2/Chr03/6": 250,
+  "hap2/Chr03/7": 67,
+  "hap2/Chr04/0": 249,
+  "hap2/Chr04/1": 250,
+  "hap2/Chr04/2": 250,
+  "hap2/Chr04/3": 250,
+  "hap2/Chr04/4": 250,
+  "hap2/Chr04/5": 250,
+  "hap2/Chr04/6": 250,
+  "hap2/Chr04/7": 86,
+  "hap2/Chr05/0": 249,
+  "hap2/Chr05/1": 250,
+  "hap2/Chr05/2": 250,
+  "hap2/Chr05/3": 250,
+  "hap2/Chr05/4": 250,
+  "hap2/Chr05/5": 250,
+  "hap2/Chr05/6": 250,
+  "hap2/Chr05/7": 250,
+  "hap2/Chr05/8": 67,
+  "hap2/Chr06/0": 249,
+  "hap2/Chr06/1": 250,
+  "hap2/Chr06/2": 250,
+  "hap2/Chr06/3": 250,
+  "hap2/Chr06/4": 250,
+  "hap2/Chr06/5": 250,
+  "hap2/Chr06/6": 250,
+  "hap2/Chr06/7": 250,
+  "hap2/Chr06/8": 250,
+  "hap2/Chr06/9": 98,
+  "hap2/Chr07/0": 249,
+  "hap2/Chr07/1": 250,
+  "hap2/Chr07/2": 250,
+  "hap2/Chr07/3": 250,
+  "hap2/Chr07/4": 226,
+  "hap2/Chr08/0": 249,
+  "hap2/Chr08/1": 250,
+  "hap2/Chr08/2": 250,
+  "hap2/Chr08/3": 250,
+  "hap2/Chr08/4": 250,
+  "hap2/Chr08/5": 250,
+  "hap2/Chr08/6": 250,
+  "hap2/Chr08/7": 92,
+  "hap2/Chr09/0": 249,
+  "hap2/Chr09/1": 250,
+  "hap2/Chr09/2": 250,
+  "hap2/Chr09/3": 250,
+  "hap2/Chr09/4": 250,
+  "hap2/Chr09/5": 195,
+  "hap2/Chr10/0": 249,
+  "hap2/Chr10/1": 250,
+  "hap2/Chr10/2": 250,
+  "hap2/Chr10/3": 250,
+  "hap2/Chr10/4": 250,
+  "hap2/Chr10/5": 250,
+  "hap2/Chr10/6": 250,
+  "hap2/Chr10/7": 250,
+  "hap2/Chr10/8": 85,
+  "hap2/Chr11/0": 249,
+  "hap2/Chr11/1": 250,
+  "hap2/Chr11/2": 250,
+  "hap2/Chr11/3": 250,
+  "hap2/Chr11/4": 250,
+  "hap2/Chr11/5": 51,
+  "hap2/Chr12/0": 249,
+  "hap2/Chr12/1": 250,
+  "hap2/Chr12/2": 250,
+  "hap2/Chr12/3": 250,
+  "hap2/Chr12/4": 120,
+  "hap2/Chr13/0": 249,
+  "hap2/Chr13/1": 250,
+  "hap2/Chr13/2": 250,
+  "hap2/Chr13/3": 250,
+  "hap2/Chr13/4": 250,
+  "hap2/Chr13/5": 36,
+  "hap2/Chr14/0": 249,
+  "hap2/Chr14/1": 250,
+  "hap2/Chr14/2": 250,
+  "hap2/Chr14/3": 250,
+  "hap2/Chr14/4": 250,
+  "hap2/Chr14/5": 250,
+  "hap2/Chr14/6": 181,
+  "hap2/Chr15/0": 249,
+  "hap2/Chr15/1": 250,
+  "hap2/Chr15/2": 250,
+  "hap2/Chr15/3": 250,
+  "hap2/Chr15/4": 174,
+  "hap2/Chr16/0": 249,
+  "hap2/Chr16/1": 250,
+  "hap2/Chr16/2": 250,
+  "hap2/Chr16/3": 250,
+  "hap2/Chr16/4": 205,
+  "hap2/Chr17/0": 249,
+  "hap2/Chr17/1": 250,
+  "hap2/Chr17/2": 250,
+  "hap2/Chr17/3": 250,
+  "hap2/Chr17/4": 230,
+  "hap2/Chr18/0": 249,
+  "hap2/Chr18/1": 250,
+  "hap2/Chr18/2": 250,
+  "hap2/Chr18/3": 250,
+  "hap2/Chr18/4": 139,
+  "hap2/Chr19/0": 249,
+  "hap2/Chr19/1": 250,
+  "hap2/Chr19/2": 250,
+  "hap2/Chr19/3": 250,
+  "hap2/Chr19/4": 83
+ },
+ "sources": {
+  "/scratch/ch29576/genera/output/hap1/genera_717hap1_v5.1/80863_gene_ages.tsv": {
+   "bytes": 1482292,
+   "mtime": "2026-03-30T13:59:56",
+   "sha256": "3e02fb54497594a9"
+  },
+  "/scratch/ch29576/genera/output/hap2/genera_717hap2_v5.1/80863_gene_ages.tsv": {
+   "bytes": 1467193,
+   "mtime": "2026-04-01T06:46:52",
+   "sha256": "a2fbfc154eb13ca5"
+  },
+  "/scratch/ch29576/ms2_genespace/expression/COLUMN_LEVEL_sample_metadata.csv": {
+   "bytes": 385517,
+   "mtime": "2026-09-01T19:02:55",
+   "sha256": "2564dbcf4047ef53"
+  },
+  "/scratch/ch29576/ms2_genespace/expression/RUN_LEVEL_supplementary.csv": {
+   "bytes": 417737,
+   "mtime": "2026-09-01T19:04:44",
+   "sha256": "6d4a11ad06f15d21"
+  },
+  "/scratch/ch29576/ms2_genespace/expression/combined_tpm_k21_rounded_20260814_study_sorted.csv": {
+   "bytes": 219374847,
+   "mtime": "2026-09-01T19:03:58",
+   "sha256": "b074774b38845927"
+  },
+  "/scratch/ch29576/ms2_genespace/incoming/synteny_orthogroups.tsv": {
+   "bytes": 87615723,
+   "mtime": "2026-09-01T14:30:06",
+   "sha256": "50f1ed0707410a8b"
+  },
+  "/scratch/ch29576/ms2_genespace/step7_diff_20260901/diff_all_genes.tsv": {
+   "bytes": 14862377,
+   "mtime": "2026-09-01T14:38:21",
+   "sha256": "686d663dea86e16f"
+  },
+  "/scratch/ch29576/ms2_genespace/tier3_input_v2_20260901_runA/pangenes_long_RAW.tsv.gz": {
+   "bytes": 42613675,
+   "mtime": "2026-09-01T11:59:44",
+   "sha256": "077218871aea6af8"
+  },
+  "/scratch/ch29576/ms2_genespace/workdir/bed/Ptrxalhap1.bed": {
+   "bytes": 1507319,
+   "mtime": "2026-08-31T21:04:20",
+   "sha256": "608e1650f077d381"
+  },
+  "/scratch/ch29576/ms2_genespace/workdir/bed/Ptrxalhap2.bed": {
+   "bytes": 1492463,
+   "mtime": "2026-08-31T21:04:21",
+   "sha256": "b62c5d33617b1832"
+  },
+  "sources/cre_promoter_hits.tsv.gz": {
+   "rows": 63960,
+   "sha256_16": "see sources/cre_promoter_hits.provenance.json"
+  }
+ },
+ "structure": {
+  "buckets": 2577,
+  "bytes": 94050357,
+  "excluded": {
+   "PtXaTreH.08G115400": "ESMFold PDB is 0 bytes; also absent from the SS table"
+  },
+  "gate": "per-residue arrays reproduce n_residues, mean_plddt, frac_plddt_lt70, helix_frac and strand_frac of secondary_structure_summary.tsv to half a unit of its last decimal, for every gene; and every shard ss value is that table rounded to 3 decimals",
+  "genes": 40685,
+  "hap1": 16502,
+  "hap2": 24183,
+  "span": 2500,
+  "what": "ESMFold Calpha trace (0.1 A), per-residue pLDDT, sequence and pydssp c3 secondary structure. Not the full-atom model: that is 2.3 GB gzipped, over the Pages site cap."
+ },
+ "summary": {
+  "by_chr": {
+   "hap1/Chr01": 3761,
+   "hap1/Chr02": 2172,
+   "hap1/Chr03": 1875,
+   "hap1/Chr04": 1850,
+   "hap1/Chr05": 2051,
+   "hap1/Chr06": 2315,
+   "hap1/Chr07": 1257,
+   "hap1/Chr08": 1831,
+   "hap1/Chr09": 1429,
+   "hap1/Chr10": 2162,
+   "hap1/Chr11": 1403,
+   "hap1/Chr12": 1108,
+   "hap1/Chr13": 1274,
+   "hap1/Chr14": 1579,
+   "hap1/Chr15": 1171,
+   "hap1/Chr16": 1160,
+   "hap1/Chr17": 1324,
+   "hap1/Chr18": 1146,
+   "hap1/Chr19": 1138,
+   "hap1/scaffold_104": 4,
+   "hap1/scaffold_115": 17,
+   "hap1/scaffold_126": 1,
+   "hap1/scaffold_133": 9,
+   "hap1/scaffold_149": 5,
+   "hap1/scaffold_162": 12,
+   "hap1/scaffold_163": 11,
+   "hap1/scaffold_33": 29,
+   "hap1/scaffold_80": 13,
+   "hap1/scaffold_83": 10,
+   "hap1/scaffold_97": 20,
+   "hap2/Chr01": 3786,
+   "hap2/Chr02": 2169,
+   "hap2/Chr03": 1816,
+   "hap2/Chr04": 1835,
+   "hap2/Chr05": 2066,
+   "hap2/Chr06": 2347,
+   "hap2/Chr07": 1225,
+   "hap2/Chr08": 1841,
+   "hap2/Chr09": 1444,
+   "hap2/Chr10": 2084,
+   "hap2/Chr11": 1300,
+   "hap2/Chr12": 1119,
+   "hap2/Chr13": 1285,
+   "hap2/Chr14": 1680,
+   "hap2/Chr15": 1173,
+   "hap2/Chr16": 1204,
+   "hap2/Chr17": 1229,
+   "hap2/Chr18": 1138,
+   "hap2/Chr19": 1082
+  },
+  "changed": 12878,
+  "ps_rank": {
+   "1": 45308,
+   "10": 1490,
+   "11": 1718,
+   "12": 544,
+   "13": 257,
+   "14": 57,
+   "15": 126,
+   "16": 424,
+   "17": 190,
+   "18": 930,
+   "19": 681,
+   "2": 4808,
+   "3": 1010,
+   "4": 1042,
+   "5": 736,
+   "6": 2810,
+   "7": 328,
+   "8": 208,
+   "9": 1248,
+   "None": 45
+  },
+  "synteny_class": {
+   "core_syntenic": 47328,
+   "dispensable_syntenic": 8210,
+   "non_syntenic_ortholog": 3926,
+   "private_no_ortholog": 1642,
+   "tandem_array_member": 2854
+  },
+  "unstable": 639
+ },
+ "td_pair_ks": {
+  "basis": "Per-pair dS from the adopted TD union rebuild (union_pairs_final.csv), retained edges passing the source's own Ka/Ks coverage QC, dS > 0.",
+  "member_entries_total": 60036,
+  "member_entries_with_ds": 30918,
+  "not_the_array_median": "`td.ks` remains the ARRAY MEDIAN and is a different quantity. A member without a `pks` entry was never scored as a pair; it does not mean the two copies are identical.",
+  "scored_pairs": 15710
+ },
+ "tier": "public",
+ "wgd_combined_call": {
+  "canonical": "master_duplication_table_v9 (v8 rule 5c + dS resolution) remains the atlas's called class. The combined call is shown beside it as a proposed correction, NOT applied upstream as of 2026-09-16.",
+  "genes_disagreeing_with_v9": 1355,
+  "genes_with_a_call": 32170,
+  "movement": {
+   "into_gamma": 2,
+   "into_salicoid": 1160,
+   "out_of_gamma": 1088,
+   "out_of_salicoid": 5
+  },
+  "rule": "topology where grape and segment Ks independently agree; v8 otherwise; split-evidence pairs set aside as `review`."
+ }
+}

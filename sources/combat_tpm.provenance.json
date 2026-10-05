@@ -1,0 +1,19 @@
+{
+ "purpose": "Per-gene batch-corrected TPM (ComBat-seq), an OPT-IN second view for cross-study comparison only. Raw TPM stays the site's primary value everywhere else -- batch is confounded with tissue for ~70% of the 652 samples, so correction would remove real tissue signal if applied as the baseline. Never label this view as more correct than raw TPM; label it as batch-adjusted for cross-study comparison, nothing more.",
+ "tier": "public",
+ "generated_by": "scripts/build_combat.py",
+ "source_file": "<onedrive>/01_work/MS1_2026/latest draft from CJ_tmp/expression/combined_tpm_k21_ComBatSeq_v7.csv",
+ "source_sha256": "bede81a0d7dc878a6cb50c01b1cdc3420864a7e72daf1c8e61c19b2ebfda48cd",
+ "source_gene_rows": 59599,
+ "join": {
+  "samples": "exact 1:1 on COLUMN_LEVEL_sample_metadata.csv's own `column` field, which already stores the ComBat file's accession-style header verbatim; 652 of 652 matched, 0 unmapped.",
+  "genes": "strip the trailing transcript-style suffix (.1) from the ComBat row id; 0 naming mismatches against the atlas's 63,960-gene index."
+ },
+ "eligibility": {
+  "eligible_genes": 59599,
+  "ineligible_genes": 4361,
+  "why_ineligible": "not an annotation or ID mismatch (0 unmatched either way). The 4,361 excluded genes have a median max-TPM of 0.84 across all 652 samples (91.2% never exceed 5 TPM anywhere), against 26.73 (11.2% under 5 TPM) for the 59,599 included -- consistent with a low-count filter ahead of the ComBat-seq run, not with a different or incomplete gene set.",
+  "site_behaviour": "the ComBat tab/toggle must render ONLY when a gene's shard carries `x.cb`. An ineligible gene has nothing to show, and the UI must not imply otherwise (no disabled control, no 'not available' state that suggests it might exist elsewhere)."
+ },
+ "vector_order": "identical to data/expr/samples.json -- a ComBat vector and the raw vector for the same gene are index-aligned, so any future 'raw vs corrected' overlay can zip them directly with no re-lookup."
+}

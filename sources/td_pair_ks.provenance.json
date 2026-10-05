@@ -1,0 +1,19 @@
+{
+ "purpose": "Per-PAIR tandem dS, so a tandem link in the duplication-layers view can carry its own number instead of borrowing the array median (td.ks).",
+ "tier": "public",
+ "source_file": "<scratch>/ms1-dup/data/09_td_pairs/td_union_20260831/union_pairs_final.csv",
+ "source_set": "TD union rebuild adopted 2026-09-02: 13,048 members in 4,204 arrays (HAP1 6,663 / 2,119; HAP2 6,385 / 2,085) -- the same set the atlas already serves for tandem membership.",
+ "filters": {
+  "pair_retained": "edge survived the union rebuild's curation",
+  "kaks_cov_ok": "codon alignment coverage sufficient for dS",
+  "ks_gt_0": "a zero dS here is an alignment/saturation artefact, not an observation",
+  "no_array_dedup": "ms1-dup CLAUDE.md #14's array dedup guards a DISTRIBUTION against pseudoreplication; this is a per-edge lookup, so deduplicating would delete real per-pair answers."
+ },
+ "dropped": {
+  "not_retained": 1129,
+  "cov_fail": 5106,
+  "no_ks": 528
+ },
+ "pairs": 15710,
+ "coverage_caveat": "These are DETECTED EDGES; `td.mem` lists every other member of an array (all-vs-all). A member without a dS was never scored as a pair -- it does not mean the two are identical."
+}

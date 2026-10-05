@@ -1,0 +1,25 @@
+{
+ "purpose": "Expression correlation between a gene and each of its duplication partners -- the 'who exactly, and how similar are they' that the duplication card was missing.",
+ "tier": "public",
+ "shipped_sha256": "02951c97e2997477c2f401bcd11fbc3fdcb4f721062af6d7fee4955f7a26ad31",
+ "pairs": 24626,
+ "generated_by": "scripts/make_duplicate_coexpr_source.py",
+ "basis": "Pearson r on log2(ComBat-corrected TPM + 1) across all 652 samples.",
+ "why_combat_and_not_the_raw_TPM_the_atlas_ships_as_primary": [
+  "It matches the shipped `nb` neighbour co-expression, which s06/s36 compute as mean PCC on combat_log2_652.parquet. Two co-expression numbers on one gene page computed on different matrices would be a quiet inconsistency.",
+  "More importantly: a correlation across 652 samples from 28 studies IS a cross-study comparison, and this atlas's own About page states raw TPM is unsuitable for that -- 'cross-study comparison needs batch handling that this build does not apply'."
+ ],
+ "the_cost_of_that_choice": "A pair needs BOTH partners in the ComBat matrix, which covers 59,599 of 63,960 genes. So 7,707 of the 32,333 duplicate pairs (23.8%) get NO value rather than a value computed on a different basis. Absence here means 'not comparable', not 'uncorrelated'.",
+ "pair_sources": {
+  "paralog pairs (from the shipped `para` field)": 1070,
+  "tandem-array co-member pairs (every pair within an array)": 31263
+ },
+ "distribution": {
+  "median_r": 0.31,
+  "p10": -0.101,
+  "p90": 0.803
+ },
+ "WHAT_THIS_IS_NOT": "A divergence measure. It is a plain descriptive correlation, with no model, no threshold, and no claim about what a given r implies for duplicate fate. Nothing upstream computes duplicate-pair expression divergence -- everything that exists is NEIGHBOUR co-expression (neighbor_coexpr_652) or SYNTELOG/allele divergence (ase_deepening_prott5), which are different quantities.",
+ "gates": "Reproduces numpy.corrcoef on 300 sampled pairs to 5e-05; a gene against itself is exactly 1; every r lies inside [-1, 1].",
+ "regenerate": "module load SciPy-bundle && python3 scripts/make_duplicate_coexpr_source.py"
+}

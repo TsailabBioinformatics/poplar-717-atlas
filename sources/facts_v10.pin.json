@@ -1,0 +1,9 @@
+{
+ "purpose": "Pins ms1-dup's numbers of record (FACTS_v10.json) by commit and checksum, WITHOUT carrying a single value. scripts/check_facts.py reads the exact bytes from git at this commit and refuses on any sha256 mismatch.",
+ "why_not_vendored": "This repo's root is published by GitHub Pages, so anything tracked here is public. FACTS_v10.json carries tau percentages, which Chen has held off the site until he reopens them, and v10 figures while the atlas data is held on v9. A vendored copy would publish both on the next push -- caught before it did, 2026-09-20. Pinning the commit keeps every value out of the public tree and is stronger anyway: it reads the pinned bytes whatever the ms1-dup checkout has checked out, so a stale clone cannot feed the check the wrong file.",
+ "source_repo": "ChenHsieh/ms1-dup",
+ "source_path": "data/81_master_tables_v10_20260920/tables/FACTS_v10.json",
+ "ms1_dup_commit": "e83d7ad833f6e0dcda785bf3f961015dbf43d971",
+ "sha256": "923cb3c0ec01233408a26e7b1ec28cb450644dde8a5c52be00301462d06c6f13",
+ "refresh": "scripts/refresh_facts.sh [ref]"
+}

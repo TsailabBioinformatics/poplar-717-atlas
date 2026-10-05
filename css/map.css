@@ -1,0 +1,53 @@
+/* Genome map (js/modules/genomemap.js). Tokens only; see css/app.css :root. */
+.map-metrics { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 6px; }
+.map-metrics-label { margin: 0 6px 0 0; font: 600 13px var(--sans); color: var(--ink-2); }
+.map-metric { min-height: 44px; font-size: 13px; padding: 6px 12px; }
+.map-metric[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.map-note { font-size: 12px; margin: 6px 0 0; max-width: 80ch; }
+.map-count { font: 500 13px var(--sans); color: var(--ink-2); margin: 8px 0; }
+.map-stage { border: 1.5px solid var(--ink); border-radius: 0; background: var(--panel); }
+.map-canvas { touch-action: pan-y; }
+.map-readout { min-height: 2.6em; white-space: normal; }
+.map-ramp { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12px; margin-top: 6px; }
+.map-ramp-bar { width: 160px; max-width: 40vw; height: 12px; border: 1px solid var(--line-2);
+  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 12%, var(--panel)),
+                                        color-mix(in srgb, var(--accent) 92%, var(--panel))); }
+.map-controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 4px; }
+.map-btn { min-width: 44px; min-height: 44px; font-size: 15px; padding: 6px 10px; }
+.map-btn[disabled] { opacity: .35; }
+.map-title { font: 500 18px var(--serif); margin: 0 6px; }
+.map-spacer { flex: 1 1 0; }
+.map-region { font-size: 12.5px; color: var(--ink-2); flex-basis: 100%; text-align: right; }
+.map-legend { border-top: 1.5px solid var(--ink); margin-top: 8px; padding-top: 6px; }
+.map-lrow { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; padding: 5px 0;
+  border-bottom: 1px dashed var(--line-2); font-size: 12.5px; }
+.map-lname { min-width: 96px; font: 600 12.5px var(--sans); color: var(--ink); }
+.map-li { display: inline-flex; gap: 5px; align-items: baseline; color: var(--ink); }
+.map-li .mono { color: var(--ink-2); font-size: 11.5px; }
+.map-sw { display: inline-block; width: 11px; height: 11px; border: 1px solid var(--line-2); align-self: center; }
+.map-sw-ink { background: var(--ink-2); }
+.map-sw-accent { background: var(--accent); }
+.map-sw-core { background: var(--c-core); }
+.map-sw-disp { background: var(--c-disp); }
+.map-sw-nonsyn { background: var(--c-nonsyn); }
+.map-sw-priv { background: var(--c-priv); }
+.map-sw-tandem { background: var(--c-tandem); }
+@media (max-width: 640px) {
+  .map-title { flex-basis: 100%; margin: 0; }
+  .map-spacer { display: none; }
+  .map-region { text-align: left; }
+  .map-lname { min-width: 0; flex-basis: 100%; }
+}
+
+/* Embedded locus browser (gene, array and pair pages): same component as the map. */
+.lb .map-controls { margin-bottom: 6px; }
+.lb-title { font-size: 15px; }
+.lb-keys { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12.5px; margin-top: 6px; color: var(--ink); }
+.lb-key { display: inline-flex; gap: 6px; align-items: center; }
+.lb-sw { display: inline-block; width: 22px; height: 0; border-top: 2.5px solid var(--accent); }
+.lb-sw.lb-anchor { border-top: 2px dashed var(--accent); }
+.lb-sw.lb-other { border-top: 1px solid var(--line-2); }
+.lb-maplink { white-space: nowrap; }
+.lb-linkbox { border-left: 3px solid var(--accent); padding: 6px 10px; margin: 0 0 10px; font-size: 13.5px; }
+.lb-linkbox p { margin: 2px 0; }
+.lb-box { display: inline-block; width: 12px; height: 12px; border: 1.5px solid var(--accent); }

@@ -1,0 +1,7 @@
+{
+ "purpose": "Allele-pair divergence (yn00 dS and dN) for the 2,543 syntelog partner pairs in the current per-gene table that neither the syntelog divergence table nor the ks_lookup cache carries (2,541 absent, plus 2 whose syntelog rows are unparseable: "=, w" and "NA"). Read by scripts/patch_syntelog_categories.py after that table.",
+ "method": "Same as ms1-dup scripts/ks_lookup.py: primary-transcript CDS from /work/cjtlab/717Official/annotation (HAP1 717, HAP2 716 v5.1), pairwise MAFFT --globalpair protein alignment, back-translated to codons, gap columns dropped, PAML yn00 (Yang and Nielsen dS, dN).",
+ "run": "Sapelo2 Slurm array 48776839 (16 tasks, batch partition), 2026-10-03; driver in <scratch>/atlas_v12_ks (run_chunk.py, ks.sbatch). 2,541 pairs, 0 without an estimate; the 2 unparseable-row pairs computed interactively the same way.",
+ "positive_control": "20 random pairs already in syntelog_ks.csv recomputed by the same code: 19 of 20 within 0.001 of the published yn_ks, largest difference 0.0034.",
+ "ms1_dup_commit": "3a7a3cf1a03d075f1258ec672159b7cb5cf0ae93"
+}

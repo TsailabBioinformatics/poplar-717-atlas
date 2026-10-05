@@ -1,0 +1,498 @@
+{
+ "data_version": "0.17.1",
+ "n_checks": 98,
+ "n_failed": 0,
+ "checks": [
+  {
+   "name": "manifest gene count matches shards",
+   "ok": true,
+   "detail": "manifest 63960 vs 63960"
+  },
+  {
+   "name": "every gene ID resolves to the shard it is stored in",
+   "ok": true,
+   "detail": "the client rule holds for all"
+  },
+  {
+   "name": "every manifest shard exists on disk",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "name": "every expression range lies inside its haplotype blob",
+   "ok": true,
+   "detail": "63960 genes, blobs hap1 37 MB, hap2 36 MB"
+  },
+  {
+   "name": "sampled expression ranges decode to THIS gene's vector",
+   "ok": true,
+   "detail": "65 genes seeked, inflated and matched against their own x.max"
+  },
+  {
+   "name": "every sampled expression vector has 652 values",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every gene's tissue baseline uses the manifest's tissue set",
+   "ok": true,
+   "detail": "10 tissues: ['bark', 'bud', 'callus', 'catkin', 'leaf', 'leaf_old', 'leaf_young', 'root', 'stem', 'xylem']"
+  },
+  {
+   "name": "manifest combat_eligible_genes matches the shard count",
+   "ok": true,
+   "detail": "manifest 59599 vs 59599 genes carrying x.cb"
+  },
+  {
+   "name": "every ComBat range lies inside its haplotype blob",
+   "ok": true,
+   "detail": "59,599 ranged genes"
+  },
+  {
+   "name": "sampled ComBat ranges decode to a full vector",
+   "ok": true,
+   "detail": "60 sampled"
+  },
+  {
+   "name": "no ComBat-eligible gene lacks a raw baseline",
+   "ok": true,
+   "detail": "0 records"
+  },
+  {
+   "name": "tandem (TD) gene counts match the canonical union set",
+   "ok": true,
+   "detail": "{'hap1': 6663, 'hap2': 6385}"
+  },
+  {
+   "name": "strict PAV counts are the dissertation's 528 / 605",
+   "ok": true,
+   "detail": "{'hap1': 528, 'hap2': 605}"
+  },
+  {
+   "name": "no gene still carries the superseded DIAMOND PAV record",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every gene has a relationship record; null category exactly on quality-flagged genes",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "strict PAV flag equals the strict PAV category",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "allele partners are mutual and on the other haplotype",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every allele pair carries a divergence value",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "array status covers exactly the counted tandem arrays",
+   "ok": true,
+   "detail": "status 4204 vs counted 4204"
+  },
+  {
+   "name": "no qc record carries a flag C5 removed (rr, wgd)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every qc.post is exactly 'neither QC flag'",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "overview.json exists and covers both haplotypes",
+   "ok": true,
+   "detail": "['hap1', 'hap2']"
+  },
+  {
+   "name": "every overview chromosome has a matching index file",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "overview and index agree on gene count per chromosome",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every genome-map index gene is a real atlas gene",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "genome-map index LSG mark equals the gene record's pool call",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "contrasts.json covers the full 191-contrast panel",
+   "ok": true,
+   "detail": "191"
+  },
+  {
+   "name": "every contrast sample index is in range",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every contrast has both a control and a perturbation arm",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every qc record sits on an LSG-pool gene (PS >= 18)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "manifest lsg_qc.pool_genes matches the shard count",
+   "ok": true,
+   "detail": "manifest 1611 vs 1611 genes carrying qc"
+  },
+  {
+   "name": "manifest lsg_pool matches the shard pool, per haplotype",
+   "ok": true,
+   "detail": "manifest 776/835 vs shards {'hap1': 776, 'hap2': 835}"
+  },
+  {
+   "name": "the pool is the genEra rerun that added Idesia, 776 HAP1 + 835 HAP2",
+   "ok": true,
+   "detail": "{'hap1': 776, 'hap2': 835}"
+  },
+  {
+   "name": "every pool gene carries its qc flags",
+   "ok": true,
+   "detail": "1611 qc records for 1611 pool genes"
+  },
+  {
+   "name": "phylostrat ladder counts match the shard ranks, every stratum",
+   "ok": true,
+   "detail": "38 strata"
+  },
+  {
+   "name": "every duplicate-partner correlation lies inside [-1, 1]",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every named tandem-array member is a real gene",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "no gene lists itself as its own array partner",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every per-pair tandem dS names an actual array member of that gene",
+   "ok": true,
+   "detail": "30,918 directed entries"
+  },
+  {
+   "name": "every per-pair tandem dS is a positive, finite divergence",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "per-pair tandem dS is symmetric between the two partners",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "td.pks_n matches the map and the member list it counts",
+   "ok": true,
+   "detail": "the card's 'scored N of M' sentence is recomputed, not trusted"
+  },
+  {
+   "name": "the tandem facet counts the CURATED union set, not GENESPACE placement",
+   "ok": true,
+   "detail": "13,048 genes, matching dup.td"
+  },
+  {
+   "name": "dup.ccd is set exactly where the two WGD calls differ",
+   "ok": true,
+   "detail": "1,355 genes disagree"
+  },
+  {
+   "name": "the combined call still reproduces its published totals",
+   "ok": true,
+   "detail": "HAP1 14,748/4,857; HAP2 14,747/4,910"
+  },
+  {
+   "name": "every gene flagged with a chromatin profile can actually fetch one",
+   "ok": true,
+   "detail": "45867 genes"
+  },
+  {
+   "name": "every chromatin profile is 4 marks x 40 bins",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "manifest chromatin.profiles.genes matches the flagged genes",
+   "ok": true,
+   "detail": "manifest 45867 vs 45867"
+  },
+  {
+   "name": "gene-model intron count matches the annotation's own gs.in",
+   "ok": true,
+   "detail": "50631 genes"
+  },
+  {
+   "name": "introns observed never exceeds introns annotated",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every split-model partner is a real gene",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "manifest gene_model.split_model.flagged_genes matches the shards",
+   "ok": true,
+   "detail": "manifest 2629 vs 2629 genes"
+  },
+  {
+   "name": "evaluable adjacent pairs never exceed total adjacent pairs",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "manifest summary.ps_rank matches the shard ranks",
+   "ok": true,
+   "detail": "20 strata"
+  },
+  {
+   "name": "no embargoed LSG candidate label reaches any shard",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "no embargoed LSG candidate label in any published file",
+   "ok": true,
+   "detail": "1355 text files"
+  },
+  {
+   "name": "ancestral karyotype counts match the placement coverage, per haplotype",
+   "ok": true,
+   "detail": "hap1: {'placed': 31912, 'copy_assigned': 31496, 'inside_aek_block': 26582, 'conflict_no_copy': 410, 'direct_anchors': 14727}; hap2: {'placed': 31696, 'copy_assigned': 31217, 'inside_aek_block': 26731, 'conflict_no_copy': 479, 'direct_anchors': 14747}"
+  },
+  {
+   "name": "manifest karyotype block matches the shards",
+   "ok": true,
+   "detail": "manifest [{'placed': 31912, 'copy_assigned': 31496, 'inside_aek_block': 26582, 'conflict_no_copy': 410}, {'placed': 31696, 'copy_assigned': 31217, 'inside_aek_block': 26731, 'conflict_no_copy': 479}]"
+  },
+  {
+   "name": "karyotype values in range, no copy on a conflict gene, none on an unplaced scaffold",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every ancestral-gene slot table is shared and reciprocal, one haplotype at a time",
+   "ok": true,
+   "detail": "16405 ancestral-gene tables"
+  },
+  {
+   "name": "ps.frz appears only where the frozen call's rank differs from the rerun",
+   "ok": true,
+   "detail": "766 genes differ in the frozen call"
+  },
+  {
+   "name": "no ps.rr left over from the 2026-09-21 arrangement",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "no gene's family is younger than the gene (ps.fnd.rank <= ps.rank)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "ps.fnd on every ranked gene and on no unranked one",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "every gene has a cre record",
+   "ok": true,
+   "detail": "63960"
+  },
+  {
+   "name": "cre family counts sum to the stored total",
+   "ok": true,
+   "detail": "0 bad"
+  },
+  {
+   "name": "cre TATA position lies inside the promoter window",
+   "ok": true,
+   "detail": "0 out of range"
+  },
+  {
+   "name": "every gene has a locus tile entry",
+   "ok": true,
+   "detail": "63960 genes"
+  },
+  {
+   "name": "no gene appears in two locus tiles",
+   "ok": true,
+   "detail": "0 duplicated"
+  },
+  {
+   "name": "locus structure lies inside the gene span",
+   "ok": true,
+   "detail": "0 genes with a stray segment, e.g. []"
+  },
+  {
+   "name": "locus gene spans are positive",
+   "ok": true,
+   "detail": "0 bad"
+  },
+  {
+   "name": "every locus tile's pool mark equals the gene's ps.lsg",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "allele links point at existing genes",
+   "ok": true,
+   "detail": "0 dangling"
+  },
+  {
+   "name": "allele links cross haplotypes",
+   "ok": true,
+   "detail": "0 same-haplotype"
+  },
+  {
+   "name": "allele links are reciprocal",
+   "ok": true,
+   "detail": "0 one-way"
+  },
+  {
+   "name": "no omega >= 99 (PAML 'cannot estimate' sentinel)",
+   "ok": true,
+   "detail": "0 records"
+  },
+  {
+   "name": "no omega reported without both Ka and Ks",
+   "ok": true,
+   "detail": "0 records"
+  },
+  {
+   "name": "genes.json covers every gene",
+   "ok": true,
+   "detail": "63960 ids"
+  },
+  {
+   "name": "every GO id on a gene is in the term dictionary",
+   "ok": true,
+   "detail": "4862 terms"
+  },
+  {
+   "name": "facet rows align with genes.json",
+   "ok": true,
+   "detail": "63960 rows vs 63960 genes"
+  },
+  {
+   "name": "every facet row has the declared width",
+   "ok": true,
+   "detail": "0 ragged"
+  },
+  {
+   "name": "facet class codes are inside the vocabulary",
+   "ok": true,
+   "detail": "0 out of range"
+  },
+  {
+   "name": "pos.json decodes to every gene's start and end",
+   "ok": true,
+   "detail": "63,960 genes"
+  },
+  {
+   "name": "desc.json decodes to each gene's own description",
+   "ok": true,
+   "detail": "57,527 described"
+  },
+  {
+   "name": "the validator covers every facet column",
+   "ok": true,
+   "detail": "validator reproduces 19 of 19 columns -- add the new one here"
+  },
+  {
+   "name": "facet values match the gene shards (all rows, all columns)",
+   "ok": true,
+   "detail": "63960 rows x 19 cols"
+  },
+  {
+   "name": "every gene with an ESMFold model has a 3D model, and no other gene does",
+   "ok": true,
+   "detail": "0 missing, 0 extra"
+  },
+  {
+   "name": "every 3D model sits in the bucket its gene ID resolves to",
+   "ok": true,
+   "detail": "0 misplaced"
+  },
+  {
+   "name": "every 3D model has the residue count its gene page states",
+   "ok": true,
+   "detail": "0 disagree"
+  },
+  {
+   "name": "every 3D bucket's payload length matches its own index",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "name": "manifest structure.genes matches the 3D buckets",
+   "ok": true,
+   "detail": "manifest 40685 vs 40685"
+  },
+  {
+   "name": "copies: each locus in the manifest has its data file, and no file is unlisted",
+   "ok": true,
+   "detail": "files ['nrx1'] vs manifest ['nrx1']"
+  },
+  {
+   "name": "copies: every annotated gene a panel draws exists in the gene shards",
+   "ok": true,
+   "detail": "8 genes"
+  },
+  {
+   "name": "copies: every annotated row carries its gene page's exact position",
+   "ok": true,
+   "detail": "8 genes"
+  },
+  {
+   "name": "copies: manifest.copies.genes is exactly the set of annotated genes drawn",
+   "ok": true,
+   "detail": "8 listed vs 8 drawn"
+  },
+  {
+   "name": "copies: each search recovered every annotated member of its array (positive control)",
+   "ok": true,
+   "detail": "nrx1 7/7"
+  },
+  {
+   "name": "copies: data was built from the committed sources/copy_search.json",
+   "ok": true,
+   "detail": "a58533894910 vs manifest a58533894910"
+  },
+  {
+   "name": "search postings are in range",
+   "ok": true,
+   "detail": "0 tokens out of range"
+  }
+ ],
+ "what_this_is": "Every integrity gate this build ran over the committed data, with its verdict. These are not a summary written afterwards: check() records each line as it executes."
+}

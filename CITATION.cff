@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this atlas, please cite it as below, and cite the underlying studies listed on each study page."
+title: "717 Atlas: a haplotype-resolved gene atlas for Populus tremula x alba clone INRA 717-1B4"
+abstract: >-
+  A static, browsable atlas of the 63,960 gene models in the two phased haplotypes of hybrid
+  poplar clone 717, integrating GENESPACE synteny across a 12-genome panel, genEra
+  phylostratigraphy, Phytozome v5.1 functional annotation, HAP1/HAP2 syntelog Ka/Ks over an
+  older 25,931-pair allele map, and a 652-sample RNA-seq expression atlas drawn from 28 curated
+  studies. It adds tandem-array and paralog duplication context (inferred calls), predicted
+  protein disorder and ESMFold-derived secondary structure, peptide matches from a re-search of
+  five public Populus mass-spectrometry datasets (several from other Populus species, mostly on
+  shared peptides), 46,141 reciprocal one-to-one orthologs to Populus trichocarpa from the same
+  synteny run, Ka/Ks against P. trichocarpa for 52,232 genes, and accessible-chromatin and
+  histone-mark calls from GEO GSE128434 measured in P. trichocarpa and shown on each gene's
+  ortholog, not measured on 717. The lineage-specific candidate pool (phylostratum 18 or above;
+  776 HAP1, 835 HAP2) is from the genEra rerun that added Idesia polycarpa and searched the full
+  comparison panel.
+type: dataset
+authors:
+  - family-names: Hsieh
+    given-names: Chen
+    affiliation: "Tsai Lab, University of Georgia"
+  - name: "Claude (Anthropic)"
+    alias: "software assistance"
+repository-code: "https://github.com/ChenHsieh/poplar-717-atlas"
+url: "https://chenhsieh.github.io/poplar-717-atlas/"
+keywords:
+  - Populus
+  - hybrid poplar
+  - haplotype-resolved genome
+  - synteny
+  - phylostratigraphy
+  - lineage-specific genes
+  - expression atlas
+license-url: "https://github.com/ChenHsieh/poplar-717-atlas/blob/main/LICENSE"
+version: "0.17.1"
+date-released: "2026-10-03"

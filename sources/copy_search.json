@@ -1,0 +1,431 @@
+{
+ "inputs": {
+  "hap1": {
+   "genome": "PtremulaxPopulusalbaHAP1_717_v5.0.fa",
+   "genome_sha256": "c5bbb970e9ca35d303e03f501a504ff264419666f44dab8e2dde5ef37107fde3",
+   "proteins": "PtremulaxPopulusalbaHAP1_717_v5.1.protein_primaryTranscriptOnly.fa"
+  },
+  "hap2": {
+   "genome": "PtremulaxPopulusalbaHAP2_716_v5.0.fa",
+   "genome_sha256": "cb63144c11d4d4e5dcbbac1e6a499c68f8f482afc5bdbae96f4ab69e4fa56fa2",
+   "proteins": "PtremulaxPopulusalbaHAP2_716_v5.1.protein_primaryTranscriptOnly.fa"
+  }
+ },
+ "loci": {
+  "nrx1": {
+   "array": [
+    "PtXaTreH.10G046700",
+    "PtXaTreH.10G046800",
+    "PtXaTreH.10G046900",
+    "PtXaTreH.10G047000",
+    "PtXaTreH.10G047100",
+    "PtXaTreH.10G047200",
+    "PtXaTreH.10G047600"
+   ],
+   "controls": {
+    "array_members_recovered": [
+     7,
+     7
+    ]
+   },
+   "desc": "nucleoredoxin",
+   "hap": "hap1",
+   "max_span_bp": 3255,
+   "max_span_gene": "PtXaTreH.10G047000",
+   "name": "NRX1",
+   "reference": {
+    "aa": 564,
+    "id": "PtXaTreH.10G047000"
+   },
+   "regions": {
+    "hap1": {
+     "chr": "Chr10",
+     "end": 7445241,
+     "flanks": [
+      "PtXaTreH.10G046600",
+      "PtXaTreH.10G047700"
+     ],
+     "start": 7339430
+    },
+    "hap2": {
+     "chr": "Chr10",
+     "end": 6718650,
+     "flanks": [
+      "PtXaAlbH.10G043800",
+      "PtXaAlbH.10G044000"
+     ],
+     "start": 6697735
+    }
+   },
+   "row_evalue": 1e-10,
+   "rows": [
+    {
+     "best_evalue": 8.04e-179,
+     "chr": "Chr10",
+     "cov_aa": 535,
+     "cov_pct": 94.9,
+     "end": 7343607,
+     "gene": "PtXaTreH.10G046700",
+     "hap": "hap1",
+     "in_array": true,
+     "pid": 97.6,
+     "pieces": [
+      {
+       "end": 7342963,
+       "pid": 97.6,
+       "segs": [
+        [
+         30,
+         190,
+         98.8
+        ],
+        [
+         189,
+         350,
+         98.1
+        ],
+        [
+         350,
+         564,
+         96.3
+        ]
+       ],
+       "start": 7341141
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7340821,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 0.0,
+     "chr": "Chr10",
+     "cov_aa": 375,
+     "cov_pct": 66.5,
+     "end": 7357791,
+     "gene": "PtXaTreH.10G046800",
+     "hap": "hap1",
+     "in_array": true,
+     "pid": 73.0,
+     "pieces": [
+      {
+       "end": 7357293,
+       "pid": 73.0,
+       "segs": [
+        [
+         190,
+         564,
+         73.0
+        ]
+       ],
+       "start": 7356039
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7355740,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 1.26e-165,
+     "chr": "Chr10",
+     "cov_aa": 535,
+     "cov_pct": 94.9,
+     "end": 7365400,
+     "gene": "PtXaTreH.10G046900",
+     "hap": "hap1",
+     "in_array": true,
+     "pid": 91.7,
+     "pieces": [
+      {
+       "end": 7364790,
+       "pid": 91.7,
+       "segs": [
+        [
+         30,
+         193,
+         95.1
+        ],
+        [
+         189,
+         375,
+         80.2
+        ],
+        [
+         350,
+         564,
+         99.1
+        ]
+       ],
+       "start": 7362981
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7362547,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 0.0,
+     "chr": "Chr10",
+     "cov_aa": 535,
+     "cov_pct": 94.9,
+     "end": 7371759,
+     "gene": "PtXaTreH.10G047000",
+     "hap": "hap1",
+     "in_array": true,
+     "pid": 96.1,
+     "pieces": [
+      {
+       "end": 7370772,
+       "pid": 96.1,
+       "segs": [
+        [
+         30,
+         190,
+         99.4
+        ],
+        [
+         189,
+         375,
+         88.8
+        ],
+        [
+         350,
+         564,
+         100.0
+        ]
+       ],
+       "start": 7368948
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7368504,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 2.03e-178,
+     "chr": "Chr10",
+     "cov_aa": 297,
+     "cov_pct": 52.7,
+     "end": 7381267,
+     "gene": "PtXaTreH.10G047100",
+     "hap": "hap1",
+     "in_array": true,
+     "pid": 75.3,
+     "pieces": [
+      {
+       "end": 7380776,
+       "pid": 75.3,
+       "segs": [
+        [
+         28,
+         150,
+         44.4
+        ],
+        [
+         30,
+         324,
+         88.2
+        ]
+       ],
+       "start": 7379242
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7378710,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 0.0,
+     "chr": "Chr10",
+     "cov_aa": 536,
+     "cov_pct": 95.0,
+     "end": 7393805,
+     "gene": "PtXaTreH.10G047200",
+     "hap": "hap1",
+     "in_array": true,
+     "pid": 86.2,
+     "pieces": [
+      {
+       "end": 7393470,
+       "pid": 86.2,
+       "segs": [
+        [
+         29,
+         364,
+         83.0
+        ],
+        [
+         350,
+         564,
+         91.2
+        ]
+       ],
+       "start": 7391644
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7391387,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 3.19e-175,
+     "chr": "Chr10",
+     "cov_aa": 535,
+     "cov_pct": 94.9,
+     "end": 7435394,
+     "gene": "PtXaTreH.10G047600",
+     "hap": "hap1",
+     "in_array": true,
+     "pid": 88.8,
+     "pieces": [
+      {
+       "end": 7434964,
+       "pid": 88.8,
+       "segs": [
+        [
+         30,
+         190,
+         91.3
+        ],
+        [
+         189,
+         365,
+         83.8
+        ],
+        [
+         350,
+         564,
+         91.2
+        ]
+       ],
+       "start": 7433148
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7432694,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 4.42e-86,
+     "chr": "Chr10",
+     "cov_aa": 414,
+     "cov_pct": 73.4,
+     "end": 7439530,
+     "gene": null,
+     "hap": "hap1",
+     "in_array": false,
+     "pid": 69.1,
+     "pieces": [
+      {
+       "end": 7439530,
+       "pid": 69.1,
+       "segs": [
+        [
+         30,
+         140,
+         74.8
+        ],
+        [
+         129,
+         350,
+         64.5
+        ],
+        [
+         352,
+         444,
+         73.1
+        ]
+       ],
+       "start": 7437720
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 7437498,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 6.94e-111,
+     "chr": "Chr10",
+     "cov_aa": 268,
+     "cov_pct": 47.5,
+     "end": 6698936,
+     "gene": null,
+     "hap": "hap2",
+     "in_array": false,
+     "pid": 94.8,
+     "pieces": [
+      {
+       "end": 6698936,
+       "pid": 94.8,
+       "segs": [
+        [
+         30,
+         98,
+         97.1
+        ],
+        [
+         350,
+         548,
+         94.0
+        ]
+       ],
+       "start": 6698055
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 6698055,
+     "strand": "-"
+    },
+    {
+     "best_evalue": 6.17e-111,
+     "chr": "Chr10",
+     "cov_aa": 213,
+     "cov_pct": 37.8,
+     "end": 6715147,
+     "gene": "PtXaAlbH.10G043900",
+     "hap": "hap2",
+     "in_array": false,
+     "pid": 82.2,
+     "pieces": [
+      {
+       "end": 6709304,
+       "pid": 93.2,
+       "segs": [
+        [
+         375,
+         564,
+         93.2
+        ]
+       ],
+       "start": 6708734
+      },
+      {
+       "end": 6715106,
+       "pid": 66.9,
+       "segs": [
+        [
+         352,
+         393,
+         76.2
+        ],
+        [
+         444,
+         537,
+         62.8
+        ]
+       ],
+       "start": 6714077
+      }
+     ],
+     "queries_hitting": 7,
+     "start": 6708418,
+     "strand": "-"
+    }
+   ],
+   "search_evalue": 0.001,
+   "seed": "PtXaTreH.10G047000",
+   "self_pid": 96.1
+  }
+ },
+ "method": "tblastn (BLAST+ 2.14.1) of every array protein against each whole haplotype genome; see scripts/make_copy_search_source.py"
+}

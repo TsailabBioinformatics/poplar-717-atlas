@@ -1,0 +1,78 @@
+{
+ "columns": {
+  "karyotype_route_c.tsv.gz": "hap; gene_id; aek_chromosome 1-7, blank = not placed; gamma_copy 1-3 and salicoid_copy 1-2, blank = no copy assigned; label_support = share of the 10 nearest collinear anchors agreeing, given only with a copy; inside_aek_block 1 = inside an AEK collinear block, 0 = inherited from neighbouring anchors; conflict 1 = the AEK block and the P. trichocarpa naming disagree, so no copy",
+  "karyotype_route_c_anchors.tsv.gz": "hap; aek_gene; aek_chromosome; gamma_copy; salicoid_copy; gene_id (a direct collinear anchor of that AEK gene, in that slot)"
+ },
+ "copy_numbers": "Gamma copy (1 to 3) and salicoid copy (1 to 2) are completeness ranks from Wang et al.'s karyotype projection, ranked within one ancestral chromosome. They are not subgenomes.",
+ "gates": {
+  "HAP1": {
+   "ancestral_genes_with_an_anchor": 8199,
+   "anchor_rows": 14905,
+   "anchor_rows_repeated_across_blocks_listed_once": 26,
+   "assessed_genes": 32006,
+   "direct_anchor_genes": 14727,
+   "not_placed": 94,
+   "published_coverage_reproduced": {
+    "aek_block": 26582,
+    "aek_block_vs_pt_conflicts": 410,
+    "n": 32006,
+    "route_c_gamma": 31496,
+    "route_c_salicoid": 31496
+   },
+   "published_occupancy_reproduced": {
+    "cells_with_a_salicoid_copy": 10070,
+    "cells_with_both_salicoid_copies": 4276,
+    "per_chromosome_gamma_copy_rows": 21
+   },
+   "unplaced_scaffold_genes_not_assessed": 131
+  },
+  "HAP2": {
+   "ancestral_genes_with_an_anchor": 8206,
+   "anchor_rows": 14908,
+   "anchor_rows_repeated_across_blocks_listed_once": 29,
+   "assessed_genes": 31823,
+   "direct_anchor_genes": 14747,
+   "not_placed": 127,
+   "published_coverage_reproduced": {
+    "aek_block": 26731,
+    "aek_block_vs_pt_conflicts": 479,
+    "n": 31823,
+    "route_c_gamma": 31217,
+    "route_c_salicoid": 31217
+   },
+   "published_occupancy_reproduced": {
+    "cells_with_a_salicoid_copy": 10046,
+    "cells_with_both_salicoid_copies": 4351,
+    "per_chromosome_gamma_copy_rows": 21
+   },
+   "unplaced_scaffold_genes_not_assessed": 0
+  }
+ },
+ "inputs": {
+  "route_c_aek_anchors_HAP1.tsv.gz": {
+   "rows": 14905,
+   "sha256": "61994abbbf6a1e21fe69905157b1e7b56bbad3ef02dd6d2c3a1488b3480ab4fa"
+  },
+  "route_c_aek_anchors_HAP2.tsv.gz": {
+   "rows": 14908,
+   "sha256": "4effc04952ca932df5c3b81b773e5ed6d489a38018a720c583bc92f043997874"
+  },
+  "route_c_labels_HAP1.tsv.gz": {
+   "rows": 32006,
+   "sha256": "309eb0e221b9723e43598f0cb1b483dd9782579f1328b29ec0db21684724f3d2"
+  },
+  "route_c_labels_HAP2.tsv.gz": {
+   "rows": 31823,
+   "sha256": "6c68d606f8639c9aeaa3dd8146ea54f6e72c384b5305b25c8143aee425b90325"
+  }
+ },
+ "method": "Ancestral chromosome from collinearity between the 717 genome and the AEK genes. Gamma copy and salicoid copy named through the collinear block shared with P. trichocarpa v3.1, as the majority Wang et al. label of the 10 nearest anchors' P. trichocarpa partners. A gene not inside an AEK block takes its ancestral chromosome from those anchors too. No copy where the two sources name different ancestral chromosomes.",
+ "owner": "MS1 duplication analysis, gamma branch, painting v3 (route C)",
+ "reference": "Wang et al. 2022, BMC Biology 20:216, doi:10.1186/s12915-022-01420-1. Ancestral eudicot karyotype (AEK1 to AEK7) and the published P. trichocarpa painting.",
+ "rows_written": {
+  "karyotype_route_c.tsv.gz": 63829,
+  "karyotype_route_c_anchors.tsv.gz": 29758
+ },
+ "slots": "An AEK gene has up to 6 slots (3 gamma copies x 2 salicoid copies). A slot with no collinear anchor in a haplotype is lost or not detected; that is not evidence of loss.",
+ "what": "Where each 717 gene sits in the ancestral eudicot karyotype, and which gamma copy and salicoid copy it descends from (route C). Exploratory, not a curated call: the gene-level WGD events remain the duplication call."
+}

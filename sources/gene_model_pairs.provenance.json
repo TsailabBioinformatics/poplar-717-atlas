@@ -1,0 +1,20 @@
+{
+ "tier": "public",
+ "why_public": "Derived from public ENA RNA-seq libraries aligned to the published 717 v5.1 assembly. No wet-lab data.",
+ "panel": "94 libraries, FROZEN. An 827-library expansion was running on 2026-09-12 and will supersede this. Shipping the frozen panel is safe rather than merely convenient because the expansion carries its own equivalence gate, e7_equivalence_panel94.json, which PASSES: 0 of 16 matched cells and 0 of 20 arm rows differ.",
+ "pool": "out_idesia/ -- the CORRECTED rank>=18 pool (776/835), which is the pool this atlas serves. out_panel_panel94/ is byte-identical for every table read here; only libraries.tsv and classification_with_rnaseq.tsv differ, and neither is used.",
+ "source_dir": "<scratch>/pb_rnaseq_wt/analyses/piggyback_rnaseq_junctions/out_idesia",
+ "haplotypes_are_not_independent": "Each haplotype is aligned to its own genome alone, so a read from the other haplotype's allele has nowhere else to go and is placed here. Junction structure is near-identical between haplotypes, so this does not fabricate a junction, but HAP1 and HAP2 are NOT independent replicates and must be read side by side, never pooled.",
+ "purpose": "Per gene: whether a neighbouring gene is joined to it by spliced reads at annotated exon boundaries -- the signature of one gene annotated as two -- and whether the question was answerable for that gene at all.",
+ "shipped_sha256": "391b93b58e73771a42084e067a2a81dbb102c44e13bddc7cb6f5760c128640fc",
+ "rows": 63849,
+ "flagged_genes": 2629,
+ "flagged_pairs": 1435,
+ "tier_definition": "3 or more spliced reads whose donor and acceptor both sit on ANNOTATED EXON BOUNDARIES of the two genes. The looser 'any spliced read joining the pair' tier is 5,126 pairs and is deliberately not what is flagged.",
+ "THE_TODO_WAS_WRONG_AND_IS_NOT_QUOTED": "The atlas TODO said '1,435 adjacent pairs (2,629 genes) carry 3+ spliced reads' and '40 pairs (79 genes) show the exact splitter signature'. Recomputed here: 1,435/2,629 is the EXON-BOUNDARY tier, and the any-junction tier is 5,126 pairs / 9,200 genes -- the two figures had been assigned to the wrong tiers. The owning analysis's own stricter exact-gap tier is 42 pairs, not 40. Every number shipped is recomputed and asserted.",
+ "specificity": "Zero of 27,276 opposite-strand pairs clear the tier. Fusion is impossible there, so a floor of exactly zero is what makes a positive a measurement rather than a noise level.",
+ "THIS_IS_NOT_AN_LSG_PROBLEM": "Of the 1,435 flagged pairs, 1,422 are conserved-with-conserved and only 13 are LSG-with-conserved. The owning analysis reaches the same conclusion from the other side: at matched gap and depth, LSG pairs are fused at 0.96% against conserved pairs' 3.61%, i.e. LESS often, replicated in both haplotypes.",
+ "gap_occupancy_is_the_discriminator": "A junction alone does not mean the annotation is wrong. An intron is spliced OUT, so a genuine split shows a junction with LOW coverage inside the gap; high gap coverage means untidy readthrough and a defensible annotation. gap_reads is shipped for exactly this. The owning analysis's worked counter-example, PtXaAlbH.17G084800, has 48,378 crossing reads, 423 at exon boundaries and 151,554 reads inside the gap, and it calls that a covered readthrough, not a clean split.",
+ "FLAG_NOT_FILTER": "Nothing here removes or renumbers a gene. 17,528 pairs were too shallow to test, so n_pairs_evaluable is shipped per gene and the absence of a flag must never read as 'confirmed separate genes'.",
+ "out_of_scope": "Overlapping pairs (99 sense, 129 antisense) have no intergenic gap, so 'is the gap an intron' cannot be asked of them and they are absent by construction. A nested gene model is a real but separate worry needing an isoform-level test."
+}

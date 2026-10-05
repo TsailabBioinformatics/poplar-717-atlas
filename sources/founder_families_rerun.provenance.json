@@ -1,0 +1,26 @@
+{
+ "purpose": "Each gene's founder family (the family's origin stratum and size) from the same genEra run as the LSG pool, the rerun that added Idesia. Replaces the frozen 2026-04 run's families, which, joined to the rerun's gene ranks, made a family look younger than its own member on 419 genes.",
+ "tier": "public",
+ "generated_by": "scripts/make_founder_source.py",
+ "source": "ChenHsieh/ms2-lsg e05215e570c7905a2eb80abf476099cdd55b6094 : data/founder_families_rerun_20260926/founder_family_per_gene.tsv.gz (git blob 2057013dc38346dcbcd982ef209fe290b4c839af, sha256 887553b489b8a9b57facb65d583b0cf9150b66d0a313123b2375262745638f76)",
+ "built_upstream_by": "the 'ms2 sapelo2' session, 2026-09-26, from absense_20260901/hap{1,2}_idesia/pass2/80863_founder_events.tsv, beside the 80863_gene_ages.tsv that pipeline/s00b_lsg_pool_idesia.py reads. The abSENSE-corrected (HDF) variants are deliberately not used, because the pool reads the non-HDF ages.",
+ "columns_dropped": {
+  "gene": "the transcript name; gene_id is the join key",
+  "family_id": "the owner's hash of the member list; meaningless outside that file, so it must not look like a lookup identifier"
+ },
+ "gates": [
+  "63,954 rows, gene_id unique, 15,040 families, 32,134 HAP1 + 31,820 HAP2",
+  "family_rank <= gene_rank on every ranked row, and equals the oldest member's rank",
+  "family_size equals the family's row count",
+  "gene_rank equals the pool call's rank (lsg_pool_idesia.tsv.gz) on every ranked gene"
+ ],
+ "not_available": {
+  "no_gene_age": 39,
+  "no_family": 6,
+  "treatment": "the gene card says the family origin is not shown because the run gives the gene no rank (true of all 45; only 6 lack a family); nothing is filled in"
+ },
+ "read_this_before_writing_prose": "A pool gene (rank >= 18) can sit in a family that originates much earlier, down to cellular organisms: a diverged or newly added member of an old family. That is a different claim from a lineage-specific family, and the gene card says so on those genes.",
+ "rows": 63954,
+ "shipped_sha256": "375de3d2b12d54894c6b3689ce7b427eab42ede06d7d3e65969c4bb1ef60376a",
+ "applied_by": "scripts/patch_founder_rerun.py (build stage)"
+}

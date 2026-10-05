@@ -1,0 +1,18 @@
+{
+ "purpose": "Two independent corrections to the duplication module (TODO 21). (1) duplication class moved from the v8 membership file to the current v9 table -- v6, the file TODO 21 literally named, is itself superseded by v9 and was not used. (2) a PAV/hemizygosity layer added for the first time; the previous candidate (hemi_pav_crosstab.csv) is the OrthoFinder-based call, which ms1-dup's own CLAUDE.md forbids.",
+ "tier": "public",
+ "duplication": {
+  "source_file": "<onedrive>/01_work/MS1_2026/data/55_master_v9_20260902/master_duplication_table_v9.csv",
+  "letter_scheme_unchanged": "A/S/T/D/C, concatenated -- identical to v8, so the consuming JS needed no change, only the values did",
+  "genes_changed_vs_v8_source": 0
+ },
+ "pav": {
+  "source_file": "<onedrive>/01_work/MS1_2026/data/02_synteny_section/hemizygous_pav_diamond.csv",
+  "scope": "6,092 candidate hemizygous genes (from an asymmetric HAP1/HAP2 orthogroup), NOT genome-wide -- a gene outside this candidate set gets no `pav` key at all, same convention as ESMFold's 64% coverage.",
+  "fields": "rel = which haplotype the candidate orthogroup relationship names as absent; confirmed = the DIAMOND verdict (true PAV vs a real hit the candidate call missed); nhits/target/pident/evalue = the contradicting hit's own evidence when confirmed is false.",
+  "confirmed_totals": {
+   "hap1": 805,
+   "hap2": 859
+  }
+ }
+}

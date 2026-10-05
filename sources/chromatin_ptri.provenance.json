@@ -1,0 +1,35 @@
+{
+ "purpose": "Accessible chromatin and histone marks at the promoter of this gene's Populus trichocarpa ortholog. The only chromatin data that exists for anything in this clade.",
+ "tier": "public",
+ "why_public": "Reprocessed from GEO GSE128434, a public dataset (Lu, Marand, Schmitz et al., Nature Plants 2019, 13-species comparative chromatin atlas). Peak calls are ours; the reads are theirs.",
+ "shipped_sha256": "743d18620b41afc0c81e749aee151e6c19dd1c5ab59ce4a1347a6a1050fcaa0d",
+ "rows": 34139,
+ "join": "via the atlas's reciprocal 1:1 P. trichocarpa ortholog. 45,869 of the 46,141 1:1 genes (99.4%) have an ortholog in this table, so the layer reaches 45,869 of 63,960 atlas genes (71.7%). A P. trichocarpa locus is used by at most two atlas genes -- one per haplotype -- which is what a phased diploid should give.",
+ "WHOSE_PROPERTY_THIS_IS": "The ortholog's, not this gene's. The analysis runs entirely inside P. trichocarpa: peaks called on trichocarpa leaf nuclei, scored against trichocarpa gene starts. Nothing here was measured on 717, and no chromatin data exists for 717 or for either parent species. The card says 'this gene's P. trichocarpa ortholog' in so many words and must keep doing so -- reading it as 717's own promoter would assert promoter synteny that a reciprocal-ortholog call does not establish.",
+ "the_denominator_is_load_bearing": "The chromatin is LEAF ONLY. A gene silent in leaf correctly carries no promoter mark there, so a mark's absence says nothing about the gene unless you already know it was expressed. `expressed` (RPK > 1 in the matched RNA-seq libraries) is therefore shown FIRST on the card and gates everything under it. Same discipline as the proteomics detectability column.",
+ "two_corrections_already_baked_into_the_source": {
+  "the_window": "The first run required an ATAC peak within 500 bp of the start in BOTH replicates and gave 17.7% for conserved genes, correctly failing its own gate. Peak calling was not the problem -- 27,902 and 17,858 peaks, inside the 14,978 to 32,292 range the source paper reports across its 13 species. The window was. 55% of conserved gene starts have their nearest accessible region more than 2 kb away, which is that paper's own headline finding about distal regulatory elements in plants. The criterion now uses THEIR classification: an accessible region that is genic or within 2 kb, replicates merged.",
+  "the_denominator": "Silent genes were removed from the denominator, as above.",
+  "why_this_is_recorded": "Changing a criterion after a gate fails is how gate-shopping happens. Both changes were made for a stated reason that is checkable against the source paper, and are written down here rather than absorbed."
+ },
+ "what_the_source_analysis_found": "At matched expression and length, Populus-specific genes are MORE likely than conserved genes to carry their own promoter signal: accessible chromatin 50.4% vs 37.7% (OR 1.68, p 1.4e-04), H3K4me3 at their own start 47.4% vs 35.2% (OR 1.65, p 2.7e-04), both marks 26.0% vs 17.4%, H3K36me3 over the gene body 15.6% vs 8.6%. Restricting to genes with no neighbour within 5 kb, the H3K4me3 difference survives (OR 1.68, p 0.018), so the signal is not inherited from a neighbour's promoter.",
+ "three_limits_the_source_states_itself": [
+  "A selection effect runs through the whole comparison: only 46.8% of Populus-specific genes are expressed in leaf at all, against 85.9% of conserved genes. Conditioning on expression is a much harsher filter for the young set, so this describes the expressed subset, not the stratum.",
+  "Fraction-of-maximum expression is NOT controlled. A conserved gene at 10 RPK in leaf may be far below its peak elsewhere while a young gene at 10 RPK may be at its maximum. That alone could produce the direction observed, and leaf-only data cannot separate it. The source calls this its main reservation.",
+  "ATAC and H3K4me3 establish THAT a locus has a promoter, never WHERE transcription starts. Only a 5'-end method does that, and none exists for any Populus."
+ ],
+ "gate_run_on_every_build": "make_chromatin_source.py reproduces the analysis's published conserved leaf-expressed H3K4me3 rate (81.5%, the value its own gate turns on) and all eight cells of its Populus-specific versus matched-conserved effect table, or writes nothing.",
+ "columns_dropped_before_shipping": {
+  "rank": "a P. trichocarpa phylostratum from a different genEra run. A column called `rank` sitting on a 717 gene page would be read as the 717 rank.",
+  "is_matched_control": "an analysis-internal sampling flag, meaningless outside its own comparison."
+ },
+ "derived_from": {
+  "<scratch>/ms2_hybrid_rationale/results/tss/l6_promoter_by_gene.tsv": {
+   "sha256": "6067b301c13d4d1f572ed23a84928e8fdea8748daf6ebc56d8a36a385d31e838",
+   "mtime": "2026-09-08T14:41:02",
+   "bytes": 1298431
+  }
+ },
+ "upstream": "GEO GSE128434; ms2-lsg analyses/hybrid_rationale stage L (results/tss/)",
+ "regenerate": "python3 scripts/make_chromatin_source.py, on Sapelo2"
+}

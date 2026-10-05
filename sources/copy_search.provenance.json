@@ -1,0 +1,25 @@
+{
+ "purpose": "Every copy of a tandem array on BOTH haplotypes, found in the genome sequence rather than in the annotation, so a gene page can lead to copies no gene table can show: pieces the annotator did not call, and gene models laid over separate pieces. Surfaced by NRX1 (2026-09-21): from any of its 7 HAP1 gene pages nothing led to HAP2, because no copy has an assigned allele.",
+ "tier": "public",
+ "source_file": "sources/copy_search.json, written by scripts/make_copy_search_source.py (Sapelo2, run by hand) and published to data/copies/ by scripts/patch_copies.py",
+ "loci": "nrx1 only. A gene without a panel has NOT been searched; that is not the same as having no copies elsewhere.",
+ "method": {
+  "array": "the seed gene plus its tandem members (td.mem, the TD union set the Duplication card draws)",
+  "region": "bounded by synteny, not by a chosen distance: from each end of the array to the nearest gene that has an allele; on the other haplotype, between those two genes' alleles",
+  "search": "tblastn (BLAST+ 2.14.1) of every array protein against each whole haplotype genome (v5.0 FASTA); alignments collected at E <= 1e-3, a copy reported only if one of its alignments reaches E <= 1e-10",
+  "assignment": "an alignment overlapping an annotated gene belongs to that gene; the rest are clustered into unannotated copies",
+  "coverage": "against ONE reference protein, the longest array protein (ties broken by gene id), counting each stretch of genome once by its best-scoring alignment, because the protein aligns to itself in repeated units",
+  "pieces": "no annotated array copy spans more genome than its longest member's gene model (3,255 bp for NRX1), so alignments that would stretch one copy beyond that are split into separate pieces, and unannotated hits are clustered under the same bound"
+ },
+ "gate": "The search must recover every annotated array member on its own haplotype, or nothing is written (NRX1: 7/7). patch_copies.py refuses a source whose annotated rows disagree with the gene shards' positions, and validate_data.py re-checks both on every build, plus that data/copies was built from the committed source (sha256).",
+ "does_not_claim": [
+  "Exact gene structures. tblastn does not model introns, so identity reads low across one: the reference against its own gene reads 96.1%, not 100%. Coverage is the robust number; a spliced aligner would give structures.",
+  "That an unannotated piece is silent. The expression index holds annotated transcripts only, so a piece with no gene model has no expression value at all: unmeasured, not measured.",
+  "That the pieces are pseudogenes. Frameshifts and stop codons were not assessed."
+ ],
+ "tried_and_rejected": [
+  "Separating pieces by the largest gap between consecutive alignments inside an intact copy. It measured 199 bp, because tblastn bridges short introns in an intact copy and cannot in a degraded one, so it cut single degraded copies in two (HAP1's unannotated copy became 56% + 20%). A copy's total length is the right yardstick for gaps inside broken copies; a gap inside intact ones is not.",
+  "miniprot 0.13 (a spliced protein-to-genome aligner) as the source of the drawing. Its splicing model chained separate HAP2 pieces into single alignments spanning 11 kb (through a 9.6 kb 'intron') and 75 kb, which is exactly the joining this panel exists to expose.",
+  "Unioning every alignment's protein range for coverage. Repeated units made an 880 bp locus report 82% of a 564 aa protein, which that stretch of genome cannot encode."
+ ]
+}

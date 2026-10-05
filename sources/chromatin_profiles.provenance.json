@@ -1,0 +1,27 @@
+{
+ "purpose": "The chromatin SIGNAL around the transcription start, replacing four yes/no flags with the actual pattern. 40 bins of 100 bp spanning 2 kb either side of the TSS, for four marks.",
+ "tier": "public",
+ "shipped_sha256": "cfd7a8b06a62453e8a43901cef99706159dc562dc9dc0a726000311f650270e0",
+ "loci_extracted": 34131,
+ "loci_shipped": 23465,
+ "atlas_genes_reached": 45867,
+ "marks": {
+  "atac": "ATAC-seq, mean of replicates 1 and 2",
+  "k4": "H3K4me3",
+  "k36": "H3K36me3",
+  "k27": "H3K27me3"
+ },
+ "geometry": {
+  "flank_bp": 2000,
+  "bins": 40,
+  "bin_bp": 100
+ },
+ "source": "GEO GSE128434 (Lu, Marand, Schmitz et al., Nature Plants 2019), P. trichocarpa leaf; bigWigs produced by ms2 hybrid_rationale stage L, profiled by scripts/../atlas_chromatin_profiles/extract_profiles.py",
+ "UNITS_ARE_A_LOG_RATIO_NOT_COVERAGE": "Values are negative as often as positive (sampled medians near -0.1) and each mark has its own range: ATAC [-2,4], H3K4me3 [-3,2], H3K36me3 [-2,2], H3K27me3 [-1,2]. Stored as hundredths (value x 100). It must be drawn diverging about zero and scaled per mark, and must never be described as reads or depth.",
+ "STRAND_ORIENTED": "Bin 0 is the upstream end for EVERY gene. 17,119 loci are on the plus strand and 17,020 on the minus, so binning by raw coordinate would mirror upstream and downstream for half of them.",
+ "WHOSE_CHROMATIN": "The P. trichocarpa ORTHOLOG's, exactly as the existing boolean layer states. Nothing here was measured on 717 or on either parent species, and no chromatin data exists for them.",
+ "why_it_is_sharded_and_lazy": "23,465 loci x 4 marks x 40 bins does not belong in the gene shards. Sharded by P. trichocarpa chromosome (20 files, ~13 MB total) and fetched only when a reader opens the card, the same reasoning as the 3D structure buckets.",
+ "evidence_the_extraction_is_correct": "Visible in the data rather than asserted: H3K4me3 sits at +0.350 at the TSS against -0.120 two kilobases upstream, which is an active-promoter peak in the right place; H3K36me3 climbs from -0.140 upstream into the gene body; and the repressive H3K27me3 is slightly depleted at the TSS. A strand-orientation bug would flatten or mirror all three.",
+ "coverage_gap": "34,131 loci were profiled but only 23,465 ship -- the rest have no reciprocal 1:1 ortholog in this atlas, so no gene page could show them.",
+ "regenerate": "module load deepTools && python3 <scratch>/atlas_chromatin_profiles/extract_profiles.py"
+}

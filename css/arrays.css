@@ -1,0 +1,90 @@
+/* Tandem array pages (#/array, #/arrays), the allele pair page (#/pair) and the shared locus
+   figure (js/core/locusfig.js). Tokens only, from app.css :root. */
+
+.mono-h { font-family: var(--mono); font-size: 28px; letter-spacing: 0; }
+.arr-note { font-size: 12px; color: var(--ink-2); margin: 8px 0 0; max-width: 90ch; }
+.arr-small { font-size: 11.5px; }
+.arr-desc { max-width: 34ch; font-size: 12px; color: var(--ink-2); }
+.arr-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; align-items: center; }
+.arr-actions .btn, .arr-actions select { min-height: 44px; display: inline-flex; align-items: center; }
+.arr-actions select { padding: 0 10px; border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--panel); color: var(--ink); font: inherit; }
+
+/* sortable headers: a full-size touch target inside the th */
+.arr-sort { background: none; border: 0; padding: 0; min-height: 44px; font: inherit; color: inherit;
+  text-transform: inherit; letter-spacing: inherit; cursor: pointer; }
+.arr-sort:hover { color: var(--accent-ink); }
+.arr-sort:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.arr-hist { max-width: 420px; }
+
+/* legends sit outside the plots */
+.arr-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-size: 12px;
+  color: var(--ink-2); margin: 8px 0 0; }
+.arr-key { display: inline-block; width: 16px; height: 10px; border-radius: 2px;
+  border: 1.5px solid var(--ink-3); background: var(--panel); vertical-align: middle; }
+.arr-key.on { background: var(--c-tandem); border-color: var(--c-tandem); }
+.arr-key.hi { background: var(--panel-2); border-color: var(--c-tandem); border-style: dashed; }
+.arr-key.link { height: 0; border: 0; border-top: 2px solid var(--ink-3); border-radius: 0; }
+.arr-key.hap1 { background: var(--hap1); border-color: var(--hap1); }
+.arr-key.hap2 { background: var(--hap2); border-color: var(--hap2); }
+
+/* ---- locus figure (SVG, classes only) -------------------------------------------------- */
+.lf-box svg, .lf-svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.lf-axis { stroke: var(--line-2); stroke-width: 1; }
+.lf-lab { font: 600 13px var(--sans); fill: var(--ink); }
+.lf-lab.hap1 { fill: var(--hap1); }
+.lf-lab.hap2 { fill: var(--hap2); }
+.lf-sub, .lf-tick { font: 10.5px var(--mono); fill: var(--ink-3); }
+.lf-intron { stroke: var(--ink-3); stroke-width: 1; }
+.lf-gene .lf-cds, .lf-gene .lf-utr { fill: var(--panel); stroke: var(--ink-3); stroke-width: 1; }
+.lf-gene .lf-chev { fill: none; stroke: var(--ink-3); stroke-width: 1.2; }
+.lf-gene.hi .lf-cds, .lf-gene.hi .lf-utr { fill: var(--panel-2); stroke: var(--c-tandem); stroke-dasharray: 3 2; }
+.lf-gene.on .lf-cds { fill: var(--c-tandem); stroke: var(--c-tandem); }
+.lf-gene.on .lf-utr { fill: var(--c-tandem); stroke: var(--c-tandem); opacity: .55; }
+.lf-gene.on .lf-intron, .lf-gene.on .lf-chev { stroke: var(--c-tandem); }
+.lf-gene[tabindex] { cursor: pointer; }
+.lf-gene[tabindex]:hover .lf-cds, .lf-gene[tabindex]:focus .lf-cds { stroke: var(--ink); stroke-width: 1.6; }
+.lf-link { fill: none; stroke: var(--ink-3); stroke-width: 1.2; opacity: .8; }
+
+/* ---- divergence matrix ------------------------------------------------------------------ */
+.arr-matrix { border-collapse: collapse; font: 11px var(--mono); margin: 10px 0 0; }
+.arr-matrix th { font-weight: 500; color: var(--ink-2); padding: 3px 6px; white-space: nowrap; }
+.arr-matrix thead th { writing-mode: vertical-rl; transform: rotate(180deg); text-align: left; }
+.arr-matrix td { width: 46px; height: 28px; text-align: center; border: 1px solid var(--surface); color: var(--ink); }
+.arr-mx-off { background: transparent; }
+.arr-mx-na { color: var(--ink-3); background: var(--panel-2); }
+.arr-mx.b0 { background: color-mix(in srgb, var(--c-tandem) 12%, var(--panel)); }
+.arr-mx.b1 { background: color-mix(in srgb, var(--c-tandem) 28%, var(--panel)); }
+.arr-mx.b2 { background: color-mix(in srgb, var(--c-tandem) 45%, var(--panel)); }
+.arr-mx.b3 { background: color-mix(in srgb, var(--c-tandem) 65%, var(--panel)); }
+.arr-mx.b4 { background: color-mix(in srgb, var(--c-tandem) 85%, var(--panel)); }
+
+/* ---- expression heatmap: members x tissues ---------------------------------------------- */
+.arr-heat { border-collapse: collapse; font-size: 11.5px; margin-top: 4px; }
+.arr-heat th { font-weight: 500; color: var(--ink-2); padding: 4px 6px; text-align: left; white-space: nowrap; }
+.arr-heat thead th { font-size: 11px; vertical-align: bottom; }
+.arr-n { font: 10px var(--mono); color: var(--ink-3); }
+.arr-heat td { min-width: 48px; height: 30px; text-align: center; font: 11px var(--mono);
+  border: 1px solid var(--surface); color: var(--ink); }
+.arr-h-na { color: var(--ink-3); background: var(--panel-2); }
+.arr-h.h0 { background: color-mix(in srgb, var(--accent) 4%, var(--panel)); }
+.arr-h.h1 { background: color-mix(in srgb, var(--accent) 16%, var(--panel)); }
+.arr-h.h2 { background: color-mix(in srgb, var(--accent) 30%, var(--panel)); }
+.arr-h.h3 { background: color-mix(in srgb, var(--accent) 46%, var(--panel)); }
+.arr-h.h4 { background: color-mix(in srgb, var(--accent) 64%, var(--panel)); color: var(--on-accent); }
+.arr-h.h5 { background: var(--accent); color: var(--on-accent); }
+.arr-sw { display: inline-block; width: 22px; height: 12px; border: 1px solid var(--line); }
+
+/* ---- pair page -------------------------------------------------------------------------- */
+tr.pr-differ > * { background: var(--panel-2); }
+.pr-expr { display: block; width: 100%; min-width: 520px; max-width: 760px; height: auto; }
+.pr-tl { font: 12.5px var(--sans); fill: var(--ink); }
+.pr-tn, .pr-tv { font: 10.5px var(--mono); fill: var(--ink-3); }
+.pr-tv { fill: var(--ink-2); }
+.pr-bar.hap1 { fill: var(--hap1); }
+.pr-bar.hap2 { fill: var(--hap2); }
+
+@media (max-width: 600px) {
+  .mono-h { font-size: 20px; word-break: break-all; }
+  .arr-desc { min-width: 20ch; }
+}

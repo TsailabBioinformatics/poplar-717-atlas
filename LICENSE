@@ -1,0 +1,37 @@
+MIT License — code
+
+Copyright (c) 2026 Chen Hsieh, Tsai Lab, University of Georgia
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+DATA — proposed CC BY 4.0, NOT YET IN EFFECT
+
+The derived data under data/ is unpublished dissertation material and is NOT
+released under an open licence while the chapter is in preparation. The
+intended licence at publication is Creative Commons Attribution 4.0
+International (CC BY 4.0). Until then it is shared for review and
+collaboration only; please do not redistribute.
+
+Upstream data carries its own terms:
+  - 717 v5.1 genome and annotation — Phytozome / JGI, subject to the JGI data
+    use policy for the relevant release.
+  - Public RNA-seq — the 38 BioProjects listed in data/expr/studies.json,
+    each with its own citation and DOI.

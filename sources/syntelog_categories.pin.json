@@ -1,0 +1,35 @@
+{
+ "purpose": "Pins the ms1-dup tables patch_syntelog_categories.py reads, by commit and sha256, without carrying any value. The per-gene table holds columns that are held off the site, and this repo root is public, so it is read through git at this commit and never vendored.",
+ "source_repo": "ChenHsieh/ms1-dup",
+ "ms1_dup_commit": "3a7a3cf1a03d075f1258ec672159b7cb5cf0ae93",
+ "files": {
+  "per_gene": {
+   "path": "data/131_master_v12_20261002/tables/master_per_gene_v12.csv",
+   "sha256": "d674c508f575e550d6dae2dcbf60d6af0233ee2c60ec14ecd24c858521949e73"
+  },
+  "category_counts": {
+   "path": "data/131_master_v12_20261002/tables/cj_category_counts_v12.csv",
+   "sha256": "17da3bca7ee1210bd27f18444d07c26b472522b840a6de19dea4aa7b3b18ae43"
+  },
+  "array_status": {
+   "path": "data/133_cj_array_status_20261003/tables/cj_array_status_v12.csv",
+   "sha256": "639125252e749f7d6f4c2ff10f2f04cc789a35406e53c966ca3d3d4eb896129d"
+  },
+  "status_by_hap": {
+   "path": "data/133_cj_array_status_20261003/tables/status_by_hap.csv",
+   "sha256": "1c6978e5eead1ddb4ca9f067dd189c8e93e158ee2b6117e48a2db6fc00829e0e"
+  },
+  "syntelog_ks": {
+   "path": "data/19_syntelog_fate/sapelo2_ks/syntelog_ks.csv",
+   "sha256": "079364ed1051d3fefa998f24512f93d95bcbf197794af081d383bc3ba576bee6"
+  },
+  "ks_cache": {
+   "path": "data/ks_pair_cache/ks_pairs_computed.csv",
+   "sha256": "532fc363eb7bb52c4021b18c334ca87ceb6b2090bd8822b575d50441257cb518"
+  },
+  "facts": {
+   "path": "data/131_master_v12_20261002/tables/FACTS_v12.json",
+   "sha256": "66486e1dbcec041618e786175a2bc3e40e40cfb8ebfb5f5d4b8fced198554f3e"
+  }
+ }
+}

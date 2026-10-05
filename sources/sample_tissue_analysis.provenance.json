@@ -1,0 +1,11 @@
+{
+ "purpose": "Maps every expression sample to its fine-grained tissue label. Exists because the atlas's own metadata (COLUMN_LEVEL_sample_metadata.csv) has no field finer than 'tissue', which silently pools leaf_young and leaf_old (46 samples, all study 1) into one 'leaf' bucket -- see docs/DATA_AUDIT.md and MS1_2026/docs/log/20260905_sample_grouping_preflight.md for the incident.",
+ "derived_from": "<onedrive>/01_work/MS1_2026/data/50_v4_panel_20260814/v4_panel_20260814.csv",
+ "derived_from_sha256": "4233f26c4165e489b06d4ed72595b2ba7ac06a5af852b838343bf58fb09e761c",
+ "derived_from_rows": 652,
+ "derived_at": "2026-09-05T22:59:13",
+ "rows_written": 652,
+ "rows_where_tissue_analysis_differs_from_tissue": 46,
+ "join_key": "sample_label, exact string match against data/expr/samples.json's 'label' field",
+ "regenerate": "the source file above is MS1_2026's own curated panel; re-run the two-line extraction in this sidecar's own generating command if the panel is rebuilt."
+}

@@ -1,0 +1,71 @@
+name: checks
+
+# The DATA build runs on Sapelo2 (its sources are cluster-local and not in this repo).
+# CI packages the same strict Pages tree that deployment uses, then validates and renders that
+# artifact. A source-tree-only pass is not a deployable-site pass.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  SITE_DIR: _site
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check version references agree
+        run: |
+          python3 scripts/check_version.py
+          python3 scripts/sync_preload.py --check
+
+      - name: Assemble the public Pages artifact
+        run: python3 scripts/assemble_site.py --output "$SITE_DIR"
+
+      - name: Validate the exact public artifact
+        run: |
+          python3 scripts/validate_data.py \
+            --data-dir "$SITE_DIR/data" \
+            --source-root "$GITHUB_WORKSPACE" \
+            --scan-root "$SITE_DIR"
+          python3 scripts/check_site_artifact.py \
+            --site "$SITE_DIR" \
+            --commit "$GITHUB_SHA" \
+            --write-release
+
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --no-audit --no-fund playwright-core@1.62.1
+          npx --yes playwright@1.62.1 install --with-deps chromium
+
+      - name: Serve and run render checks
+        run: |
+          # NOT `python3 -m http.server`: it ignores Range and answers 200 with the whole blob.
+          # Per-gene expression is addressed by byte range, and the loader refuses any non-206
+          # (a host that ignores Range hands back another gene's profile, which renders
+          # perfectly and is wrong), so on that server every expression fetch fails. GitHub
+          # Pages does honour Range, so serve_ranges.py is what production actually behaves like.
+          python3 scripts/serve_ranges.py 8931 "$SITE_DIR" &
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:8931/index.html >/dev/null && break
+            sleep 1
+          done
+          CI_CHROME="$(node -e "console.log(require('playwright-core').chromium.executablePath())")" \
+            node scripts/check.mjs
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-shots
+          path: shots/
+          if-no-files-found: ignore

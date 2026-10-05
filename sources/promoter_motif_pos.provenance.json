@@ -1,0 +1,41 @@
+{
+ "purpose": "Where each transcription-factor family motif match sits in the 1 kb promoter, as bp from the transcription start to the motif's 5' edge. The shipped CRE layer carries family COUNTS and no positions, so the gene page could not say which matches are proximal and which are 900 bp away.",
+ "tier": "public",
+ "why_public": "Derived from published genome assemblies and JASPAR 2024, a public motif database. No wet-lab data.",
+ "shipped_sha256": "9096a97a7faedaba694d217a73e8cea96b627f8e94cc76055659c5e773a33b71",
+ "rows": 1933839,
+ "genes": 63907,
+ "positions_by_family": {
+  "ABRE_bZIP": 63662,
+  "ARF": 56187,
+  "DREB_ERF": 224867,
+  "MADS_box": 67012,
+  "MYB": 358731,
+  "NAC": 386044,
+  "SPL": 84850,
+  "TCP": 16345,
+  "WRKY": 676141
+ },
+ "generated_by": "<scratch>/atlas_promoter_pos/scan_all.py (sbatch job 48124192, 16 cores, 406 s)",
+ "algorithm": "Copied verbatim from the analysis that produced the published counts, not reimplemented: ms2lsg_repo/pipeline/s08_promoter_cre.py (pssms/encode/HIT_FRAC=0.85/PAD=-10.0/STRESS), s08d_promoter_cre_genomewide.py (_scan_chunk's greedy non-overlapping selection, and dist = L - i to the motif's far edge), case_studies/piggyback_locus_cre_marks.py (DEV families).",
+ "inputs": {
+  "jaspar": "<scratch>/ms2lsg_repo/pipeline/resources/JASPAR2024_CORE_plants_nr.jaspar (805 matrices)",
+  "promoters": [
+   "<scratch>/ms1_cis_regulatory/data/promoter_1kb_hap1.fa",
+   "<scratch>/ms1_cis_regulatory/data/promoter_1kb_hap2.fa"
+  ],
+  "note": "These are the SAME 1 kb promoter records the published counts were scanned from; ids are bare gene ids and the two files cover 32,137 + 31,823 genes, matching the atlas gene set exactly."
+ },
+ "scope_nine_named_families_only": "`other` is 457 unrelated JASPAR matrices and is not a meaningful thing to draw a per-motif tick for. It is also the bucket where reproduction disagreed in the pilot. LFY is one matrix and is zero genome-wide.",
+ "the_45_excluded_cells": {
+  "genes_excluded": 44,
+  "family_cells": 45,
+  "direction": "45 of 45 are this scan finding MORE hits than the published count, never fewer.",
+  "cause": "Upstream scanned a 3 kb window and took the 1 kb slice, and its greedy non-overlapping pass is GLOBAL over 3 kb. Only the 1 kb FASTA exists on this cluster, so a motif near the 1 kb boundary has no upstream competitor here to suppress it. Predicted before the run, measured after: the pilot on 600 genes found every disagreement confined to `other`, and at full scale 45 of 63,960 genes disagree on a named family.",
+  "decision": "Those genes ship NO positions, and their card says so. Showing positions that aggregate to a different number than the bars directly above them would put two contradictory statements on one card.",
+  "list": "sources/promoter_motif_pos.excluded.tsv"
+ },
+ "gate": "patch_promoter_pos.py asserts, for every gene it ships, that the number of positions per family EQUALS the cre.fam count this atlas already serves. One disagreement and nothing is written.",
+ "orientation": "record runs 5'->3' with the TSS at the END of the sequence, so a larger distance is further upstream. The gene page draws the TSS at the right.",
+ "regenerate": "sbatch <scratch>/atlas_promoter_pos/scan_all.sbatch, then copy the output here"
+}

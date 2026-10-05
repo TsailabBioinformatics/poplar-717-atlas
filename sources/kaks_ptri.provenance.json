@@ -1,0 +1,42 @@
+{
+ "purpose": "Per-gene Ka/Ks (omega) against the reciprocal-best Populus trichocarpa ortholog, for 52,232 of the atlas's 63,960 genes. The atlas's only previous selection-adjacent number was HAP1<->HAP2 dS on the allele card, which compares two haplotypes of one clone; this compares 717 to another species.",
+ "tier": "public",
+ "why_public": "Derived from published genome assemblies and a standard codon-substitution model. No wet-lab data.",
+ "shipped_sha256": "2ac04e1bf4b38743bd152ea2fc508cf7cc405004dff348f5cfb577d822eeb8db",
+ "rows": 52232,
+ "coverage": "81.7% of the gene set. A gene without a row has no reciprocal-best trichocarpa ortholog, which is itself informative and is said so on the card rather than left blank.",
+ "join_key": "gene_id, bare locus",
+ "generated_by": "scripts/make_kaks_source.py, from ms2-lsg analyses/kaks_populus",
+
+ "WHY_NG86_AND_NOT_YN00": {
+  "what_was_found": "On these alignments NG86 and YN00 omega correlate at r = 0.071 (HAP1<->HAP2), 0.122 (HAP1 vs trichocarpa) and 0.360 (HAP2 vs trichocarpa) PER GENE, while their class-level medians agree to within about 0.06. Median dS is 0.027 to 0.040 -- the sequences are close enough that YN00's maximum-likelihood estimate is unstable gene by gene, and about 3 to 4% of its per-gene omegas exceed 1.",
+  "why_it_decided_the_layer": "Class-level agreement was hiding per-gene disagreement, and an atlas is a per-gene resource. A gene page showing one estimator's omega, when the same alignment under another standard estimator gives an essentially uncorrelated number, is a number the page cannot defend.",
+  "which_one_has_external_support": "NG86. Against the atlas's EXISTING allele omega -- an independently derived HAP1<->HAP2 estimate from a different pipeline (synt_ks/syntelog_ks.csv) -- NG86 correlates at r = 0.937 over 49,296 genes, and YN00 at r = 0.083 over 34,884. Three-way: two independent pipelines' NG86-like estimates agree with each other and both disagree with YN00.",
+  "what_ships": "ng86_dn, ng86_ds and ng86_omega are the per-gene values. yn00_omega ships too, but only so the card can SHOW the spread between estimators rather than assert a precision it does not have. Do not present yn00_omega as a per-gene answer.",
+  "what_is_still_safe_under_either": "The age gradient. It is monotone and large under both estimators, so it does not rest on this choice."
+ },
+
+ "the_gradient_this_layer_carries": {
+  "median_ng86_omega_by_class": {"PS1_2_ancient": 0.2351, "PS3_12_conserved": 0.3272,
+                                 "PS13_15_rosids": 0.4748, "PS16_17_salicaceae": 0.5662,
+                                 "LSG_PS18_populus": 0.7204},
+  "reading": "Monotone with youth and well below the neutral expectation of 1. Young genes are CONSTRAINED, just less constrained -- not neutrally evolving, which is what a spurious open reading frame would look like.",
+  "it_is_a_dN_effect": "In the owning analysis dN rises about 4.5-fold across the gradient while dS stays inside a 1.6-fold band, and dS is null at the strictest matching tier (Cliff's delta +0.017 / +0.011, p 0.74). Same synonymous clock, different non-synonymous rate.",
+  "the_selection_bias_to_state": "Pairing rate falls with youth -- 87.6% of ancient genes get a pair, 39.1% of PS18, 0% of PS19. So the PS18 omega is measured on the conserved END of that stratum: the genes young enough to have no ortholog contribute nothing. If anything this understates the relaxation."
+ },
+
+ "PS19_has_no_omega_at_all": "1 of 681 PS19 genes has any trichocarpa pair. This is a structural absence, not missing data: a hybrid-only gene has no ortholog to measure against, in another species or in the other haplotype. The card says so instead of rendering an empty cell.",
+
+ "what_is_deliberately_NOT_shipped": {
+  "the_HAP1_HAP2_arm": "The atlas already carries a HAP1<->HAP2 Ka/Ks on the allele card from an independent pipeline. The two agree on the PARTNER GENE for 100.0% of 50,656 shared genes, so there is nothing to add there, and shipping a second omega for the same pair would put two numbers for one quantity on one page with no way to tell which is right. Their omega values differ (medians 0.2652 existing vs 0.2200 NG86 here, r = 0.937), which is the estimator difference above, and is written up in docs/DATA_AUDIT_2026-09-10.md."
+ },
+
+ "gate_run_on_every_build": "make_kaks_source.py reproduces the owning analysis's published kaks_summary_by_class.tsv for every trichocarpa cell -- n_pairs, median NG86 omega and median YN00 omega, 11 cells -- or writes nothing. Its HAP1_HAP2 cells are deliberately NOT gated on: that table counts each pair once per partner gene, so its n is exactly twice a per-gene-keyed count. That factor of two was diagnosed rather than worked around.",
+
+ "derived_from": {
+  "<scratch>/ms2lsg_wt_proteomics/analyses/kaks_populus/results/kaks_all_pairs.tsv.gz": {"sha256": "b954e25c0c9c7769e2b0f7b27518a52a75c46ce03c4f057a4a9afb4d97671e31", "mtime": "2026-09-09T18:08:59", "bytes": 2497135},
+  "<scratch>/kaks_populus/out/kaks_summary_by_class.tsv": {"sha256": "4a5a98908a02d17d5ca40efbe380e0156c21057c1fecee8527d0641af3044adb", "mtime": "2026-09-09T08:58:59", "bytes": 1338}
+ },
+ "method": "Reciprocal-best-hit orthologs, codon alignment, NG86 (Nei-Gojobori 1986) and YN00 (Yang-Nielsen 2000) as implemented by the owning analysis (scripts k1_prep_cds.py .. k4_kaks.py).",
+ "regenerate": "python3 scripts/make_kaks_source.py, on Sapelo2"
+}

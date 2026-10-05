@@ -1,0 +1,2 @@
+3Dmol.js 2.5.5 (BSD-3-Clause), vendored unmodified from https://cdn.jsdelivr.net/npm/3dmol@2.5.5/build/3Dmol-min.js
+Loaded only when a reader opens a 3D model (js/modules/protein.js); never on page load.

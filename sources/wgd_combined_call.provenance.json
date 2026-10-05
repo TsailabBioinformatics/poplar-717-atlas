@@ -1,0 +1,35 @@
+{
+ "purpose": "Route C combined Ks + topology WGD call per gene, carried BESIDE the canonical v9 letters so the correction is visible rather than applied silently.",
+ "tier": "public",
+ "source_file": "<scratch>/ms1-dup/.claude/worktrees/talk-td-act/data/57_gamma_branch/painting_v3/results/ks_topology_pairs_{hap}.tsv.gz",
+ "rule": "topology where grape and segment Ks independently agree with it; v8 otherwise; pairs with split evidence marked `review` and counted into neither event.",
+ "derivation": "A gene is salicoid/gamma if it is an endpoint of any pair with that combined_call. Copied from make_class_figures.py (the script that published the figure), not re-invented here.",
+ "gate": "Refuses to write unless it reproduces that figure's own totals: HAP1 14,748 / 4,857, HAP2 14,747 / 4,910.",
+ "status_upstream": "NOT APPLIED to the canonical tables as of MS1's 2026-09-16 reconciliation, open item (t): 'nothing applied, for the WGD track owner'. The canonical duplication table is master v9 and the manuscript still quotes v8 numbers.",
+ "movement_vs_v9": {
+  "HAP1": {
+   "salicoid": "+182",
+   "gamma": "-162"
+  },
+  "HAP2": {
+   "salicoid": "+212",
+   "gamma": "-201"
+  }
+ },
+ "summary": {
+  "HAP1": {
+   "salicoid": 14748,
+   "gamma": 4857,
+   "review_pairs": 74,
+   "review_only_genes": 65,
+   "pairs": 11526
+  },
+  "HAP2": {
+   "salicoid": 14747,
+   "gamma": 4910,
+   "review_pairs": 79,
+   "review_only_genes": 77,
+   "pairs": 11628
+  }
+ }
+}

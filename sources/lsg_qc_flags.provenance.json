@@ -1,0 +1,54 @@
+{
+ "purpose": "Per-gene evidence-quality flags for the 1,725 genes in the LSG pool. The atlas already publishes the pool and already warns, in prose, that a young stratum is not proof of a young gene. This says which genes that warning actually lands on, and on what evidence.",
+ "status_2026_09_26": "Two QC checks only (ms2-lsg docs/CORRECTIONS.md C5): abSENSE (absense_reject: 84 HAP1 + 106 HAP2) and the synteny window search (tblastn_retract: 96 + 104); both 6 + 10; neither, the chapter's post-QC set, 602 + 635. The 114 rows for genes that left the pool are read and not shipped. wgd_flagged is no longer a QC flag and is not shipped. The synteny-contest routes, the short-ORF class and sens_stable ship as other evidence, not flags. Every shipped flag is checked gene by gene against ms2-lsg pipeline/out/lsg_pool_flags_newpool.tsv by scripts/check_ms2_canon.py. The blocks below are kept as written.",
+ "status_2026_09_21": "Every one of the 1,725 rows ships. Chen ruled on 2026-09-21 that the pool is the frozen genEra call (842 HAP1 + 883 HAP2), the pool this file was cut for, and that every check is a per-gene flag. patch_lsg_qc.py adds two fields derived from the atlas's own sources and checked against ms2-lsg gene by gene: qc.rr (falls below rank 18 in the rerun that added Idesia and searched the full comparison panel; 66 HAP1 + 48 HAP2) and qc.post (in the chapter's post-QC set, passes all four checks: 589 HAP1 + 625 HAP2). The `scope` and `POLICY_flags_not_filters` lines below were written when the atlas treated the rerun as the pool and dropped 114 rows; they are kept as written.",
+ "tier": "public",
+ "why_public": "Every flag here derives from published genome assemblies and public methods (OrthoFinder, DIAMOND, tblastn, abSENSE, Ks). docs/EMBARGO.md's 'Not affected' list names phylostratigraphy and the genEra layer as publishable. No wet-lab data, no transgenic line identities, no phenotype.",
+ "generated_by": "ms2-lsg pipeline/s45_qc_flags_for_atlas.py",
+ "derived_at": "2026-09-06T10:05:21",
+ "rows_written": 1725,
+ "genes_hap1": 842,
+ "genes_hap2": 883,
+ "scope": "the LSG pool only, NOT all 63,960 genes. A non-pool gene has no young-age claim to qualify. This file has 1,725 rows because it was cut against the WITHDRAWN frozen pool; 114 of them are for genes the corrected panel took out, and patch_lsg_qc.py drops those rather than shipping a card for a gene that is no longer a candidate. 1,611 ship.",
+ "join_key": "gene_id, bare locus, matches the atlas gene index",
+ "derived_from": {
+  "lsg_pool_qc.tsv": {
+   "sha256": "320ab46d744143493371441d09694a6a59c203d71f5b4cc37d53520f2bdc9858",
+   "rows": 1725
+  },
+  "lsg_pool_synteny.tsv": {
+   "sha256": "08112b6ec1058270d902e87d62c584c0231f5dc38cc71e73765ec31cc379de04",
+   "rows": 1725
+  }
+ },
+ "POLICY_flags_not_filters": "The pool is 776 HAP1 + 835 HAP2 as of 2026-09-09. Nothing here removes, renumbers or filters a gene, and the atlas must not use these fields to shrink the pool count. The pool size is set by the pool source, never by these flags. Cite the flag alongside the claim. This is the repo's standing policy.",
+ "idesia_deliberately_excluded": {
+  "SUPERSEDED": "2026-09-10. This block said 'Chen has not adopted it'. That was true when written on 2026-09-06. Chen ADOPTED the Idesia correction on 2026-09-09 (ms2-lsg docs/CORRECTIONS.md C2), and the atlas adopted it in TODO 26. Kept verbatim below because it explains why this FILE still has 1,725 rows.",
+  "what": "An Idesia polycarpa outgroup correction proposes moving the pool from 842/883 to 776/835. Chen has not adopted it; figures, tables and chapter prose still cite 842/883.",
+  "consequence": "out/lsg_pool_qc.tsv's `qc_survivor` column is defined as in_idesia_corrected_pool AND NOT tblastn_retract AND NOT hdf_reject AND NOT wgd_flagged, so it silently encodes that undecided correction. It is NOT in this file, and neither is in_idesia_corrected_pool.",
+  "what_ships_instead": "`qc_clean`, the same AND without the Idesia term: 1227 genes, against the chapter's qc_survivor 1214. They differ by exactly 13 genes that only Idesia excludes. Do not present qc_clean as the chapter's funnel count.",
+  "assertion": "this stage asserts the qc_survivor definition on every run and fails loudly if upstream changes it",
+  "arithmetic_closed_2026_09_10": "The two forbidden columns are still absent from this file and patch_lsg_qc.py still refuses them -- that construction is unchanged. But now that the pool is corrected, restricting qc_clean to the 1,611 genes still IN the pool gives exactly 1,214, which is the chapter's qc_survivor. The 13-gene gap this block predicted closes on the nose. Two independently derived quantities agreeing is a real check on the correction, not a coincidence: it is the same set reached by two different routes."
+ },
+ "columns": {
+  "phylostratum, rank": "genEra call, as published on the atlas already",
+  "tblastn_retract": "a Salix tblastn hit contradicts the young call outright. The strongest single retraction signal in this table.",
+  "absense_reject": "abSENSE rejects the young call as detection-failure-plausible",
+  "absense_hdf_flag": "no_prediction | detection_failure_plausible | surprising_absence | no_outgroup_in_panel",
+  "absense_verdict": "abSENSE's per-gene conclusion, e.g. a_retract_young_call, b_supports_lineage_specific, ambiguous, not_testable",
+  "wgd_flagged": "minimum Ks falls in the salicoid-WGD era, so the gene may be an ohnolog rather than a novelty",
+  "synteny_og_contested / synteny_twin_contested / synteny_contested_any": "the 12-genome OrthoFinder rerun disputes the gene's slot; contested_any is the union of the two routes",
+  "protein_len_lt100": "short ORF, a known annotation-artifact class",
+  "sens_stable": "whether the gene's synteny call is the same in the default and the --ultra-sensitive DIAMOND runs of the 12-genome GENESPACE rerun (run A vs run B; ms2-lsg analyses/repro_audit_20260917, section E3). The atlas's synteny card shows the same field. CORRECTED 2026-09-21: until then this line, copied from ms2-lsg pipeline/s45_qc_flags_for_atlas.py, read 'the headline result is unchanged when this gene is excluded', and the gene card repeated it. The column never measured that.",
+  "qc_clean": "NOT tblastn_retract AND NOT absense_reject AND NOT wgd_flagged. Idesia-independent by construction, see above."
+ },
+ "how_to_read_absense": "abSENSE speaks about the RELIABILITY OF THE AGE CALL, not about the gene. `detection_failure_plausible` means an ancestral homolog could exist and be undetectable at this sensitivity. It does NOT mean the gene is old, and a gene card must not phrase it that way. The upstream finding is that regenerating the DIAMOND search with identical parameters does not fully reproduce the frozen phylostratum calls: 297 HAP1 / 273 HAP2 genes shift rank, all toward older, all marginal hits near the 1e-05 threshold. CALIBRATION, measured 2026-09-09 and previously unknown: abSENSE's nominal 99% prediction intervals cover 87-88% of true bitscores globally, but only 0.610 / 0.594 at Salix purpurea -- the rank-18 boundary species that every HDF flag on this pool is predicted at -- with a +19 bitscore bias in the direction that OVER-calls surprising_absence. That is the optimistic bound: it is in-sample, and measured on genes that have a Salix homolog and therefore are not LSGs. Full numbers in data/meta/manifest.json under lsg_qc.absense_calibration. Do not quote an HDF flag without them.",
+ "counts_this_run": {
+  "tblastn_retract": 228,
+  "absense_reject": 281,
+  "wgd_flagged": 45,
+  "synteny_contested_any": 106,
+  "qc_clean": 1227
+ },
+ "regenerate": "python pipeline/s45_qc_flags_for_atlas.py, after the QC funnel"
+}

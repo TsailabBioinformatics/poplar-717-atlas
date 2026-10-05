@@ -1,0 +1,545 @@
+/* Palette: dataviz reference categorical slots 1-5, validated in both modes
+   (light: worst adjacent CVD dE 9.1, normal-vision 19.6; dark: 8.4 / 19.3).
+   Light mode puts aqua/yellow/magenta under 3:1 on the surface, so the RELIEF RULE
+   applies: every class swatch is shipped with its text label, never color alone. */
+/* Herbarium theme (2026-09-29). Paper, ink and a moss accent, chosen by Chen from three
+   mocked directions. The DATA palette (--c-core ... --c-tandem) is unchanged: it is the
+   CVD-validated categorical set (light: worst adjacent CVD dE 9.1, normal-vision 19.6; dark:
+   8.4 / 19.3), and under the RELIEF RULE every class swatch still ships with its text label.
+   Only the chrome moved. Text colours were measured against all three surfaces:
+   --ink-2 on --panel-2 >= 7:1, --accent-ink on --panel-2 >= 6.5:1 (light), and check.mjs
+   re-measures every visible link in both schemes. */
+:root {
+  color-scheme: light;
+  --surface: #f3eee2; --panel: #fffdf7; --panel-2: #f6f1e5;
+  --line: #e0d7c3; --line-2: #c3b596;
+  --ink: #1d1b16; --ink-2: #4c4333; --ink-3: #7d705a;
+  --accent: #3f5a2a;
+  --accent-ink: #3a5426;
+  --accent-soft: #e6ead9; --on-accent: #ffffff;
+  --stamp: #9b3b24;
+  --hap1: #3f5a2a; --hap2: #a97f2e;
+  --c-core: #2a78d6; --c-disp: #eb6834; --c-nonsyn: #1baf7a;
+  --c-priv: #eda100; --c-tandem: #e87ba4;
+  /* Headings use the sans (Chen, 2026-09-29: the serif and italics read harder). The serif
+     survives only in the wordmark, as --display. */
+  --serif: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --dot: #e3dbc8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface: #17160f; --panel: #201e16; --panel-2: #29261c;
+    --line: #37332a; --line-2: #564f3f;
+    --ink: #f1ead8; --ink-2: #cdc3ab; --ink-3: #9a8f78;
+    --accent: #8fae6c;
+    --accent-ink: #a8c687;
+    --accent-soft: #2c3322; --on-accent: #17160f;
+    --stamp: #e0876c;
+    --hap1: #8fae6c; --hap2: #d8b060;
+    --c-core: #3987e5; --c-disp: #d95926; --c-nonsyn: #199e70;
+    --c-priv: #c98500; --c-tandem: #d55181;
+    --dot: #221f17;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #17160f; --panel: #201e16; --panel-2: #29261c;
+  --line: #37332a; --line-2: #564f3f;
+  --ink: #f1ead8; --ink-2: #cdc3ab; --ink-3: #9a8f78;
+  --accent: #8fae6c;
+  --accent-ink: #a8c687;
+  --accent-soft: #2c3322; --on-accent: #17160f;
+  --stamp: #e0876c;
+  --hap1: #8fae6c; --hap2: #d8b060;
+  --c-core: #3987e5; --c-disp: #d95926; --c-nonsyn: #199e70;
+  --c-priv: #c98500; --c-tandem: #d55181;
+  --dot: #221f17;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--surface); color: var(--ink);
+  font: 15px/1.55 var(--sans);
+  /* herbarium mounting-board dots; purely decorative, fixed so it never scrolls with content */
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 22px 22px; background-attachment: fixed;
+}
+/* Links use --accent-ink, NOT --accent. Measured 2026-09-20: #2a78d6 is 4.30:1 on --surface,
+   4.42 on --panel, 4.04 on --panel-2 -- under WCAG AA's 4.5:1 for 14px text on EVERY
+   background, and links mostly sit on --panel inside cards. Dark mode was no better where it
+   matters: #3987e5 passes on --surface (4.79) but fails on --panel (4.32) and --panel-2 (3.90).
+   --accent-ink: light #2468bd = 5.40 / 5.54 / 5.08, dark #5b9fee = 6.34 / 5.72 / 5.16.
+   --accent itself is unchanged: it is a fill/border colour in the CVD-validated palette, where
+   the 3:1 non-text floor applies and it passes, so the palette's dE figures above still hold. */
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.mono { font-family: var(--mono); }
+
+header.top {
+  position: sticky; top: 0; z-index: 20; background: var(--panel);
+  border-bottom: 1px solid var(--line); padding: 10px 20px;
+  display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+}
+header.top .brand { font-weight: 640; letter-spacing: -0.01em; white-space: nowrap; }
+header.top .brand span { color: var(--ink-3); font-weight: 400; }
+header.top .brand > a { display: inline-block; padding-block: 4px; }
+header.top nav { display: flex; gap: 14px; flex-wrap: wrap; min-width: 0; }
+/* WCAG 2.5.8: these are primary nav, not links inline in a sentence, so the
+   inline-text exemption doesn't apply -- the plain <a> text box was ~16-20px
+   tall (13px font, no padding). padding-block grows the tap target to the
+   24px floor without changing font size or the row's horizontal gap. */
+header.top nav a { color: var(--ink-2); font-size: 13px; display: inline-block; padding-block: 6px; }
+header.top nav a.on { color: var(--ink); font-weight: 600; }
+.grow { flex: 1; }
+
+.search { position: relative; flex: 1 1 200px; min-width: 0; max-width: 260px; }
+.search input {
+  width: 100%; max-width: 260px; padding: 6px 10px; border: 1px solid var(--line-2); border-radius: 6px;
+  background: var(--surface); color: var(--ink); font-family: var(--mono); font-size: 13px;
+}
+.search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.search .hits {
+  position: absolute; top: 34px; left: 0; right: 0; background: var(--panel);
+  border: 1px solid var(--line-2); border-radius: 6px; max-height: 300px; overflow: auto;
+  box-shadow: 0 6px 22px rgba(0,0,0,.14);
+}
+.search .hits a { display: block; padding: 6px 10px; font-family: var(--mono); font-size: 12.5px; color: var(--ink); }
+.search .hits a:hover { background: var(--panel-2); text-decoration: none; }
+
+main { max-width: 1120px; margin: 0 auto; padding: 22px 20px 70px; }
+h1 { font-size: 22px; margin: 0 0 2px; letter-spacing: -0.015em; }
+h2 { font-size: 15px; margin: 0 0 10px; letter-spacing: -0.005em; }
+.sub { color: var(--ink-2); font-size: 13px; margin: 0 0 18px; }
+
+.cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+/* The two haplotypes side by side, never summed into one chart; stacked on a phone. */
+.hap-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.hap-pair > .card { min-width: 0; }
+@media (max-width: 640px) { .hap-pair { grid-template-columns: minmax(0, 1fr); } }
+/* A grid item defaults to min-width:auto, so the single widest card's min-content
+   width stretches EVERY card and then the page. minmax(0,1fr) + min-width:0 is the
+   fix; without it one wide table sets the page's minimum width. */
+.card { min-width: 0; }
+.card p, .card dd, .card li { overflow-wrap: anywhere; }
+.card table { max-width: 100%; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 15px 17px; }
+.card > h2 { display: flex; align-items: center; gap: 8px; }
+.card > h2 .tag { font-size: 10.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--ink-3); border: 1px solid var(--line-2); border-radius: 4px; padding: 1px 5px; }
+
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 5px 16px; font-size: 13px; }
+.kv dt { color: var(--ink-2); }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 550;
+  border: 1px solid var(--line-2); border-radius: 5px; padding: 2px 7px; background: var(--panel-2); }
+.badge .dot { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.dot.core { background: var(--c-core); } .dot.dispensable { background: var(--c-disp); }
+.dot.nonsyn { background: var(--c-nonsyn); } .dot.private { background: var(--c-priv); }
+.dot.tandem { background: var(--c-tandem); }
+
+.stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 9px;
+  padding: 11px 15px; min-width: 128px; }
+.stat .n { font-size: 21px; font-weight: 640; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat .l { font-size: 11.5px; color: var(--ink-2); margin-top: 1px; }
+
+table.data { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.data th { text-align: left; font-weight: 600; color: var(--ink-2); font-size: 11.5px;
+  text-transform: uppercase; letter-spacing: .04em; padding: 5px 9px; border-bottom: 1px solid var(--line-2); }
+table.data td { padding: 5px 9px; border-bottom: 1px solid var(--line); }
+/* A table carrying a free-text column (a gene description, alongside short class/number
+   columns) must NOT let the browser's default table layout shrink that text down to fit a
+   narrow viewport by wrapping every cell onto many lines -- that turns a side-by-side
+   comparison table into a tall wall of 4-line rows, which defeats the point of a comparison
+   table. table.compare keeps every cell's natural width instead, so .scroll-x's
+   overflow-x:auto does what it exists for: the table scrolls sideways, one row stays one
+   line. This is deliberately NOT the default for table.data -- other tables here (e.g. the
+   promoter card's family strip) have short cells AND a longer header label that relies on
+   wrapping onto two lines to fit a phone; forcing nowrap there was tried first and broke it,
+   caught by re-running the mobile sweep after the change, not assumed safe. */
+table.compare th, table.compare td { white-space: nowrap; }
+table.compare td.wrap { white-space: normal; }
+table.data td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); }
+table.data tr:hover td { background: var(--panel-2); }
+.scroll-x { overflow-x: auto; min-width: 0; max-width: 100%; }
+/* min-width:0 is the load-bearing half: overflow-x alone still lets a wide table
+   stretch its own box inside a grid/flex parent, which pushes the page. */
+
+.bar { height: 9px; border-radius: 2px; background: var(--line-2); position: relative; min-width: 3px; }
+
+/* Labelled bar rows: a label, a proportional track, and the value in a fixed column.
+   Modules may override grid-template-columns inline for longer labels. */
+.barchart { display: grid; gap: 7px; }
+.barrow { display: grid; grid-template-columns: 76px 1fr 52px; align-items: center; gap: 9px; font-size: 12px; }
+.barrow .lbl { color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; }
+.barrow .lbl b { color: var(--ink); }
+.bartrack { height: 9px; background: var(--panel-2); border-radius: 3px; overflow: hidden; }
+.barfill { height: 100%; border-radius: 3px; }
+.barrow .val { font-family: var(--mono); text-align: right; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.empty { text-align: center; padding: 60px 20px; color: var(--ink-2); }
+.warn { border-left: 3px solid var(--c-priv); background: var(--panel-2); padding: 9px 13px;
+  border-radius: 0 6px 6px 0; font-size: 12.5px; color: var(--ink-2); margin: 12px 0; }
+.muted { color: var(--ink-3); }
+/* 3D model on the protein card (TODO 34). Fixed height: the WebGL canvas sizes to its box. */
+/* 44px, not 32: this control was shipped with an explicit min-height of 32px, which is below
+   the touch floor the rest of this site enforces (.locus-btn below, and the locus-phone check
+   asserts it). Found by rendering the 3D viewer at 375x667 for the first time AFTER it went
+   public -- painted pixels, canvas fit and page overflow were all fine; only the button that
+   opens it was too small to tap. Changing someone's explicit value deliberately, for
+   consistency with the standard the project already checks. */
+.struct-open { margin-top: 10px; font-size: 12px; padding: 4px 12px; border: 1px solid var(--line-2);
+  border-radius: 5px; background: var(--panel-2); color: var(--ink); cursor: pointer;
+  min-height: 44px; min-width: 44px; }
+.struct-stage { position: relative; width: 100%; height: 380px; margin-top: 10px;
+  border: 1px solid var(--line); border-radius: 7px; background: var(--panel-2); overflow: hidden; }
+.struct-readout { font-size: 12px; color: var(--ink-2); margin-top: 6px; min-height: 1.4em; }
+.struct-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 6px; font-size: 12px; color: var(--ink); }
+.struct-key { display: inline-flex; align-items: center; gap: 5px; }
+.struct-key .dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+footer.bot { border-top: 1px solid var(--line); color: var(--ink-3); font-size: 11.5px;
+  padding: 14px 20px; text-align: center; }
+
+/* ---- locus card ------------------------------------------------------------
+   The canvas is absolutely positioned inside a sized container so its own size
+   can never feed back into the container's, which is what makes the
+   ResizeObserver loop structurally impossible rather than merely unlikely. */
+.locus-stage {
+  position: relative;
+  height: 168px;
+  width: 100%;
+  overflow: clip;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  /* Pan gestures belong to the canvas; page scroll still works because the
+     canvas is short and the page scrolls around it. Never set this globally. */
+  touch-action: pan-y;
+  overscroll-behavior: none;
+}
+.locus-stage:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.locus-canvas { position: absolute; inset: 0; display: block; }
+
+.locus-readout {
+  min-height: 1.25em;           /* reserved, so hovering does not shift the page */
+  font-size: 11.5px;
+  font-family: var(--mono);
+  margin: 7px 0 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.locus-controls { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+.locus-spacer { flex: 1; }
+.locus-btn {
+  /* 44px: Apple HIG / Material comfort target, well above the 24px WCAG floor */
+  min-width: 44px; min-height: 44px;
+  font-size: 16px; line-height: 1;
+  border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--panel-2); color: var(--ink);
+  cursor: pointer;
+  touch-action: manipulation;   /* kills the 300ms tap delay without blocking pinch */
+}
+.locus-btn:hover { background: var(--line); }
+.locus-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 640px) {
+  /* The header nav was one unwrappable 502px flex row, which set a 522px minimum
+     width for EVERY page on the site -- horizontal scroll on every phone. Wrapping
+     it (above) is the fix; this block tightens the rest of the shell to match. */
+  header.top { padding: 8px 12px; gap: 10px; }
+  header.top nav { gap: 12px; order: 3; width: 100%; }
+  header.top .grow { display: none; }
+  .search { flex: 1 1 auto; max-width: none; }
+  main { padding: 16px 12px 60px; }
+  h1 { font-size: 19px; overflow-wrap: anywhere; }
+  .locus-stage { height: 168px; }
+  .locus-controls { gap: 10px; }
+  /* Wide content scrolls inside its own box, never the page. */
+  .scroll-x { max-width: 100%; }
+  table.data { font-size: 12px; }
+}
+
+/* Notched phones: env() resolves to 0px without viewport-fit=cover, and max()
+   keeps a gutter on devices that have no inset at all. */
+@supports (padding: max(0px)) {
+  header.top { padding-left: max(12px, env(safe-area-inset-left));
+               padding-right: max(12px, env(safe-area-inset-right)); }
+  main { padding-left: max(12px, env(safe-area-inset-left));
+         padding-right: max(12px, env(safe-area-inset-right));
+         padding-bottom: max(60px, env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .locus-stage * { transition: none !important; animation: none !important; }
+}
+
+/* ---- gene page: overview strip, bands, and the in-page nav --------------------------
+   The page carries fourteen or more cards. `.glance` is the one-card answer to "what am I
+   looking at"; `h2.sect` splits the rest into bands ordered by what the evidence is; and
+   `.secnav` sticks under the site header so the bands stay reachable from anywhere on the
+   page. --top-h is measured at runtime because header.top wraps to two rows on a phone,
+   which a hard-coded offset would hide the nav behind. */
+.card.glance { border-color: var(--line-2); background: var(--panel-2); }
+.card.glance .kv { font-size: 13.5px; row-gap: 7px; }
+
+h2.sect {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin: 20px 0 -2px; padding-bottom: 7px; border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--top-h, 47px) + 54px);
+}
+h2.sect:first-child { margin-top: 2px; }
+.sect-label {
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2);
+}
+.sect-blurb {
+  font-size: 12px; font-weight: 400; color: var(--ink-3); letter-spacing: 0; flex: 1 1 260px;
+}
+
+.secnav {
+  position: sticky; top: var(--top-h, 47px); z-index: 15;
+  display: flex; gap: 4px; flex-wrap: wrap; align-items: center;
+  margin: 0 0 14px; padding: 7px 0;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.secnav-link {
+  font-size: 12px; color: var(--ink-2); padding: 5px 10px; border-radius: 999px;
+  border: 1px solid transparent; white-space: nowrap;
+}
+.secnav-link:hover { background: var(--panel-2); text-decoration: none; }
+.secnav-link.on {
+  color: var(--ink); background: var(--panel-2); border-color: var(--line-2); font-weight: 600;
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* On a phone header.top wraps to three rows (~170px measured). A section nav that also wraps
+   put a third of the viewport under sticky chrome, so below 640px it becomes one swipeable
+   row instead: same links, one row's height, and the active chip is scrolled into view so the
+   reader can always see where they are. */
+@media (max-width: 640px) {
+  .secnav {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  }
+  .secnav::-webkit-scrollbar { display: none; }
+  .secnav-link { scroll-snap-align: start; }
+  .sect-blurb { display: none; }   /* the band label carries it; the blurb costs a row here */
+}
+
+/* A folded secondary card: something already drawn above in another form, kept one click
+   away rather than given a second full-width strip. The card keeps its own border when
+   open, so the fold reads as the same object, not a new one. */
+.card-fold {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 9px;
+}
+.card-fold > summary {
+  cursor: pointer; padding: 12px 17px; display: flex; gap: 10px; align-items: baseline;
+  flex-wrap: wrap; list-style: none; border-radius: 9px;
+}
+.card-fold > summary::-webkit-details-marker { display: none; }
+.card-fold > summary::before {
+  content: '\25b8'; color: var(--ink-3); font-size: 11px; transition: transform .12s;
+}
+.card-fold[open] > summary::before { transform: rotate(90deg); }
+.card-fold > summary:hover { background: var(--panel-2); }
+.card-fold > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.fold-title { font-size: 15px; font-weight: 600; letter-spacing: -0.005em; }
+.fold-why { font-size: 12px; color: var(--ink-3); }
+/* the card inside loses its own chrome -- the fold is already the box */
+.card-fold > .card { border: 0; border-top: 1px solid var(--line); border-radius: 0; }
+@media (prefers-reduced-motion: reduce) { .card-fold > summary::before { transition: none; } }
+
+/* Grouped header tab. <details> rather than a hand-rolled menu so keyboard operation and
+   the expanded/collapsed state come from the platform. The summary matches the plain nav
+   links exactly (same size, colour and 24px tap target) so the group reads as one of them. */
+.navmenu { position: relative; }
+.navmenu > summary {
+  list-style: none; cursor: pointer; color: var(--ink-2); font-size: 13px;
+  display: inline-flex; align-items: center; gap: 5px; padding-block: 6px;
+}
+.navmenu > summary::-webkit-details-marker { display: none; }
+.navmenu > summary::after {
+  content: '\25be'; font-size: 10px; color: var(--ink-3);
+}
+.navmenu > summary:hover { color: var(--ink); }
+.navmenu > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.navmenu.on > summary { color: var(--ink); font-weight: 600; }
+.navmenu-panel {
+  position: absolute; top: calc(100% + 6px); left: -10px; z-index: 30; min-width: 168px;
+  display: flex; flex-direction: column;
+  background: var(--panel); border: 1px solid var(--line-2); border-radius: 8px;
+  padding: 5px; box-shadow: 0 8px 24px rgba(0,0,0,.16);
+}
+.navmenu-panel a { padding: 7px 10px; border-radius: 5px; font-size: 13px; color: var(--ink); }
+.navmenu-panel a:hover { background: var(--panel-2); text-decoration: none; }
+.navmenu-panel a.on { background: var(--panel-2); font-weight: 600; }
+/* On a phone the header is already the tallest thing on screen; let the panel fall in the
+   flow rather than overlaying, so it can never be clipped by the sticky header's edge. */
+@media (max-width: 640px) {
+  .navmenu[open] { width: 100%; }
+  .navmenu-panel { position: static; box-shadow: none; margin-top: 6px; }
+}
+
+/* A merged card: two forms of the same answer behind a view switch (the duplication figure
+   and the duplication tables named exactly the same partners). Buttons rather than links --
+   this switches a view inside a card, it does not navigate. */
+/* The source card is MOVED into its panel rather than emptied into it, so that module
+   closures which append to their own card keep working. It therefore drops its own chrome
+   here, or the reader sees a card inside a card. */
+.viewpanel > .card { border: 0; border-radius: 0; padding: 0; background: transparent; }
+
+.viewtabs {
+  display: inline-flex; gap: 2px; margin: 2px 0 12px; padding: 2px;
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+}
+.viewtab {
+  font: inherit; font-size: 12.5px; color: var(--ink-2); cursor: pointer;
+  background: transparent; border: 1px solid transparent; border-radius: 6px;
+  padding: 6px 12px; min-height: 32px; white-space: nowrap;
+}
+.viewtab:hover { color: var(--ink); }
+.viewtab:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.viewtab.on {
+  background: var(--panel); color: var(--ink); font-weight: 600;
+  border-color: var(--line-2);
+}
+@media (max-width: 640px) {
+  .viewtabs { display: flex; width: 100%; }
+  .viewtab { flex: 1; padding: 6px 8px; }
+}
+
+/* Response by contrast: a diverging bar per comparison, centred on no change.
+   The sample counts sit in their own column rather than in a tooltip, because n is what
+   decides whether a bar means anything and it must be readable at the same glance as the
+   bar. Weak bars (a single sample on one side) are dimmed, not hidden. */
+.lfc-rows {
+  display: grid; grid-template-columns: minmax(90px, 1.5fr) 3fr 54px 44px;
+  gap: 3px 9px; align-items: center; font-size: 11.5px;
+}
+.lfc-lab { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lfc-track {
+  position: relative; height: 15px; background: var(--panel-2); border-radius: 2px;
+}
+.lfc-zero {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: var(--line-2);
+}
+.lfc-fill { position: absolute; top: 2px; bottom: 2px; border-radius: 1.5px; }
+.lfc-fill.up { background: var(--c-disp); }
+.lfc-fill.down { background: var(--c-core); }
+.lfc-fill.weak { opacity: .4; }
+.lfc-val { text-align: right; font-variant-numeric: tabular-nums; }
+.lfc-n { text-align: right; color: var(--ink-3); font-size: 10.5px; }
+.lfc-n.warn-n { color: var(--c-priv); font-weight: 600; }
+.lfc-axis {
+  display: grid; grid-template-columns: minmax(90px, 1.5fr) 3fr 54px 44px; gap: 9px;
+  font: 10px var(--mono); color: var(--ink-3); margin-top: 4px;
+}
+/* One flex row spanning the TRACK column only, so the three ticks land under the track's
+   own left edge, centre and right edge -- not spread across the value and n columns. */
+.lfc-axis > span { grid-column: 2; display: flex; justify-content: space-between; }
+.warn-n-note {
+  margin: 11px 0 0; padding: 8px 11px; border-left: 2px solid var(--c-priv);
+  background: var(--panel-2); font-size: 11.5px; color: var(--ink-2); line-height: 1.55;
+}
+@media (max-width: 640px) {
+  .lfc-rows, .lfc-axis { grid-template-columns: minmax(70px, 1.2fr) 2fr 46px 38px; gap: 3px 6px; }
+}
+
+/* The home page's question list overflowed at 375px (scrollWidth 449, reported 2026-09-21):
+   .kv sizes its first column to max-content, and a question is a sentence, not a label. On a
+   phone the list stacks instead -- question, then its note and count underneath. */
+@media (max-width: 640px) {
+  .kv.qa { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  .kv.qa dd { margin-bottom: 9px; }
+}
+
+/* ---- evidence weight on the gene page (registry.js CARD_EVIDENCE, app.js applyEvidence) ----
+   Three tiers, each carried three ways: the chip says it in words, the left rule's STYLE
+   differs (solid / dashed / dotted), and the weakest tier is recessed. Colour is never the
+   only channel -- the house relief rule. A dashed outline all round was tried for tier 3 and
+   dropped: it reads as "empty" or "drop here", a different claim from "weaker evidence".
+   --c-priv is under the 3:1 non-text floor on a light panel (2.1:1), hence --ev2-ink. */
+:root { --ev2-ink: #8a6000; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ev2-ink: #d99a1e; } }
+:root[data-theme="dark"] { --ev2-ink: #d99a1e; }
+.card > h2 { flex-wrap: wrap; row-gap: 4px; }
+.ev-1 { border-left: 3px solid var(--accent); }
+.ev-2 { border-left: 3px dashed var(--ev2-ink); }
+.ev-3 { border-left: 3px dotted var(--ink-3); background: var(--panel-2); }
+.card-fold.ev-3 > summary:hover { background: var(--panel); }
+.ev-chip {
+  margin-left: auto; font-size: 10.5px; font-weight: 550; letter-spacing: .02em;
+  text-transform: none; white-space: nowrap; padding: 1px 8px; border-radius: 999px;
+  border: 1px solid var(--line-2); color: var(--ink-2); background: var(--surface);
+}
+.ev-chip-1 { border-color: var(--accent); color: var(--accent-ink); }
+.ev-chip-2 { border-color: var(--ev2-ink); color: var(--ev2-ink); }
+.ev-chip-3 { border-style: dashed; border-color: var(--ink-3); }
+.ev-key {
+  display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center;
+  margin: -4px 0 12px; font-size: 12px; color: var(--ink-2);
+}
+.ev-key-item { display: inline-flex; align-items: center; gap: 7px; }
+@media (max-width: 640px) { .ev-key-note { display: none; } }   /* a row a phone cannot spare */
+.ev-sw {
+  display: inline-block; width: 16px; height: 14px; border-radius: 3px;
+  border: 1px solid var(--line-2); background: var(--panel);
+}
+.ev-sw.ev-1 { border-left: 3px solid var(--accent); }
+.ev-sw.ev-2 { border-left: 3px dashed var(--ev2-ink); }
+.ev-sw.ev-3 { border-left: 3px dotted var(--ink-3); background: var(--panel-2); }
+
+/* ---- copies on both haplotypes (js/modules/copies.js) ------------------------------------
+   An SVG drawn at the container's real width. Every colour is a class rather than an
+   attribute, so the theme toggle recolours it without a redraw. Text that must be READ uses
+   --ink or --ink-2 (--ink-3 is under 4.5:1 on a panel); --ink-3 is for strokes only. */
+.cp-lede {
+  font-size: 13px; line-height: 1.55; margin: 0 0 12px; padding: 9px 12px; border-radius: 6px;
+  background: var(--panel-2); border-left: 3px solid var(--accent);
+}
+.cp-holder { width: 100%; min-width: 0; }
+/* The summary strip and the Allele card jump to the panel; land it below the sticky header and
+   section nav, the same offset h2.sect uses, or its heading scrolls in underneath them. */
+.cards > .card { scroll-margin-top: calc(var(--top-h, 47px) + 54px); }
+.cp-svg { display: block; max-width: 100%; height: auto; }
+.cp-svg text { font-size: 12px; fill: var(--ink-2); }
+.cp-svg .cp-head { font-size: 11px; }
+.cp-svg .cp-tick { font-size: 10.5px; }
+.cp-svg .cp-group { font-size: 13px; font-weight: 650; fill: var(--ink); }
+.cp-svg .cp-groupsub { font-size: 11.5px; }
+.cp-svg .cp-id { font-family: var(--mono); fill: var(--ink); }
+.cp-svg .cp-link .cp-id { fill: var(--accent-ink); }
+.cp-svg .cp-link:hover .cp-id { text-decoration: underline; }
+.cp-svg .cp-focal { font-weight: 700; }
+.cp-svg .cp-unann { font-style: italic; }
+.cp-svg .cp-pos { font-family: var(--mono); font-size: 10.5px; }
+.cp-svg .cp-stat { fill: var(--ink); font-variant-numeric: tabular-nums; }
+.cp-svg .cp-stat2, .cp-svg .cp-stat3 { font-variant-numeric: tabular-nums; }
+.cp-svg .cp-note { font-size: 11px; }
+.cp-svg .cp-piece { font-size: 11px; font-weight: 650; }
+.cp-axis { stroke: var(--line-2); }
+.cp-track { stroke: var(--line); }
+.cp-rule { stroke: var(--line); }
+.cp-bar { fill: var(--accent); }
+.cp-bracket { fill: none; stroke: var(--ink-3); }
+.cp-dashed { fill: none; stroke: var(--ink-3); stroke-dasharray: 4 3; }
+.cp-hit { fill: transparent; }
+.cp-focalbg { fill: var(--panel-2); }
+.cp-focalbar { fill: var(--accent); }
+.cp-key {
+  display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12px; color: var(--ink-2); margin: 10px 0 0;
+}
+.cp-key > span { display: inline-flex; align-items: center; gap: 6px; }
+.cp-sw { display: inline-block; width: 20px; height: 10px; border-radius: 3px; background: var(--accent); }
+.cp-sw.cp-sw-dashed { background: transparent; border: 1.5px dashed var(--ink-3); }
+.cp-sw.cp-sw-focal { background: var(--panel-2); border-left: 3px solid var(--accent); height: 14px; }
+.cp-foot {
+  font-size: 12px; color: var(--ink-2); margin: 12px 0 0; padding: 10px 0 0 18px;
+  border-top: 1px solid var(--line); line-height: 1.5;
+}
+.cp-foot li { margin: 3px 0; }

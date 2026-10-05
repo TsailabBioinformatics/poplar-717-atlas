@@ -1,0 +1,23 @@
+{
+ "purpose": "The frozen genEra call for every gene: the LSG pool is its rank >= 18 genes, 842 HAP1 + 883 HAP2, and it does not change (Chen, 2026-09-21). Every check on the pool, the rerun that added Idesia included, is a per-gene flag.",
+ "status_2026_09_26": "SUPERSEDED AS THE POOL (ms2-lsg docs/CORRECTIONS.md C5, 2026-09-21 evening, reconfirmed 2026-09-26). Kept as provenance: shown per gene under ps.frz wherever its rank differs from the pool's call (766 genes), so the 66 HAP1 + 48 HAP2 genes that left the pool say why. Never used for a filter, a count or a default view. The purpose and ruling lines below describe the 2026-09-21 morning arrangement (C4) and are kept as written.",
+ "ruling": "Chen, 2026-09-21: \"the 842/883 is the frozen but the various QC steps from Idesia to synteny to abSENSE ... are all for flagging\". Recorded in MS2_2026 CLAUDE.md, commit 1e698f2.",
+ "what_the_frozen_call_is": "genEra ranks from its NCBI nr search. Its configured comparison panel was never searched (genEra's own changelog); the rerun that added Idesia was the first run to search the full panel, which is why a rank change there is not always due to Idesia.",
+ "tier": "public",
+ "generated_by": "scripts/make_pool_frozen_source.py",
+ "source": "ChenHsieh/ms2-lsg 2cd2b59efbc4ecc978654411b9131723a9444aa9 : pipeline/out/lsg_pool.tsv (git blob 4f8b7cac3007220158d52c1057249bc901705e31)",
+ "columns_dropped": [
+  "canonical_label",
+  "group"
+ ],
+ "why_dropped": "They carry the unpublished candidate names for 10 genes.",
+ "rows_collapsed": "One gene sits on two source rows under two canonical labels; the rows are identical without the labels and collapse to one.",
+ "gates": [
+  "63,960 genes; pool exactly 842 HAP1 + 883 HAP2",
+  "rank and is_lsg equal frozen_rank and frozen_is_lsg of lsg_pool_idesia.tsv.gz for every gene"
+ ],
+ "rows": 63960,
+ "shipped_sha256": "7ac49ee7ec00baf3702f1b338d92532761fd226e6c3c514efe5ef82e3985fcff",
+ "written": "2026-09-21T15:57:38Z",
+ "applied_by": "scripts/patch_lsg_pool.py (build stage)"
+}

@@ -1,0 +1,88 @@
+/* #/karyotype -- ancestral karyotype page.
+   The seven ancestral eudicot chromosomes (AEK1-7) get one categorical palette, defined once
+   here, in Okabe-Ito order (colourblind-safe). Every colour is also carried by a text label.
+   Gamma-copy colours (--kp-g1..3) are a second, separate palette used only in the
+   "within one ancestral chromosome" modes, each with its own legend. */
+:root {
+  --aek1: #e69f00; --aek2: #56b4e9; --aek3: #009e73; --aek4: #c9b900;
+  --aek5: #0072b2; --aek6: #d55e00; --aek7: #cc79a7;
+  --kp-g1: #0072b2; --kp-g2: #d55e00; --kp-g3: #009e73;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --aek1: #f0ad1a; --aek2: #6cc2f0; --aek3: #1db88a; --aek4: #f0e442;
+    --aek5: #3a95d6; --aek6: #ec7a2a; --aek7: #dc93ba;
+    --kp-g1: #3a95d6; --kp-g2: #ec7a2a; --kp-g3: #1db88a;
+  }
+}
+:root[data-theme="dark"] {
+  --aek1: #f0ad1a; --aek2: #6cc2f0; --aek3: #1db88a; --aek4: #f0e442;
+  --aek5: #3a95d6; --aek6: #ec7a2a; --aek7: #dc93ba;
+  --kp-g1: #3a95d6; --kp-g2: #ec7a2a; --kp-g3: #1db88a;
+}
+
+.kp-a1 { fill: var(--aek1); } .kp-a2 { fill: var(--aek2); } .kp-a3 { fill: var(--aek3); }
+.kp-a4 { fill: var(--aek4); } .kp-a5 { fill: var(--aek5); } .kp-a6 { fill: var(--aek6); }
+.kp-a7 { fill: var(--aek7); }
+.kp-g1s1 { fill: var(--kp-g1); } .kp-g2s1 { fill: var(--kp-g2); } .kp-g3s1 { fill: var(--kp-g3); }
+.kp-g1s2 { fill: color-mix(in srgb, var(--kp-g1) 45%, var(--panel)); }
+.kp-g2s2 { fill: color-mix(in srgb, var(--kp-g2) 45%, var(--panel)); }
+.kp-g3s2 { fill: color-mix(in srgb, var(--kp-g3) 45%, var(--panel)); }
+.kp-g1, .kp-g1s0 { fill: var(--kp-g1); } .kp-g2, .kp-g2s0 { fill: var(--kp-g2); }
+.kp-g3, .kp-g3s0 { fill: var(--kp-g3); }
+.kp-g0, .kp-g0s0 { fill: var(--ink-3); }
+.kp-other { fill: var(--line); }
+
+.kp-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 12px; }
+.kp-controls .btn { min-height: 44px; }
+.kp-controls .btn.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.kp-aekpick .btn { min-width: 44px; padding-left: 8px; padding-right: 8px; }
+
+.kp-figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.kp-hap h3 { margin: 0 0 6px; font-size: 15px; }
+.kp-svgbox { overflow-x: auto; max-width: 100%; border: 1px solid var(--line); background: var(--panel); }
+.kp-svgbox svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.kp-svg text { font-family: var(--mono); font-size: 10px; fill: var(--ink-2); }
+.kp-svg .kp-bg { fill: var(--panel-2); stroke: var(--line-2); stroke-width: .6; }
+.kp-svg .kp-tick { stroke: var(--line); stroke-width: 1; }
+.kp-svg .kp-hit { fill: transparent; cursor: pointer; }
+.kp-svg .kp-sel { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+
+.kp-legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
+.kp-legend a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 10px;
+  border: 1px solid var(--line-2); background: var(--panel); color: var(--ink); text-decoration: none;
+  font-size: 13px; border-radius: 2px; }
+.kp-legend a:hover { background: var(--accent-soft); }
+.kp-sw { display: inline-block; width: 14px; height: 14px; border: 1px solid var(--line-2); flex: none; }
+.kp-legend .kp-n { font-family: var(--mono); color: var(--ink-2); }
+
+.kp-detail { margin-top: 12px; padding: 12px 14px; border: 1.5px solid var(--ink); background: var(--panel); }
+.kp-detail:empty { display: none; }
+.kp-detail .btn { min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; }
+
+/* 42-cell grid */
+.kp-grid td { padding: 2px; }
+.kp-cell { padding: 6px 4px; border-radius: 3px; min-height: 52px; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 2px; color: var(--ink); }
+.kp-cell .kp-total { font-size: 14px; font-weight: 600; }
+.kp-cell .kp-haps { font-family: var(--mono); font-size: 11px; color: var(--ink); line-height: 1.3; text-align: center; }
+.kp-cell.empty .kp-total { color: var(--ink-3); font-weight: 400; }
+a.kp-celllink { display: block; text-decoration: none; }
+a.kp-celllink:hover .kp-cell { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* per-AEK breakdown */
+.kp-brk { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.kp-slot h4 { margin: 0 0 4px; font-size: 13.5px; }
+.kp-barrow { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 8px; align-items: center; margin: 3px 0; }
+.kp-barrow .kp-hl { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); }
+.kp-bar { display: flex; height: 30px; border: 1px solid var(--line-2); background: var(--panel-2); overflow: hidden; }
+.kp-bar a { display: flex; align-items: center; justify-content: center; min-width: 2px; overflow: hidden;
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink); text-decoration: none; white-space: nowrap;
+  border-right: 1px solid var(--panel); }
+.kp-bar a.h1a { background: color-mix(in srgb, var(--hap1) 42%, var(--panel)); }
+.kp-bar a.h1b { background: color-mix(in srgb, var(--hap1) 22%, var(--panel)); }
+.kp-bar a.h2a { background: color-mix(in srgb, var(--hap2) 42%, var(--panel)); }
+.kp-bar a.h2b { background: color-mix(in srgb, var(--hap2) 22%, var(--panel)); }
+.kp-bar a:hover { outline: 2px solid var(--ink); outline-offset: -2px; }
+.kp-say { font-size: 12.5px; color: var(--ink-2); margin: 1px 0 0 56px; }
+@media (max-width: 560px) { .kp-say { margin-left: 0; } }

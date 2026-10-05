@@ -1,0 +1,19 @@
+{
+  "buckets": 2577,
+  "bytes": 94050357,
+  "excluded": {
+    "PtXaTreH.08G115400": "ESMFold PDB is 0 bytes; also absent from the SS table"
+  },
+  "extractor": "scripts/make_structure_source.py",
+  "gate": "per-residue arrays reproduce n_residues, mean_plddt, frac_plddt_lt70, helix_frac and strand_frac of secondary_structure_summary.tsv to half a unit of its last decimal, for every gene; and every shard ss value is that table rounded to 3 decimals",
+  "genes": 40685,
+  "hap1": 16502,
+  "hap2": 24183,
+  "parser_origin": "sequence_features/scripts/ss_content.py:parse_backbone (copied)",
+  "pdb_files": 40686,
+  "pdb_listing_sha256": "f7145d9e5ad38d8ea95f8ebe709969d83f19d0ea10d83de4d9071f824e952961",
+  "pdb_root": "<scratch>/foldseek/results",
+  "records_sha256": "5a3f66dc7ed9971bf9ff4fab4458d377ecab0b99852a8f9f0535e060df4de08a",
+  "span": 2500,
+  "what": "ESMFold Calpha trace (0.1 A), per-residue pLDDT, sequence and pydssp c3 secondary structure. Not the full-atom model: that is 2.3 GB gzipped, over the Pages site cap."
+}

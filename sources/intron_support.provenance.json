@@ -1,0 +1,20 @@
+{
+ "tier": "public",
+ "why_public": "Derived from public ENA RNA-seq libraries aligned to the published 717 v5.1 assembly. No wet-lab data.",
+ "panel": "94 libraries, FROZEN. An 827-library expansion was running on 2026-09-12 and will supersede this. Shipping the frozen panel is safe rather than merely convenient because the expansion carries its own equivalence gate, e7_equivalence_panel94.json, which PASSES: 0 of 16 matched cells and 0 of 20 arm rows differ.",
+ "pool": "out_idesia/ -- the CORRECTED rank>=18 pool (776/835), which is the pool this atlas serves. out_panel_panel94/ is byte-identical for every table read here; only libraries.tsv and classification_with_rnaseq.tsv differ, and neither is used.",
+ "source_dir": "<scratch>/pb_rnaseq_wt/analyses/piggyback_rnaseq_junctions/out_idesia",
+ "haplotypes_are_not_independent": "Each haplotype is aligned to its own genome alone, so a read from the other haplotype's allele has nowhere else to go and is placed here. Junction structure is near-identical between haplotypes, so this does not fabricate a junction, but HAP1 and HAP2 are NOT independent replicates and must be read side by side, never pooled.",
+ "purpose": "Per gene: how many annotated introns were actually observed as spliced reads, and the read depth that determines whether the question could be answered at all.",
+ "shipped_sha256": "937241973ae891859c7c453614dec1857ad3cc947f076136c9e7ffcf631dc8a5",
+ "rows": 50631,
+ "coverage": "50,631 multi-exon genes. The other 13,329 atlas genes are single-exon and have no intron to detect -- absence here is not a missing measurement.",
+ "cross_check_against_the_atlas": "n_introns agrees with the atlas's own gs.in -- derived independently from the v5.1 GFF3 longest isoform -- for 50,631 of 50,631 genes, 100.00%. The patcher asserts this per gene on every build.",
+ "the_result": {
+  "multi_exon_all_introns_seen_pct": 89.6,
+  "lsg_all_introns_seen_pct": 52.6,
+  "lsg_no_intron_seen_pct": 37.2,
+  "lsg_n": 580
+ },
+ "THE_CONFOUND_THAT_MUST_SHIP_WITH_IT": "Detection is a function of DEPTH, not only of whether the model is right. Below 20 reads the per-intron detection rate is under 27% (HAP1 0.268, HAP2 0.273); above 5,000 reads it is 0.988. LSG genes are shallow, so a low intron-support figure for an LSG is largely a statement about its expression. Shown WITHOUT the gene's read count and the power curve, this layer reads as evidence against LSG gene models, which the data does not support. The power curve is in the manifest and the card renders both."
+}

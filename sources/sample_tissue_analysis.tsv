@@ -1,0 +1,653 @@
+sample_label	tissue_analysis
+01_leaf (old)_chronic drought_500CO2_recovered_rep1	leaf_old
+01_leaf (old)_chronic drought_500CO2_recovered_rep2	leaf_old
+01_leaf (old)_chronic drought_500CO2_recovered_rep3	leaf_old
+01_leaf (old)_chronic drought_500CO2_rep1	leaf_old
+01_leaf (old)_chronic drought_500CO2_rep2	leaf_old
+01_leaf (old)_chronic drought_500CO2_rep3	leaf_old
+01_leaf (old)_control_380CO2_recovered_rep1	leaf_old
+01_leaf (old)_control_380CO2_recovered_rep2	leaf_old
+01_leaf (old)_control_380CO2_recovered_rep3	leaf_old
+01_leaf (old)_control_380CO2_rep1	leaf_old
+01_leaf (old)_control_380CO2_rep2	leaf_old
+01_leaf (old)_control_500CO2_recovered_rep1	leaf_old
+01_leaf (old)_control_500CO2_recovered_rep2	leaf_old
+01_leaf (old)_control_500CO2_recovered_rep3	leaf_old
+01_leaf (old)_control_500CO2_rep1	leaf_old
+01_leaf (old)_control_500CO2_rep2	leaf_old
+01_leaf (old)_control_500CO2_rep3	leaf_old
+01_leaf (old)_periodic drought_500CO2_recovered_rep1	leaf_old
+01_leaf (old)_periodic drought_500CO2_recovered_rep2	leaf_old
+01_leaf (old)_periodic drought_500CO2_recovered_rep3	leaf_old
+01_leaf (old)_periodic drought_500CO2_rep1	leaf_old
+01_leaf (old)_periodic drought_500CO2_rep2	leaf_old
+01_leaf (old)_periodic drought_500CO2_rep3	leaf_old
+01_leaf (young)_chronic drought_500CO2_recovered_rep1	leaf_young
+01_leaf (young)_chronic drought_500CO2_recovered_rep2	leaf_young
+01_leaf (young)_chronic drought_500CO2_recovered_rep3	leaf_young
+01_leaf (young)_chronic drought_500CO2_rep1	leaf_young
+01_leaf (young)_chronic drought_500CO2_rep2	leaf_young
+01_leaf (young)_chronic drought_500CO2_rep3	leaf_young
+01_leaf (young)_control_380CO2_recovered_rep1	leaf_young
+01_leaf (young)_control_380CO2_recovered_rep2	leaf_young
+01_leaf (young)_control_380CO2_rep1	leaf_young
+01_leaf (young)_control_380CO2_rep2	leaf_young
+01_leaf (young)_control_380CO2_rep3	leaf_young
+01_leaf (young)_control_500CO2_recovered_rep1	leaf_young
+01_leaf (young)_control_500CO2_recovered_rep2	leaf_young
+01_leaf (young)_control_500CO2_recovered_rep3	leaf_young
+01_leaf (young)_control_500CO2_rep1	leaf_young
+01_leaf (young)_control_500CO2_rep2	leaf_young
+01_leaf (young)_control_500CO2_rep3	leaf_young
+01_leaf (young)_periodic drought_500CO2_recovered_rep1	leaf_young
+01_leaf (young)_periodic drought_500CO2_recovered_rep2	leaf_young
+01_leaf (young)_periodic drought_500CO2_recovered_rep3	leaf_young
+01_leaf (young)_periodic drought_500CO2_rep1	leaf_young
+01_leaf (young)_periodic drought_500CO2_rep2	leaf_young
+01_leaf (young)_periodic drought_500CO2_rep3	leaf_young
+01_phloem_chronic drought_500CO2_recovered_rep1	bark
+01_phloem_chronic drought_500CO2_recovered_rep2	bark
+01_phloem_chronic drought_500CO2_recovered_rep3	bark
+01_phloem_chronic drought_500CO2_rep1	bark
+01_phloem_chronic drought_500CO2_rep2	bark
+01_phloem_chronic drought_500CO2_rep3	bark
+01_phloem_control_380CO2_recovered_rep1	bark
+01_phloem_control_380CO2_recovered_rep2	bark
+01_phloem_control_380CO2_recovered_rep3	bark
+01_phloem_control_380CO2_rep1	bark
+01_phloem_control_380CO2_rep2	bark
+01_phloem_control_380CO2_rep3	bark
+01_phloem_control_500CO2_recovered_rep1	bark
+01_phloem_control_500CO2_recovered_rep2	bark
+01_phloem_control_500CO2_recovered_rep3	bark
+01_phloem_control_500CO2_rep1	bark
+01_phloem_control_500CO2_rep2	bark
+01_phloem_control_500CO2_rep3	bark
+01_phloem_periodic drought_500CO2_recovered_rep1	bark
+01_phloem_periodic drought_500CO2_recovered_rep2	bark
+01_phloem_periodic drought_500CO2_recovered_rep3	bark
+01_phloem_periodic drought_500CO2_rep1	bark
+01_phloem_periodic drought_500CO2_rep2	bark
+01_phloem_periodic drought_500CO2_rep3	bark
+01_root_chronic drought_500CO2_recovered_rep1	root
+01_root_chronic drought_500CO2_recovered_rep2	root
+01_root_chronic drought_500CO2_recovered_rep3	root
+01_root_chronic drought_500CO2_rep1	root
+01_root_chronic drought_500CO2_rep2	root
+01_root_chronic drought_500CO2_rep3	root
+01_root_control_380CO2_recovered_rep1	root
+01_root_control_380CO2_recovered_rep2	root
+01_root_control_380CO2_recovered_rep3	root
+01_root_control_380CO2_rep1	root
+01_root_control_380CO2_rep2	root
+01_root_control_380CO2_rep3	root
+01_root_control_500CO2_recovered_rep1	root
+01_root_control_500CO2_recovered_rep2	root
+01_root_control_500CO2_recovered_rep3	root
+01_root_control_500CO2_rep1	root
+01_root_control_500CO2_rep2	root
+01_root_control_500CO2_rep3	root
+01_root_periodic drought_500CO2_recovered_rep1	root
+01_root_periodic drought_500CO2_recovered_rep2	root
+01_root_periodic drought_500CO2_recovered_rep3	root
+01_root_periodic drought_500CO2_rep1	root
+01_root_periodic drought_500CO2_rep2	root
+01_root_periodic drought_500CO2_rep3	root
+01_xylem_chronic drought_500CO2_recovered_rep1	xylem
+01_xylem_chronic drought_500CO2_recovered_rep2	xylem
+01_xylem_chronic drought_500CO2_recovered_rep3	xylem
+01_xylem_chronic drought_500CO2_rep1	xylem
+01_xylem_chronic drought_500CO2_rep2	xylem
+01_xylem_chronic drought_500CO2_rep3	xylem
+01_xylem_control_380CO2_recovered_rep1	xylem
+01_xylem_control_380CO2_recovered_rep2	xylem
+01_xylem_control_380CO2_recovered_rep3	xylem
+01_xylem_control_380CO2_rep1	xylem
+01_xylem_control_380CO2_rep2	xylem
+01_xylem_control_380CO2_rep3	xylem
+01_xylem_control_500CO2_recovered_rep1	xylem
+01_xylem_control_500CO2_recovered_rep2	xylem
+01_xylem_control_500CO2_recovered_rep3	xylem
+01_xylem_control_500CO2_rep1	xylem
+01_xylem_control_500CO2_rep2	xylem
+01_xylem_control_500CO2_rep3	xylem
+01_xylem_periodic drought_500CO2_recovered_rep1	xylem
+01_xylem_periodic drought_500CO2_recovered_rep2	xylem
+01_xylem_periodic drought_500CO2_recovered_rep3	xylem
+01_xylem_periodic drought_500CO2_rep1	xylem
+01_xylem_periodic drought_500CO2_rep2	xylem
+01_xylem_periodic drought_500CO2_rep3	xylem
+02_developing xylem_control_long day _rep1	xylem
+02_developing xylem_control_long day _rep2	xylem
+02_developing xylem_control_long day _rep3	xylem
+02_developing xylem_control_long day _rep4	xylem
+02_developing xylem_control_short day _rep1	xylem
+02_developing xylem_control_short day _rep2	xylem
+02_developing xylem_control_short day _rep3	xylem
+02_developing xylem_control_short day _rep4	xylem
+02_developing xylem_drought environment_long day _rep1	xylem
+02_developing xylem_drought environment_long day _rep2	xylem
+02_developing xylem_drought environment_long day _rep3	xylem
+02_developing xylem_drought environment_long day _rep4	xylem
+02_developing xylem_drought environment_short day _rep1	xylem
+02_developing xylem_drought environment_short day _rep2	xylem
+02_developing xylem_drought environment_short day _rep3	xylem
+02_developing xylem_drought environment_short day _rep4	xylem
+02_mature xylem_control_long day _rep1	xylem
+02_mature xylem_control_long day _rep2	xylem
+02_mature xylem_control_long day _rep3	xylem
+02_mature xylem_control_long day _rep4	xylem
+02_mature xylem_control_short day _rep1	xylem
+02_mature xylem_control_short day _rep2	xylem
+02_mature xylem_control_short day _rep3	xylem
+02_mature xylem_control_short day _rep4	xylem
+02_mature xylem_drought environment_long day _rep1	xylem
+02_mature xylem_drought environment_long day _rep2	xylem
+02_mature xylem_drought environment_long day _rep3	xylem
+02_mature xylem_drought environment_long day _rep4	xylem
+02_mature xylem_drought environment_short day _rep1	xylem
+02_mature xylem_drought environment_short day _rep2	xylem
+02_mature xylem_drought environment_short day _rep3	xylem
+02_mature xylem_drought environment_short day _rep4	xylem
+03_developing xylem_continuous abscisic acid_rep1	xylem
+03_developing xylem_continuous abscisic acid_rep2	xylem
+03_developing xylem_continuous abscisic acid_rep3	xylem
+03_developing xylem_continuous abscisic acid_rep4	xylem
+03_developing xylem_control_rep1	xylem
+03_developing xylem_control_rep2	xylem
+03_developing xylem_control_rep3	xylem
+03_developing xylem_control_rep4	xylem
+03_developing xylem_discontinuous abscisic acid_rep1	xylem
+03_developing xylem_discontinuous abscisic acid_rep2	xylem
+03_developing xylem_discontinuous abscisic acid_rep3	xylem
+03_developing xylem_discontinuous abscisic acid_rep4	xylem
+03_mature xylem_continuous abscisic acid_rep1	xylem
+03_mature xylem_continuous abscisic acid_rep2	xylem
+03_mature xylem_continuous abscisic acid_rep3	xylem
+03_mature xylem_continuous abscisic acid_rep4	xylem
+03_mature xylem_control_rep1	xylem
+03_mature xylem_control_rep2	xylem
+03_mature xylem_control_rep3	xylem
+03_mature xylem_control_rep4	xylem
+03_mature xylem_discontinuous abscisic acid_rep1	xylem
+03_mature xylem_discontinuous abscisic acid_rep2	xylem
+03_mature xylem_discontinuous abscisic acid_rep3	xylem
+03_mature xylem_discontinuous abscisic acid_rep4	xylem
+04_leaf_co-incubated with Laccaria bicolor_rep1	leaf
+04_leaf_co-incubated with Laccaria bicolor_rep2	leaf
+04_leaf_co-incubated with Laccaria bicolor_rep3	leaf
+04_leaf_co-incubated with Laccaria bicolor_rep4	leaf
+04_leaf_co-incubated with Laccaria bicolor_rep5	leaf
+04_leaf_co-incubated with Laccaria bicolor_rep6	leaf
+04_leaf_control_rep1	leaf
+04_leaf_control_rep2	leaf
+04_leaf_control_rep3	leaf
+04_leaf_control_rep4	leaf
+04_leaf_control_rep5	leaf
+04_leaf_control_rep6	leaf
+04_root_co-incubated with Laccaria bicolor_rep1	root
+04_root_co-incubated with Laccaria bicolor_rep2	root
+04_root_co-incubated with Laccaria bicolor_rep3	root
+04_root_co-incubated with Laccaria bicolor_rep4	root
+04_root_co-incubated with Laccaria bicolor_rep5	root
+04_root_co-incubated with Laccaria bicolor_rep6	root
+04_root_control_rep1	root
+04_root_control_rep2	root
+04_root_control_rep3	root
+04_root_control_rep4	root
+04_root_control_rep5	root
+04_root_control_rep6	root
+05_leaf_co-cultivated (Laccaria bicolor)_rep1	leaf
+05_leaf_co-cultivated (Laccaria bicolor)_rep2	leaf
+05_leaf_co-cultivated (Laccaria bicolor)_rep3	leaf
+05_leaf_control_rep1	leaf
+05_leaf_control_rep2	leaf
+05_leaf_control_rep3	leaf
+05_leaf_control_rep4	leaf
+06_root_MeJa treated root_rep1	root
+06_root_MeJa treated root_rep2	root
+06_root_untreted root_rep1	root
+06_root_untreted root_rep2	root
+07_xylem_control_rep1	xylem
+07_xylem_control_rep2	xylem
+07_xylem_mechanical bending_rep1	xylem
+07_xylem_mechanical bending_rep2	xylem
+07_xylem_mechanical bending_rep3	xylem
+08_bark_50% defoliation_rep1	bark
+08_bark_50% defoliation_rep2	bark
+08_bark_50% defoliation_rep3	bark
+08_bark_control_rep1	bark
+08_bark_rep1	bark
+08_bark_rep2	bark
+08_leaf_50% defoliation_rep1	leaf
+08_leaf_50% defoliation_rep2	leaf
+08_leaf_50% defoliation_rep3	leaf
+08_leaf_control_rep1	leaf
+08_leaf_control_rep2	leaf
+08_leaf_control_rep3	leaf
+08_xylem_50% defoliation_rep1	xylem
+08_xylem_50% defoliation_rep2	xylem
+08_xylem_50% defoliation_rep3	xylem
+08_xylem_control_rep1	xylem
+08_xylem_control_rep2	xylem
+08_xylem_control_rep3	xylem
+09_bark_rep1	bark
+09_bark_rep2	bark
+10_xylem_GA_Normal_Wood_side_A_rep1	xylem
+10_xylem_GA_Normal_Wood_side_A_rep2	xylem
+10_xylem_GA_Normal_Wood_side_B_rep1	xylem
+10_xylem_GA_Normal_Wood_side_B_rep2	xylem
+10_xylem_GA_Opposite_Wood_rep1	xylem
+10_xylem_GA_Opposite_Wood_rep2	xylem
+10_xylem_GA_Tension_Wood_rep1	xylem
+10_xylem_GA_Tension_Wood_rep2	xylem
+10_xylem_NoGA_Normal_Wood_side_A_rep1	xylem
+10_xylem_NoGA_Normal_Wood_side_A_rep2	xylem
+10_xylem_NoGA_Normal_Wood_side_A_rep3	xylem
+10_xylem_NoGA_Normal_Wood_side_B_rep1	xylem
+10_xylem_NoGA_Normal_Wood_side_B_rep2	xylem
+10_xylem_NoGA_Normal_Wood_side_B_rep3	xylem
+10_xylem_NoGA_Opposite_Wood_rep1	xylem
+10_xylem_NoGA_Opposite_Wood_rep2	xylem
+10_xylem_NoGA_Opposite_Wood_rep3	xylem
+10_xylem_NoGA_Tension_Wood_rep1	xylem
+10_xylem_NoGA_Tension_Wood_rep2	xylem
+10_xylem_NoGA_Tension_Wood_rep3	xylem
+12_xylem_Normal wood_0hr_rep1	xylem
+12_xylem_Normal wood_0hr_rep2	xylem
+12_xylem_Normal wood_0hr_rep3	xylem
+12_xylem_Normal wood_0hr_rep4	xylem
+12_xylem_Normal wood_0hr_rep5	xylem
+12_xylem_Opposite wood_24hr_rep1	xylem
+12_xylem_Opposite wood_24hr_rep2	xylem
+12_xylem_Opposite wood_24hr_rep3	xylem
+12_xylem_Opposite wood_2hr_rep1	xylem
+12_xylem_Opposite wood_2hr_rep2	xylem
+12_xylem_Opposite wood_336hr_rep1	xylem
+12_xylem_Opposite wood_336hr_rep2	xylem
+12_xylem_Opposite wood_48hr_rep1	xylem
+12_xylem_Opposite wood_48hr_rep2	xylem
+12_xylem_Opposite wood_48hr_rep3	xylem
+12_xylem_Opposite wood_8hr_rep1	xylem
+12_xylem_Opposite wood_8hr_rep2	xylem
+12_xylem_Opposite wood_8hr_rep3	xylem
+12_xylem_Opposite wood_96hr_rep1	xylem
+12_xylem_Opposite wood_96hr_rep2	xylem
+12_xylem_Opposite wood_96hr_rep3	xylem
+12_xylem_Tension wood_24hr_rep1	xylem
+12_xylem_Tension wood_24hr_rep2	xylem
+12_xylem_Tension wood_24hr_rep3	xylem
+12_xylem_Tension wood_2hr_rep1	xylem
+12_xylem_Tension wood_2hr_rep2	xylem
+12_xylem_Tension wood_2hr_rep3	xylem
+12_xylem_Tension wood_336hr_rep1	xylem
+12_xylem_Tension wood_336hr_rep2	xylem
+12_xylem_Tension wood_48hr_rep1	xylem
+12_xylem_Tension wood_48hr_rep2	xylem
+12_xylem_Tension wood_48hr_rep3	xylem
+12_xylem_Tension wood_8hr_rep1	xylem
+12_xylem_Tension wood_8hr_rep2	xylem
+12_xylem_Tension wood_8hr_rep3	xylem
+12_xylem_Tension wood_96hr_rep1	xylem
+12_xylem_Tension wood_96hr_rep2	xylem
+14_fully expanded leaves_rep1	leaf
+14_fully expanded leaves_rep2	leaf
+14_fully expanded leaves_rep3	leaf
+16_root_LCO control_rep1	root
+16_root_LCO control_rep2	root
+16_root_LCO_15min_rep1	root
+16_root_LCO_15min_rep2	root
+16_root_LCO_1h_rep1	root
+16_root_LCO_24h_rep1	root
+16_root_LCO_2h_rep1	root
+16_root_LCO_30min_rep1	root
+16_root_LCO_4h_rep1	root
+16_root_LCO_4h_rep2	root
+16_root_LCO_8h_rep1	root
+16_root_LCO_8h_rep2	root
+17_apical_bud_spring_a_rep1	bud
+17_apical_bud_spring_a_rep2	bud
+17_apical_bud_spring_b_rep1	bud
+17_apical_bud_spring_b_rep2	bud
+17_apical_bud_spring_b_rep3	bud
+17_apical_bud_spring_c_rep1	bud
+17_apical_bud_spring_c_rep2	bud
+17_apical_bud_winter_c_rep1	bud
+17_apical_bud_winter_c_rep2	bud
+17_apical_bud_winter_d_rep1	bud
+17_apical_bud_winter_d_rep2	bud
+17_apical_bud_winter_d_rep3	bud
+17_apical_bud_winter_e_rep1	bud
+17_apical_bud_winter_e_rep2	bud
+17_stem_fall_a_rep1	stem
+17_stem_fall_a_rep2	stem
+17_stem_fall_b_rep1	stem
+17_stem_fall_b_rep2	stem
+17_stem_spring_a_rep1	stem
+17_stem_spring_a_rep2	stem
+17_stem_spring_b_rep1	stem
+17_stem_spring_b_rep2	stem
+17_stem_spring_c_rep1	stem
+17_stem_spring_c_rep2	stem
+17_stem_winter_a_rep1	stem
+17_stem_winter_a_rep2	stem
+17_stem_winter_b_rep1	stem
+17_stem_winter_b_rep2	stem
+17_stem_winter_b_rep3	stem
+17_stem_winter_c_rep1	stem
+17_stem_winter_c_rep2	stem
+17_stem_winter_d_rep1	stem
+17_stem_winter_d_rep2	stem
+17_stem_winter_d_rep3	stem
+17_stem_winter_e_rep1	stem
+17_stem_winter_e_rep2	stem
+18_bark_old_inner_rep1	bark
+18_bark_old_inner_rep2	bark
+18_bark_old_inner_rep3	bark
+18_bark_old_inner_rep4	bark
+18_bark_old_outer_rep1	bark
+18_bark_old_outer_rep2	bark
+18_bark_old_outer_rep3	bark
+18_bark_old_outer_rep4	bark
+18_bark_young_inner_rep1	bark
+18_bark_young_inner_rep2	bark
+18_bark_young_inner_rep3	bark
+18_bark_young_outer_rep1	bark
+18_bark_young_outer_rep2	bark
+18_bark_young_outer_rep3	bark
+19_leaf_LPI15_SUT1_12_rep1	leaf
+19_leaf_LPI15_SUT1_12_rep2	leaf
+19_leaf_LPI15_SUT1_12_rep3	leaf
+19_leaf_LPI15_SUT1_12_rep4	leaf
+19_leaf_LPI15_SUT1_12_rep5	leaf
+19_leaf_LPI15_SUT1_12_rep6	leaf
+19_leaf_LPI15_SUT1_8_rep1	leaf
+19_leaf_LPI15_SUT1_8_rep2	leaf
+19_leaf_LPI15_SUT1_8_rep3	leaf
+19_leaf_LPI15_SUT1_8_rep4	leaf
+19_leaf_LPI15_SUT1_8_rep5	leaf
+19_leaf_LPI15_WT_rep1	leaf
+19_leaf_LPI15_WT_rep2	leaf
+19_leaf_LPI15_WT_rep3	leaf
+19_leaf_LPI15_WT_rep4	leaf
+19_leaf_LPI15_WT_rep5	leaf
+19_leaf_LPI15_WT_rep6	leaf
+19_leaf_LPI25_SUT1_12_rep1	leaf
+19_leaf_LPI25_SUT1_12_rep2	leaf
+19_leaf_LPI25_SUT1_12_rep3	leaf
+19_leaf_LPI25_SUT1_12_rep4	leaf
+19_leaf_LPI25_SUT1_12_rep5	leaf
+19_leaf_LPI25_SUT1_12_rep6	leaf
+19_leaf_LPI25_SUT1_8_rep1	leaf
+19_leaf_LPI25_SUT1_8_rep2	leaf
+19_leaf_LPI25_SUT1_8_rep3	leaf
+19_leaf_LPI25_SUT1_8_rep4	leaf
+19_leaf_LPI25_SUT1_8_rep5	leaf
+19_leaf_LPI25_SUT1_8_rep6	leaf
+19_leaf_LPI25_WT_rep1	leaf
+19_leaf_LPI25_WT_rep2	leaf
+19_leaf_LPI25_WT_rep3	leaf
+19_leaf_LPI25_WT_rep4	leaf
+19_leaf_LPI25_WT_rep5	leaf
+19_leaf_LPI5_SUT1_12_rep1	leaf
+19_leaf_LPI5_SUT1_12_rep2	leaf
+19_leaf_LPI5_SUT1_12_rep3	leaf
+19_leaf_LPI5_SUT1_12_rep4	leaf
+19_leaf_LPI5_SUT1_12_rep5	leaf
+19_leaf_LPI5_SUT1_8_rep1	leaf
+19_leaf_LPI5_SUT1_8_rep2	leaf
+19_leaf_LPI5_SUT1_8_rep3	leaf
+19_leaf_LPI5_SUT1_8_rep4	leaf
+19_leaf_LPI5_SUT1_8_rep5	leaf
+19_leaf_LPI5_SUT1_8_rep6	leaf
+19_leaf_LPI5_WT_rep1	leaf
+19_leaf_LPI5_WT_rep2	leaf
+19_leaf_LPI5_WT_rep3	leaf
+19_leaf_LPI5_WT_rep4	leaf
+19_leaf_LPI5_WT_rep5	leaf
+19_leaf_LPI5_WT_rep6	leaf
+20_gall_CAD_rep1	gall
+20_gall_CAD_rep2	gall
+20_gall_CAD_rep3	gall
+20_gall_WT_rep1	gall
+20_gall_WT_rep2	gall
+20_gall_WT_rep3	gall
+20_root_CAD_rep1	root
+20_root_CAD_rep2	root
+20_root_WT_rep1	root
+20_root_WT_rep2	root
+20_root_WT_rep3	root
+21_shoot_tip_WT_rep1	bud
+21_shoot_tip_WT_rep2	bud
+21_shoot_tip_WT_rep3	bud
+21_shoot_tip_siRNA-DDM1_rep1	bud
+21_shoot_tip_siRNA-DDM1_rep2	bud
+21_shoot_tip_siRNA-DDM1_rep3	bud
+22_leaves_P1_LINE1_Mlp729_rep1	leaf
+22_leaves_P1_LINE1_Mlp729_rep2	leaf
+22_leaves_P1_LINE1_Mlp729_rep3	leaf
+22_leaves_P1_LINE1_Mlp729_rep4	leaf
+22_leaves_P1_LINE1_Mlp729_rep5	leaf
+22_leaves_P1_LINE3_729_rep1	leaf
+22_leaves_P1_LINE3_729_rep2	leaf
+22_leaves_P1_LINE3_729_rep3	leaf
+22_leaves_P1_LINE3_729_rep4	leaf
+22_leaves_P1_LINE3_729_rep5	leaf
+22_leaves_P1_LINE4_521_rep1	leaf
+22_leaves_P1_LINE4_521_rep2	leaf
+22_leaves_P1_LINE4_521_rep3	leaf
+22_leaves_P1_LINE4_521_rep4	leaf
+22_leaves_P1_LINE8_521_rep1	leaf
+22_leaves_P1_LINE8_521_rep2	leaf
+22_leaves_P1_LINE8_521_rep3	leaf
+22_leaves_P1_LINE8_521_rep4	leaf
+22_leaves_P1_LINE8_521_rep5	leaf
+22_leaves_POPLAR_GFP_rep1	leaf
+22_leaves_POPLAR_GFP_rep2	leaf
+22_leaves_POPLAR_GFP_rep3	leaf
+22_leaves_POPLAR_GFP_rep4	leaf
+22_leaves_POPLAR_GFP_rep5	leaf
+23_bark_4cl1-13_rep1	bark
+23_bark_4cl1-21_rep1	bark
+23_bark_4cl1-39_rep1	bark
+23_bark_4cl1-50_rep1	bark
+23_bark_4cl1-58_rep1	bark
+23_bark_4cl1-61_rep1	bark
+23_bark_Cas9-16_rep1	bark
+23_bark_Cas9-18_rep1	bark
+23_bark_Cas9-39_rep1	bark
+23_bark_WT_rep1	bark
+23_bark_WT_rep2	bark
+23_xylem_4cl1-13_rep1	xylem
+23_xylem_4cl1-21_rep1	xylem
+23_xylem_4cl1-39_rep1	xylem
+23_xylem_4cl1-50_rep1	xylem
+23_xylem_4cl1-58_rep1	xylem
+23_xylem_4cl1-61_rep1	xylem
+23_xylem_Cas9-16_rep1	xylem
+23_xylem_Cas9-18_rep1	xylem
+23_xylem_Cas9-39_rep1	xylem
+23_xylem_WT_rep1	xylem
+23_xylem_WT_rep2	xylem
+23_xylem_WT_rep3	xylem
+24_catkin_Cas_TT15_rep1	catkin
+24_catkin_Cas_TT21_rep1	catkin
+24_catkin_Cas_TT3_rep1	catkin
+24_catkin_WT_TT12_rep1	catkin
+24_catkin_WT_TT18_rep1	catkin
+24_catkin_WT_TT6_rep1	catkin
+24_catkin_WT_TT9_rep1	catkin
+24_catkin_sut4_TT27_rep1	catkin
+24_catkin_sut4_TT30_rep1	catkin
+24_catkin_sut4_TT33_rep1	catkin
+24_catkin_sut4_TT36_rep1	catkin
+24_catkin_sut4_TT39_rep1	catkin
+25_shoot_tip_PtaDML10_RNAi_rep1	bud
+25_shoot_tip_PtaDML10_RNAi_rep2	bud
+25_shoot_tip_wild_type_rep1	bud
+26_AP2-1-OE_1_rep1	leaf
+26_AP2-1-OE_2_rep1	leaf
+26_AP2-1-OE_3_rep1	leaf
+26_AP2-2-OE_1_rep1	leaf
+26_AP2-2-OE_2_rep1	leaf
+26_AP2-2-OE_3_rep1	leaf
+26_Control_1_rep1	leaf
+26_Control_2_rep1	leaf
+26_Control_3_rep1	leaf
+26_ap2-1_1_rep1	leaf
+26_ap2-1_2_rep1	leaf
+26_ap2-1_3_rep1	leaf
+26_ap2-1_ap2-2_1_rep1	leaf
+26_ap2-1_ap2-2_2_rep1	leaf
+26_ap2-1_ap2-2_3_rep1	leaf
+26_ap2-2_1_rep1	leaf
+26_ap2-2_2_rep1	leaf
+26_ap2-2_3_rep1	leaf
+27_SUT4-B-DR1_rep1	bark
+27_SUT4-B-DR2_rep1	bark
+27_SUT4-B-DR3_rep1	bark
+27_SUT4-B-RC1_rep1	bark
+27_SUT4-B-RC2_rep1	bark
+27_SUT4-B-RC3_rep1	bark
+27_SUT4-B-WW1_rep1	bark
+27_SUT4-B-WW2_rep1	bark
+27_SUT4-B-WW3_rep1	bark
+27_SUT4-L-DR1_rep1	leaf
+27_SUT4-L-DR2_rep1	leaf
+27_SUT4-L-DR3_rep1	leaf
+27_SUT4-L-RC1_rep1	leaf
+27_SUT4-L-RC2_rep1	leaf
+27_SUT4-L-RC3_rep1	leaf
+27_SUT4-L-WW1_rep1	leaf
+27_SUT4-L-WW2_rep1	leaf
+27_SUT4-L-WW3_rep1	leaf
+27_SUT4-R-DR1_rep1	root
+27_SUT4-R-DR2_rep1	root
+27_SUT4-R-DR3_rep1	root
+27_SUT4-R-RC1_rep1	root
+27_SUT4-R-RC2_rep1	root
+27_SUT4-R-RC3_rep1	root
+27_SUT4-R-WW1_rep1	root
+27_SUT4-R-WW2_rep1	root
+27_SUT4-R-WW3_rep1	root
+27_SUT4-X-DR1_rep1	xylem
+27_SUT4-X-DR2_rep1	xylem
+27_SUT4-X-DR3_rep1	xylem
+27_SUT4-X-RC1_rep1	xylem
+27_SUT4-X-RC2_rep1	xylem
+27_SUT4-X-RC3_rep1	xylem
+27_SUT4-X-WW1_rep1	xylem
+27_SUT4-X-WW2_rep1	xylem
+27_SUT4-X-WW3_rep1	xylem
+27_WT-B-DR1_rep1	bark
+27_WT-B-DR2_rep1	bark
+27_WT-B-DR3_rep1	bark
+27_WT-B-RC1_rep1	bark
+27_WT-B-RC2_rep1	bark
+27_WT-B-RC3_rep1	bark
+27_WT-B-WW1_rep1	bark
+27_WT-B-WW2_rep1	bark
+27_WT-B-WW3_rep1	bark
+27_WT-L-DR1_rep1	leaf
+27_WT-L-DR2_rep1	leaf
+27_WT-L-DR3_rep1	leaf
+27_WT-L-RC1_rep1	leaf
+27_WT-L-RC2_rep1	leaf
+27_WT-L-RC3_rep1	leaf
+27_WT-L-WW1_rep1	leaf
+27_WT-L-WW2_rep1	leaf
+27_WT-L-WW3_rep1	leaf
+27_WT-R-DR1_rep1	root
+27_WT-R-DR2_rep1	root
+27_WT-R-DR3_rep1	root
+27_WT-R-RC1_rep1	root
+27_WT-R-RC2_rep1	root
+27_WT-R-RC3_rep1	root
+27_WT-R-WW1_rep1	root
+27_WT-R-WW2_rep1	root
+27_WT-R-WW3_rep1	root
+27_WT-X-DR1_rep1	xylem
+27_WT-X-DR2_rep1	xylem
+27_WT-X-DR3_rep1	xylem
+27_WT-X-RC1_rep1	xylem
+27_WT-X-RC2_rep1	xylem
+27_WT-X-RC3_rep1	xylem
+27_WT-X-WW1_rep1	xylem
+27_WT-X-WW2_rep1	xylem
+27_WT-X-WW3_rep1	xylem
+28_TUA1dEY_control_rep1	leaf
+28_TUA1dEY_control_rep2	leaf
+28_TUA1dEY_control_rep3	leaf
+28_TUA1dEY_control_rep4	leaf
+28_TUA1dEY_control_rep5	leaf
+28_TUA1dEY_control_rep6	leaf
+28_TUA1dEY_control_rep7	leaf
+28_TUA1dEY_control_rep8	leaf
+28_TUA1dEY_drought_rep1	leaf
+28_TUA1dEY_drought_rep2	leaf
+28_TUA1dEY_drought_rep3	leaf
+28_TUA1dEY_drought_rep4	leaf
+28_TUA1dEY_drought_rep5	leaf
+28_TUA1dEY_drought_rep6	leaf
+28_TUA1dEY_drought_rep7	leaf
+28_TUA1dY_control_rep1	leaf
+28_TUA1dY_control_rep10	leaf
+28_TUA1dY_control_rep11	leaf
+28_TUA1dY_control_rep2	leaf
+28_TUA1dY_control_rep3	leaf
+28_TUA1dY_control_rep4	leaf
+28_TUA1dY_control_rep5	leaf
+28_TUA1dY_control_rep6	leaf
+28_TUA1dY_control_rep7	leaf
+28_TUA1dY_control_rep8	leaf
+28_TUA1dY_control_rep9	leaf
+28_TUA1dY_drought_rep1	leaf
+28_TUA1dY_drought_rep10	leaf
+28_TUA1dY_drought_rep11	leaf
+28_TUA1dY_drought_rep2	leaf
+28_TUA1dY_drought_rep3	leaf
+28_TUA1dY_drought_rep4	leaf
+28_TUA1dY_drought_rep5	leaf
+28_TUA1dY_drought_rep6	leaf
+28_TUA1dY_drought_rep7	leaf
+28_TUA1dY_drought_rep8	leaf
+28_TUA1dY_drought_rep9	leaf
+28_WT_control_rep1	leaf
+28_WT_control_rep2	leaf
+28_WT_control_rep3	leaf
+28_WT_control_rep4	leaf
+28_WT_drought_rep1	leaf
+28_WT_drought_rep2	leaf
+28_WT_drought_rep3	leaf
+28_WT_drought_rep4	leaf
+29_WT_rep1	leaf
+29_WT_rep2	leaf
+29_WT_rep3	leaf
+29_trichomeless-KO_rep1	leaf
+29_trichomeless-KO_rep2	leaf
+29_trichomeless-KO_rep3	leaf
+29_trichomeless-KO_rep4	leaf
+29_trichomeless-KO_rep5	leaf
+29_vector control_rep1	leaf
+29_vector control_rep2	leaf
+29_vector control_rep3	leaf
+30_LPI-15_rep1	leaf
+30_LPI-15_rep2	leaf
+30_LPI-15_rep3	leaf
+30_LPI-1_rep1	leaf
+30_LPI-1_rep2	leaf
+30_LPI-1_rep3	leaf
+30_LPI-5_rep1	leaf
+30_LPI-5_rep2	leaf
+30_LPI-5_rep3	leaf
+31_bark primary stem (internodes 3-6)_rep1	bark
+31_bark secondary stem (internodes 12-15)_rep1	bark
+31_bud_rep1	bud
+31_callus_rep1	callus
+31_debarked primary stem (internodes 3-6)_rep1	stem
+31_leaf expanding (LPI 5-6)_rep1	leaf
+31_leaf mature (LPI 15-16)_rep1	leaf
+31_leaf newly emerged (LPI 1-2)_rep1	leaf
+31_root tip_rep1	root
+31_shoot tip_rep1	stem
+31_xylem secondary stem (internodes 12-15)_rep1	xylem

@@ -1,0 +1,49 @@
+{
+ "purpose": "The corrected LSG pool. Replaces the frozen 12-species genEra panel's 842 HAP1 / 883 HAP2 with 776 / 835, and carries BOTH ranks per gene so the atlas can show the correction rather than silently swap one number for another.",
+ "status_2026_09_26": "THE POOL AGAIN (ms2-lsg docs/CORRECTIONS.md C5, commit 8eb65b0; Chen, 2026-09-21 evening, reconfirmed 2026-09-26): rank >= 18 in this table is the LSG pool, 776 HAP1 + 835 HAP2 (PS18/PS19 433/343 and 497/338). Applied by scripts/patch_lsg_pool.py: ps.* is this table's call, and the frozen call sits under ps.frz wherever its rank differs (766 genes). The status_2026_09_21 line below describes the arrangement of 2026-09-21 to 09-26 (C4) and is kept as written.",
+ "status_2026_09_21": "SUPERSEDED AS THE POOL. Chen ruled on 2026-09-21 that the LSG pool is the frozen genEra call, 842 HAP1 + 883 HAP2, and does not change; every check on it, this rerun included, is a per-gene flag (MS2_2026 CLAUDE.md, commit 1e698f2). This table is now the source of the per-gene rerun call (ps.rr, where its rank differs) and of the flag qc.rr (a pool gene that falls below rank 18 here: 66 HAP1 + 48 HAP2). The pool itself comes from sources/lsg_pool_frozen.tsv.gz. The rerun was also the first run to search the full comparison panel (the frozen call searched NCBI nr only), so a rank change here is not always due to Idesia. The text below is kept as written on 2026-09-10.",
+ "tier": "public",
+ "why_public": "Derived from published genome assemblies and genEra, a public method. docs/EMBARGO.md's 'Not affected' list names phylostratigraphy and the genEra layer as publishable. The atlas already publishes the frozen ranks; this corrects them.",
+ "adoption": {
+  "status": "ADOPTED upstream",
+  "by": "Chen, 2026-09-09",
+  "recorded_in": "ms2-lsg docs/CORRECTIONS.md, correction C2",
+  "supersedes": "sources/lsg_qc_flags.provenance.json's `idesia_deliberately_excluded` block, which said 'Chen has not adopted it'. That was true when written on 2026-09-06 and is not true now."
+ },
+ "generated_by": "ms2-lsg pipeline/s00b_lsg_pool_idesia.py, locked by pipeline/tests/test_pool_idesia.py",
+ "source_file": "<scratch>/ms2lsg_wt_proteomics/pipeline/out/lsg_pool_idesia.tsv.gz",
+ "source_sha256": "a4289b541ec77e7bfe9335c8d90ee5f00617259c3faa40526d38c65a10f8af5e",
+ "source_mtime": "2026-09-09T18:09:04",
+ "shipped_sha256": "af358ed93305f0677dee0537826cae467cd96250da5efe41347a470e8c9f6bf2",
+ "rows": 63960,
+ "scope": "genome-wide, every gene in the atlas -- not just the pool. Ranks moved for 766 genes, of which the pool boundary accounts for a minority.",
+ "join_key": "gene_id, bare locus, matches the atlas gene index",
+
+ "why_the_pool_moved": "Idesia polycarpa is the only available Salicaceae genome outside Saliceae and was never in the 12-species panel. That is a sampling gap exactly where an LSG call is made: a gene present in Populus and Idesia but lost in Salix reads as Populus-specific. Adding it removes 66 HAP1 and 48 HAP2 genes and adds NONE. One-directional movement is the signature of adding real homology signal; a noisy rerun would move genes both ways. Reproduced identically across two passes.",
+
+ "the_part_that_is_more_than_a_headcount": "179 genes move PS19 -> PS18 and STAY in the pool; none move the other way. Pool composition goes from 51.0% PS19 / 49.0% PS18 to 42.3% / 57.7%. The atlas labels PS19 'hybrid-only', so before this correction the site showed a stratum name the source no longer assigns to a fifth of that arm. PS18 and PS19 are never pooled by upstream policy and must not be pooled here.",
+
+ "what_adoption_does_NOT_license": "abSENSE corrects homology-detection FAILURE, a sensitivity problem. A missing genome is taxon SAMPLING, a coverage problem. Both surface identically as 'no homolog found' and only the first is fixable by modelling: 86% of the genes Idesia removed were `no_prediction` in the frozen abSENSE run, i.e. abSENSE could say nothing about them at all. The corrected pool is NOT evidence that the surviving calls are modelled-safe. See sources/lsg_qc_flags.provenance.json and the calibration note in data/meta/manifest.json.",
+
+ "columns_dropped_before_shipping": {
+  "dropped": ["canonical_label", "group"],
+  "why": "They carry the unpublished LSG candidate names for 10 genes (the names themselves are withheld here since 2026-09-21: this record is rendered on the public site). TODO 22's hold on candidate labels is unchanged by C2's adoption; the pool moving does not release the names. patch_lsg_pool.py (then patch_pool_idesia.py) asserts both are absent from this file before reading a row, the same construction patch_lsg_qc.py uses."
+ },
+
+ "columns": {
+  "rank, phylostratum, tax_rep, age_class, is_lsg": "the rerun's call, with Idesia added and the full comparison panel searched. Canonical as the pool until 2026-09-21; since then shown per gene as ps.rr and used as the qc.rr flag.",
+  "frozen_rank, frozen_is_lsg": "the frozen genEra call. C2 withdrew it as the CANONICAL pool, but it is still the pool the chapter text reports (842/883, named as frozen, with 776/835 alongside as the robustness check; Chen, 2026-09-20). Kept so a reader can see what changed and so numbers published against the frozen pool remain checkable -- they are correct statements about that pool and are not retracted. (2026-09-21: an MS2 consistency audit, A38, found the frozen run searched nr only rather than a 12-species panel, so this line no longer calls it a panel call; the other lines of this record keep C2's wording until Chen rules.)",
+  "left_pool_under_idesia": "was rank >= 18 on the frozen panel, is not now. 66 HAP1 + 48 HAP2.",
+  "entered_pool_under_idesia": "would be the reverse. It is zero for every gene, by construction, and the patcher asserts that."
+ },
+
+ "gate_run_before_adoption": "Every one of the 63,960 genes' `frozen_rank` was checked against the rank the atlas was already serving. Zero mismatches, and no gene present in one and absent from the other. That is what makes this a one-step auditable correction rather than a re-derivation: the source's frozen column IS the layer the atlas shipped. patch_lsg_pool.py (then patch_pool_idesia.py) re-runs that gate on every build and refuses to write if it ever fails.",
+
+ "counts": {
+  "pool_corrected": {"hap1": 776, "hap2": 835, "total": 1611},
+  "pool_frozen": {"hap1": 842, "hap2": 883, "total": 1725},
+  "genes_with_a_changed_rank": 766,
+  "largest_transitions": {"19->18": 179, "17->16": 139, "9->6": 83, "7->6": 82, "18->16": 76}
+ },
+ "regenerate": "python pipeline/s00b_lsg_pool_idesia.py in the ms2-lsg repo, then re-copy here"
+}
