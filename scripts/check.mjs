@@ -393,7 +393,7 @@ await check('module-about-numbers', '#/module/about',
   { expect: ['no rank for 27 HAP1 and 18 HAP2 genes in the current call',
              '55 leaf (plus 11 young-leaf and 11 old-leaf)',
              'ComBat-seq', 'the strict, protein-level set', '528 HAP1 and 605 HAP2',
-             'Hsieh C, et al. Poplar 717 gene atlas (unpublished), version', 'https://chenhsieh.github.io/poplar-717-atlas/'],
+             'Hsieh et al., unpublished. Poplar 717 gene atlas, version', 'https://chenhsieh.github.io/poplar-717-atlas/'],
     forbid: ['no rank for 50 genes', '77 leaf', 'is not in the mirror', 'v6 master', 'held on v9', 'for browsing, not quoting'] });
 {
   const fp = await browser.newPage();

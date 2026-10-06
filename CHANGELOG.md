@@ -9,6 +9,11 @@ lives in the `VERSION` file, which `build_data.py` stamps into the manifest and
 `scripts/check_version.py` holds equal to `CITATION.cff` and to the newest versioned
 heading here. Unversioned headings are skipped by that check by design.
 
+## How to cite: Hsieh et al., unpublished
+
+Site only. The About page's citation now reads "Hsieh et al., unpublished. Poplar 717 gene atlas,
+version X.Y.Z" followed by the address. To be replaced by the bioRxiv preprint once posted (listed in TODO).
+
 ## 0.17.1 - 2026-10-03 - Hedged wording, and the home page's allele count
 
 **Wording (site only).** A review of the reader-facing text for claims stretched past their

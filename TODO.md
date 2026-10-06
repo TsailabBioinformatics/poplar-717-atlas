@@ -16,5 +16,6 @@ an issue, or tell the Tsai lab.
 - [ ] Extra evidence for the youngest genes (phylostratum 19), such as protein-coding potential scores.
 
 ## Housekeeping
+- [ ] When the atlas paper is on bioRxiv, replace the "Hsieh et al., unpublished" citation (About page, README, CITATION.cff) with the preprint and its DOI.
 - [ ] Tidy the formatting of two study citations on the study pages.
 - [ ] Keep the public copy of the atlas in step with each release.

@@ -148,7 +148,7 @@ function overview(man) {
       el('h2', {}, 'Citation & licence'),
       el('p', { style: 'margin:0 0 6px;font-size:13.5px' }, 'Cite this atlas as:'),
       el('p', { class: 'cite-line', 'data-cite': '', style: 'margin:0 0 10px;font-size:13.5px;padding:8px 10px;border-left:3px solid var(--accent)' },
-        `Hsieh C, et al. Poplar 717 gene atlas (unpublished), version ${man.data_version || ''}. `,
+        `Hsieh et al., unpublished. Poplar 717 gene atlas, version ${man.data_version || ''}. `,
         el('a', { href: 'https://chenhsieh.github.io/poplar-717-atlas/' }, 'https://chenhsieh.github.io/poplar-717-atlas/'),
         `. Accessed ${new Date().toISOString().slice(0, 10)}.`),
       el('p', { style: 'margin:0 0 8px;font-size:13px;color:var(--ink-2)' },

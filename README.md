@@ -12,7 +12,7 @@ Tsai lab, University of Georgia. The data are unpublished dissertation material.
 
 ## How to cite
 
-> Hsieh C, et al. Poplar 717 gene atlas (unpublished), version X.Y.Z.
+> Hsieh et al., unpublished. Poplar 717 gene atlas, version X.Y.Z.
 > https://tsailabbioinformatics.github.io/poplar-717-atlas/. Accessed YYYY-MM-DD.
 
 Use the version shown on the atlas's About page. Also cite the underlying study for any expression
